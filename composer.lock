@@ -377,12 +377,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/valkyrja.git",
-                "reference": "24f965ac2abbf4415084c09527eccae4d168dda6"
+                "reference": "df59fd48820079c1f8220b9bb0e4be9bab869512"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/valkyrja/zipball/24f965ac2abbf4415084c09527eccae4d168dda6",
-                "reference": "24f965ac2abbf4415084c09527eccae4d168dda6",
+                "url": "https://api.github.com/repos/valkyrjaio/valkyrja/zipball/df59fd48820079c1f8220b9bb0e4be9bab869512",
+                "reference": "df59fd48820079c1f8220b9bb0e4be9bab869512",
                 "shasum": ""
             },
             "require": {
@@ -547,7 +547,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "valkyrja/valkyrja": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
