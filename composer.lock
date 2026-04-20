@@ -377,12 +377,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/valkyrja.git",
-                "reference": "e3429a4daa597bbbda6955f8d0c2bc34e32c37ae"
+                "reference": "24f965ac2abbf4415084c09527eccae4d168dda6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/valkyrja/zipball/e3429a4daa597bbbda6955f8d0c2bc34e32c37ae",
-                "reference": "e3429a4daa597bbbda6955f8d0c2bc34e32c37ae",
+                "url": "https://api.github.com/repos/valkyrjaio/valkyrja/zipball/24f965ac2abbf4415084c09527eccae4d168dda6",
+                "reference": "24f965ac2abbf4415084c09527eccae4d168dda6",
                 "shasum": ""
             },
             "require": {
@@ -608,12 +608,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/sindri-php.git",
-                "reference": "415a948ac7aa3ef28c7252ec852f4a162f4f3968"
+                "reference": "53fa55facb8aa98f606523fa26adec395fc8f412"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/415a948ac7aa3ef28c7252ec852f4a162f4f3968",
-                "reference": "415a948ac7aa3ef28c7252ec852f4a162f4f3968",
+                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/53fa55facb8aa98f606523fa26adec395fc8f412",
+                "reference": "53fa55facb8aa98f606523fa26adec395fc8f412",
                 "shasum": ""
             },
             "require": {
@@ -652,14 +652,12 @@
                 "issues": "https://github.com/valkyrjaio/sindri-php/issues",
                 "source": "https://github.com/valkyrjaio/sindri-php/tree/26.x"
             },
-            "time": "2026-04-20T02:37:28+00:00"
+            "time": "2026-04-20T06:38:36+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "valkyrja/valkyrja": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
