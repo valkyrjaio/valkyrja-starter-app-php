@@ -14,7 +14,8 @@
     "valkyrja/valkyrja" : "^26.1.0"
   },
   "require-dev"       : {
-    "filp/whoops"     : "^2.18.4"
+    "filp/whoops"     : "^2.18.4",
+    "valkyrja/sindri" : "^26.0.0"
   },
   "config"            : {
     "optimize-autoloader" : true,
@@ -42,7 +43,6 @@
       "php -r \"file_exists('app/src/App/Cli/Data/AppEventData.php') || copy('app/src/App/Cli/Data/AppEventData.example.php', 'app/src/App/Cli/Data/AppEventData.php');\"",
       "php -r \"file_exists('app/src/App/Cli/Data/AppCliRoutingData.php') || copy('app/src/App/Cli/Data/AppCliRoutingData.example.php', 'app/src/App/Cli/Data/AppCliRoutingData.php');\"",
       "php -r \"file_exists('app/src/App/Cli/Data/AppHttpRoutingData.php') || copy('app/src/App/Cli/Data/AppHttpRoutingData.example.php', 'app/src/App/Cli/Data/AppHttpRoutingData.php');\""
-
     ],
     "phparkitect"                                 : "cd .github/ci/phparkitect && composer check",
     "phparkitect-outdated-check"                  : "cd .github/ci/phparkitect && composer install && composer outdated --direct --minor-only",
