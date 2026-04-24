@@ -16,7 +16,6 @@ declare(strict_types=1);
 namespace App\Cli;
 
 use App\Cli\Provider\ComponentProvider;
-use App\Http\Config as AppHttpConfig;
 use Valkyrja\Application\Data\CliConfig;
 use Valkyrja\Application\Provider\CliWithHttpApplicationComponentProvider;
 use Valkyrja\Cli\Server\Constant\CommandName;
@@ -44,7 +43,6 @@ final class Config extends CliConfig
             callbacks: [
                 [ComponentProvider::class, 'publish'],
             ],
-            http: new AppHttpConfig(),
         );
     }
 }
