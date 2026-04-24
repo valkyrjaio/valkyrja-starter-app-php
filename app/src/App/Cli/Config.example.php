@@ -33,7 +33,7 @@ final class Config extends CliConfig
             debugMode: true,
             timezone: 'UTC',
             key: 'some_secret_app_key',
-            dataPath: 'App/Cli/Data',
+            dataPath: 'src/App/Cli/Data',
             dataNamespace: 'App\\Cli\\Data',
             applicationName: 'cli',
             defaultCommandName: CommandName::LIST,
