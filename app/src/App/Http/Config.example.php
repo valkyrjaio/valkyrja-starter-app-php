@@ -32,7 +32,7 @@ final class Config extends HttpConfig
             debugMode: true,
             timezone: 'UTC',
             key: 'some_secret_app_key',
-            dataPath: 'App/Http/Data',
+            dataPath: 'src/App/Http/Data',
             dataNamespace: 'App\\Http\\Data',
             providers: [
                 HttpApplicationComponentProvider::class,
