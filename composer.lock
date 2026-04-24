@@ -376,13 +376,13 @@
             "version": "26.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/valkyrjaio/valkyrja.git",
-                "reference": "37372d276b26237f88b93b6100b7eff5c4ee6842"
+                "url": "https://github.com/valkyrjaio/valkyrja-php.git",
+                "reference": "c79de288fedf90cc708a91975b53abb40e22c8e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/valkyrja/zipball/37372d276b26237f88b93b6100b7eff5c4ee6842",
-                "reference": "37372d276b26237f88b93b6100b7eff5c4ee6842",
+                "url": "https://api.github.com/repos/valkyrjaio/valkyrja-php/zipball/c79de288fedf90cc708a91975b53abb40e22c8e0",
+                "reference": "c79de288fedf90cc708a91975b53abb40e22c8e0",
                 "shasum": ""
             },
             "require": {
@@ -440,9 +440,6 @@
                 "vonage/client-core": "Required to use the default SMS adapter (^4.13.0)."
             },
             "default-branch": true,
-            "bin": [
-                "bin/valkyrja"
-            ],
             "type": "project",
             "autoload": {
                 "psr-4": {
@@ -466,10 +463,10 @@
                 "valkyrja"
             ],
             "support": {
-                "issues": "https://github.com/valkyrjaio/valkyrja/issues",
-                "source": "https://github.com/valkyrjaio/valkyrja/tree/26.x"
+                "issues": "https://github.com/valkyrjaio/valkyrja-php/issues",
+                "source": "https://github.com/valkyrjaio/valkyrja-php/tree/26.x"
             },
-            "time": "2026-04-17T23:07:25+00:00"
+            "time": "2026-04-23T19:38:59+00:00"
         }
     ],
     "packages-dev": [
@@ -604,16 +601,16 @@
         },
         {
             "name": "valkyrja/sindri",
-            "version": "26.x-dev",
+            "version": "v26.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/sindri-php.git",
-                "reference": "7cc9e597ec6cfa5f6006a951cfb39b4333177d78"
+                "reference": "b618a527cb48a1bc8fdd4ce3e12ba83b387a7ea2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/7cc9e597ec6cfa5f6006a951cfb39b4333177d78",
-                "reference": "7cc9e597ec6cfa5f6006a951cfb39b4333177d78",
+                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/b618a527cb48a1bc8fdd4ce3e12ba83b387a7ea2",
+                "reference": "b618a527cb48a1bc8fdd4ce3e12ba83b387a7ea2",
                 "shasum": ""
             },
             "require": {
@@ -621,7 +618,6 @@
                 "php": ">=8.4",
                 "valkyrja/valkyrja": "26.x-dev"
             },
-            "default-branch": true,
             "bin": [
                 "bin/sindri"
             ],
@@ -650,16 +646,14 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/sindri-php/issues",
-                "source": "https://github.com/valkyrjaio/sindri-php/tree/26.x"
+                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.0.0"
             },
-            "time": "2026-04-22T18:07:42+00:00"
+            "time": "2026-04-24T04:47:28+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "valkyrja/valkyrja": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
