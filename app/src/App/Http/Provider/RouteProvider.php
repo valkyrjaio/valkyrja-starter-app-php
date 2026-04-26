@@ -19,6 +19,7 @@ use Valkyrja\Application\Kernel\Contract\ApplicationContract;
 use Valkyrja\Container\Manager\Contract\ContainerContract;
 use Valkyrja\Http\Message\Response\Contract\ResponseContract;
 use Valkyrja\Http\Message\Response\Factory\Contract\ResponseFactoryContract;
+use Valkyrja\Http\Routing\Data\Contract\DynamicRouteContract;
 use Valkyrja\Http\Routing\Data\Contract\RouteContract;
 use Valkyrja\Http\Routing\Provider\Contract\HttpRouteProviderContract;
 use Valkyrja\View\Factory\Contract\ResponseFactoryContract as ViewResponseFactoryContract;
@@ -45,10 +46,7 @@ final class RouteProvider implements HttpRouteProviderContract
         return [];
     }
 
-    /**
-     * @param array<array-key, mixed> $arguments The arguments
-     */
-    public static function versionHandler(ContainerContract $container, array $arguments): ResponseContract
+    public static function versionHandler(ContainerContract $container, RouteContract $route): ResponseContract
     {
         return HomeController::version(
             $container->getSingleton(ApplicationContract::class),
@@ -56,63 +54,48 @@ final class RouteProvider implements HttpRouteProviderContract
         );
     }
 
-    /**
-     * @param array<array-key, mixed> $arguments The arguments
-     */
-    public static function textHandler(ContainerContract $container, array $arguments): ResponseContract
+    public static function textHandler(ContainerContract $container, RouteContract $route): ResponseContract
     {
         return HomeController::text();
     }
 
-    /**
-     * @param array<array-key, mixed> $arguments The arguments
-     */
-    public static function welcomeHandler(ContainerContract $container, array $arguments): ResponseContract
+    public static function welcomeHandler(ContainerContract $container, RouteContract $route): ResponseContract
     {
         return $container->getSingleton(HomeController::class)->welcome(
             $container->getSingleton(ViewResponseFactoryContract::class),
         );
     }
 
-    /**
-     * @param array<array-key, mixed> $arguments The arguments
-     */
-    public static function welcomeCachedHandler(ContainerContract $container, array $arguments): ResponseContract
+    public static function welcomeCachedHandler(ContainerContract $container, RouteContract $route): ResponseContract
     {
         return $container->getSingleton(HomeController::class)->welcomeCached(
             $container->getSingleton(ViewResponseFactoryContract::class),
         );
     }
 
-    /**
-     * @param array<array-key, mixed> $arguments The arguments
-     */
-    public static function dynamicHandler(ContainerContract $container, array $arguments): ResponseContract
+    public static function dynamicHandler(ContainerContract $container, RouteContract $route): ResponseContract
     {
-        /** @var string $value */
-        $value = $arguments['value'] ?? 'default';
+        /**
+         * @var DynamicRouteContract $route
+         * @var string               $value
+         */
+        $value = $route->getParameter('value')->getValue();
 
         return $container->getSingleton(HomeController::class)->dynamic(
-            $container->getSingleton(RouteContract::class),
+            $route,
             $container->getSingleton(ViewResponseFactoryContract::class),
             $value
         );
     }
 
-    /**
-     * @param array<array-key, mixed> $arguments The arguments
-     */
-    public static function homeHandler(ContainerContract $container, array $arguments): ResponseContract
+    public static function homeHandler(ContainerContract $container, RouteContract $route): ResponseContract
     {
         return $container->getSingleton(HomeController::class)->home(
             $container->getSingleton(ViewResponseFactoryContract::class),
         );
     }
 
-    /**
-     * @param array<array-key, mixed> $arguments The arguments
-     */
-    public static function jsonHandler(ContainerContract $container, array $arguments): ResponseContract
+    public static function jsonHandler(ContainerContract $container, RouteContract $route): ResponseContract
     {
         return $container->getSingleton(HomeController::class)->json(
             $container->getSingleton(ResponseFactoryContract::class),
