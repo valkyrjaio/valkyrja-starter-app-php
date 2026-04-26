@@ -16,6 +16,7 @@ namespace App\Cli\Provider;
 use App\Cli\Command\TestCommand;
 use Override;
 use Valkyrja\Cli\Interaction\Output\Contract\OutputContract;
+use Valkyrja\Cli\Routing\Data\Contract\RouteContract;
 use Valkyrja\Cli\Routing\Provider\Contract\CliRouteProviderContract;
 use Valkyrja\Container\Manager\Contract\ContainerContract;
 
@@ -44,7 +45,7 @@ final class RouteProvider implements CliRouteProviderContract
     /**
      * The test command handler.
      */
-    public static function testCommandHandler(ContainerContract $container): OutputContract
+    public static function testCommandHandler(ContainerContract $container, RouteContract $route): OutputContract
     {
         return $container->getSingleton(TestCommand::class)->run();
     }
