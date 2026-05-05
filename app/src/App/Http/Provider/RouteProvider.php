@@ -22,7 +22,7 @@ use Valkyrja\Http\Message\Response\Factory\Contract\ResponseFactoryContract;
 use Valkyrja\Http\Routing\Data\Contract\DynamicRouteContract;
 use Valkyrja\Http\Routing\Data\Contract\RouteContract;
 use Valkyrja\Http\Routing\Provider\Contract\HttpRouteProviderContract;
-use Valkyrja\View\Factory\Contract\ResponseFactoryContract as ViewResponseFactoryContract;
+use Valkyrja\View\Factory\Contract\ViewResponseFactoryContract;
 
 final class RouteProvider implements HttpRouteProviderContract
 {
