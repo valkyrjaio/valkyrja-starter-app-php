@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Valkyrja Application package.
+ * This file is part of the Valkyrja Framework package.
  *
  * (c) Melech Mizrachi <melechmizrachi@gmail.com>
  *
@@ -22,7 +22,7 @@ use Valkyrja\Http\Message\Response\Factory\Contract\ResponseFactoryContract;
 use Valkyrja\Http\Routing\Data\Contract\DynamicRouteContract;
 use Valkyrja\Http\Routing\Data\Contract\RouteContract;
 use Valkyrja\Http\Routing\Provider\Contract\HttpRouteProviderContract;
-use Valkyrja\View\Factory\Contract\ResponseFactoryContract as ViewResponseFactoryContract;
+use Valkyrja\View\Factory\Contract\ViewResponseFactoryContract;
 
 final class RouteProvider implements HttpRouteProviderContract
 {

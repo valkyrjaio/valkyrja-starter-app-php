@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Valkyrja Application package.
+ * This file is part of the Valkyrja Framework package.
  *
  * (c) Melech Mizrachi <melechmizrachi@gmail.com>
  *
@@ -31,7 +31,7 @@ use Valkyrja\Http\Routing\Attribute\Route\RouteHandler;
 use Valkyrja\Http\Routing\Constant\Regex;
 use Valkyrja\Http\Routing\Data\Contract\RouteContract;
 use Valkyrja\Http\Server\Middleware\CacheResponseMiddleware;
-use Valkyrja\View\Factory\Contract\ResponseFactoryContract as ViewResponseFactoryContract;
+use Valkyrja\View\Factory\Contract\ViewResponseFactoryContract;
 
 class HomeController extends Controller
 {
