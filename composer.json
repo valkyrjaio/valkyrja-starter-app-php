@@ -15,7 +15,7 @@
   },
   "require-dev"       : {
     "filp/whoops"     : "^2.18.4",
-    "valkyrja/sindri" : "^26.1.1"
+    "valkyrja/sindri" : "^26.1.2"
   },
   "config"            : {
     "optimize-autoloader" : true,
