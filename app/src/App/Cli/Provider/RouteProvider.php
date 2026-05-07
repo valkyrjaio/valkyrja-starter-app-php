@@ -47,6 +47,6 @@ final class RouteProvider implements CliRouteProviderContract
      */
     public static function testCommandHandler(ContainerContract $container, RouteContract $route): OutputContract
     {
-        return $container->getSingleton(TestCommand::class)->run();
+        return $container->getSingleton(TestCommand::class)->run($route);
     }
 }

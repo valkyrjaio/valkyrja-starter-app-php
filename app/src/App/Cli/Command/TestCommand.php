@@ -15,22 +15,33 @@ namespace App\Cli\Command;
 
 use App\Cli\Controller\Abstract\Controller;
 use App\Cli\Provider\RouteProvider;
+use Valkyrja\Application\Data\Contract\CliConfigContract;
+use Valkyrja\Cli\Interaction\Input\Contract\InputContract;
 use Valkyrja\Cli\Interaction\Message\Answer;
-use Valkyrja\Cli\Interaction\Message\Banner;
 use Valkyrja\Cli\Interaction\Message\Contract\AnswerContract;
 use Valkyrja\Cli\Interaction\Message\Contract\MessageContract;
+use Valkyrja\Cli\Interaction\Message\Header;
 use Valkyrja\Cli\Interaction\Message\Message;
 use Valkyrja\Cli\Interaction\Message\NewLine;
 use Valkyrja\Cli\Interaction\Message\Question;
-use Valkyrja\Cli\Interaction\Message\SuccessMessage;
 use Valkyrja\Cli\Interaction\Output\Contract\OutputContract;
+use Valkyrja\Cli\Interaction\Output\Factory\Contract\OutputFactoryContract;
 use Valkyrja\Cli\Routing\Attribute\Route;
 use Valkyrja\Cli\Routing\Attribute\Route\RouteHandler;
+use Valkyrja\Cli\Routing\Data\Contract\RouteContract;
 
 class TestCommand extends Controller
 {
     protected const string YES_ANSWER = 'yes';
     protected const string NO_ANSWER  = 'no';
+
+    public function __construct(
+        InputContract $input,
+        OutputFactoryContract $outputFactory,
+        private readonly CliConfigContract $config,
+    ) {
+        parent::__construct($input, $outputFactory);
+    }
 
     /**
      * The help text.
@@ -46,12 +57,12 @@ class TestCommand extends Controller
         helpText: [self::class, 'help'],
     )]
     #[RouteHandler([RouteProvider::class, 'testCommandHandler'])]
-    public function run(): OutputContract
+    public function run(RouteContract $route): OutputContract
     {
         return $this->outputFactory
             ->createOutput()
             ->withAddedMessages(
-                new Banner(new SuccessMessage('This is a success banner.')),
+                new Header($this->config->namespace, $this->config->version, $route),
             )
             ->withAddedMessages(
                 new NewLine(),

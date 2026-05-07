@@ -15,6 +15,7 @@ namespace App\Cli\Provider;
 
 use App\Cli\Command\TestCommand;
 use Override;
+use Valkyrja\Application\Data\Contract\CliConfigContract;
 use Valkyrja\Cli\Interaction\Input\Contract\InputContract;
 use Valkyrja\Cli\Interaction\Output\Factory\Contract\OutputFactoryContract;
 use Valkyrja\Container\Manager\Contract\ContainerContract;
@@ -42,7 +43,8 @@ final class ServiceProvider implements ServiceProviderContract
             TestCommand::class,
             new TestCommand(
                 $container->getSingleton(InputContract::class),
-                $container->getSingleton(OutputFactoryContract::class)
+                $container->getSingleton(OutputFactoryContract::class),
+                $container->getSingleton(CliConfigContract::class),
             )
         );
     }
