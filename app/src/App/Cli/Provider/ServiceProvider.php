@@ -42,7 +42,7 @@ final class ServiceProvider implements ServiceProviderContract
             TestCommand::class,
             new TestCommand(
                 $container->getSingleton(InputContract::class),
-                $container->getSingleton(OutputFactoryContract::class)
+                $container->getSingleton(OutputFactoryContract::class),
             )
         );
     }

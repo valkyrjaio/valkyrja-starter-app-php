@@ -13,19 +13,21 @@ declare(strict_types=1);
 
 namespace App\Cli\Command;
 
+use App\Cli\Config;
 use App\Cli\Controller\Abstract\Controller;
 use App\Cli\Provider\RouteProvider;
+use Valkyrja\Application\Data\Contract\CliConfigContract;
 use Valkyrja\Cli\Interaction\Message\Answer;
-use Valkyrja\Cli\Interaction\Message\Banner;
 use Valkyrja\Cli\Interaction\Message\Contract\AnswerContract;
 use Valkyrja\Cli\Interaction\Message\Contract\MessageContract;
+use Valkyrja\Cli\Interaction\Message\Header;
 use Valkyrja\Cli\Interaction\Message\Message;
 use Valkyrja\Cli\Interaction\Message\NewLine;
 use Valkyrja\Cli\Interaction\Message\Question;
-use Valkyrja\Cli\Interaction\Message\SuccessMessage;
 use Valkyrja\Cli\Interaction\Output\Contract\OutputContract;
 use Valkyrja\Cli\Routing\Attribute\Route;
 use Valkyrja\Cli\Routing\Attribute\Route\RouteHandler;
+use Valkyrja\Cli\Routing\Data\Contract\RouteContract;
 
 class TestCommand extends Controller
 {
@@ -46,12 +48,20 @@ class TestCommand extends Controller
         helpText: [self::class, 'help'],
     )]
     #[RouteHandler([RouteProvider::class, 'testCommandHandler'])]
-    public function run(): OutputContract
+    public function run(RouteContract $route, CliConfigContract $config): OutputContract
     {
+        /**
+         * @var Config $config
+         * @var string $namespace
+         */
+        $namespace = $config->namespace;
+        /** @var string $version */
+        $version = $config->version;
+
         return $this->outputFactory
             ->createOutput()
             ->withAddedMessages(
-                new Banner(new SuccessMessage('This is a success banner.')),
+                new Header($namespace, $version, $route),
             )
             ->withAddedMessages(
                 new NewLine(),
