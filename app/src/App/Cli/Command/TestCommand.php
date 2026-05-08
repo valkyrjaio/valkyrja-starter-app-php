@@ -59,10 +59,15 @@ class TestCommand extends Controller
     #[RouteHandler([RouteProvider::class, 'testCommandHandler'])]
     public function run(RouteContract $route): OutputContract
     {
+        /** @var string $namespace */
+        $namespace = $this->config->namespace;
+        /** @var string $version */
+        $version = $this->config->version;
+
         return $this->outputFactory
             ->createOutput()
             ->withAddedMessages(
-                new Header($this->config->namespace, $this->config->version, $route),
+                new Header($namespace, $version, $route),
             )
             ->withAddedMessages(
                 new NewLine(),
