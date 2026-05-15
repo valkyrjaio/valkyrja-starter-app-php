@@ -27,7 +27,7 @@ class ThrowableHandler extends WhoopsThrowableHandler
      * @param bool $displayErrors       [optional] Whether to display errors
      */
     #[Override]
-    public static function enable(int $errorReportingLevel = E_ALL, bool $displayErrors = false): void
+    public function enable(int $errorReportingLevel = E_ALL, bool $displayErrors = false): void
     {
     }
 }

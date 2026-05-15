@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Valkyrja Application package.
+ * This file is part of the Valkyrja Framework package.
  *
  * (c) Melech Mizrachi <melechmizrachi@gmail.com>
  *
@@ -15,7 +15,7 @@ namespace App\Cli\Command;
 
 use App\Cli\Config;
 use App\Cli\Controller\Abstract\Controller;
-use App\Cli\Provider\RouteProvider;
+use App\Cli\Provider\CliRouteProvider;
 use Valkyrja\Application\Data\Contract\CliConfigContract;
 use Valkyrja\Cli\Interaction\Message\Answer;
 use Valkyrja\Cli\Interaction\Message\Contract\AnswerContract;
@@ -47,7 +47,7 @@ class TestCommand extends Controller
         description: 'Test command',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([RouteProvider::class, 'testCommandHandler'])]
+    #[RouteHandler([CliRouteProvider::class, 'testCommandHandler'])]
     public function run(RouteContract $route, CliConfigContract $config): OutputContract
     {
         /**

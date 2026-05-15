@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Valkyrja Application package.
+ * This file is part of the Valkyrja Framework package.
  *
  * (c) Melech Mizrachi <melechmizrachi@gmail.com>
  *
@@ -21,13 +21,24 @@ use Valkyrja\Cli\Routing\Data\Contract\RouteContract;
 use Valkyrja\Cli\Routing\Provider\Contract\CliRouteProviderContract;
 use Valkyrja\Container\Manager\Contract\ContainerContract;
 
-final class RouteProvider implements CliRouteProviderContract
+final class CliRouteProvider implements CliRouteProviderContract
 {
+    /**
+     * The test command handler.
+     */
+    public static function testCommandHandler(ContainerContract $container, RouteContract $route): OutputContract
+    {
+        return $container->getSingleton(TestCommand::class)->run(
+            $route,
+            $container->getSingleton(CliConfigContract::class),
+        );
+    }
+
     /**
      * @inheritDoc
      */
     #[Override]
-    public static function getControllerClasses(): array
+    public function getControllerClasses(): array
     {
         return [
             TestCommand::class,
@@ -38,19 +49,8 @@ final class RouteProvider implements CliRouteProviderContract
      * @inheritDoc
      */
     #[Override]
-    public static function getRoutes(): array
+    public function getRoutes(): array
     {
         return [];
-    }
-
-    /**
-     * The test command handler.
-     */
-    public static function testCommandHandler(ContainerContract $container, RouteContract $route): OutputContract
-    {
-        return $container->getSingleton(TestCommand::class)->run(
-            $route,
-            $container->getSingleton(CliConfigContract::class),
-        );
     }
 }

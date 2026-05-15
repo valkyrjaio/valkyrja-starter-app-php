@@ -5,7 +5,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Valkyrja Application package.
+ * This file is part of the Valkyrja Framework package.
  *
  * (c) Melech Mizrachi <melechmizrachi@gmail.com>
  *
@@ -17,7 +17,6 @@ namespace App\Http;
 
 use App\Http\Provider\ComponentProvider;
 use Valkyrja\Application\Data\HttpConfig;
-use Valkyrja\Application\Provider\HttpApplicationComponentProvider;
 use Valkyrja\Http\Server\Middleware\CacheResponseMiddleware;
 
 final class Config extends HttpConfig
@@ -35,8 +34,7 @@ final class Config extends HttpConfig
             dataPath: 'src/App/Http/Data',
             dataNamespace: 'App\\Http\\Data',
             providers: [
-                HttpApplicationComponentProvider::class,
-                ComponentProvider::class,
+                new ComponentProvider(),
             ],
             callbacks: [
                 [ComponentProvider::class, 'publish'],

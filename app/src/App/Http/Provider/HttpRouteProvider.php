@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Valkyrja Application package.
+ * This file is part of the Valkyrja Framework package.
  *
  * (c) Melech Mizrachi <melechmizrachi@gmail.com>
  *
@@ -24,28 +24,8 @@ use Valkyrja\Http\Routing\Data\Contract\RouteContract;
 use Valkyrja\Http\Routing\Provider\Contract\HttpRouteProviderContract;
 use Valkyrja\View\Factory\Contract\ViewResponseFactoryContract;
 
-final class RouteProvider implements HttpRouteProviderContract
+final class HttpRouteProvider implements HttpRouteProviderContract
 {
-    /**
-     * @inheritDoc
-     */
-    #[Override]
-    public static function getControllerClasses(): array
-    {
-        return [
-            HomeController::class,
-        ];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    #[Override]
-    public static function getRoutes(): array
-    {
-        return [];
-    }
-
     public static function versionHandler(ContainerContract $container, RouteContract $route): ResponseContract
     {
         return HomeController::version(
@@ -100,5 +80,25 @@ final class RouteProvider implements HttpRouteProviderContract
         return $container->getSingleton(HomeController::class)->json(
             $container->getSingleton(ResponseFactoryContract::class),
         );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function getControllerClasses(): array
+    {
+        return [
+            HomeController::class,
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function getRoutes(): array
+    {
+        return [];
     }
 }

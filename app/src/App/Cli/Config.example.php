@@ -5,7 +5,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Valkyrja Application package.
+ * This file is part of the Valkyrja Framework package.
  *
  * (c) Melech Mizrachi <melechmizrachi@gmail.com>
  *
@@ -17,7 +17,6 @@ namespace App\Cli;
 
 use App\Cli\Provider\ComponentProvider;
 use Valkyrja\Application\Data\CliConfig;
-use Valkyrja\Application\Provider\CliWithHttpApplicationComponentProvider;
 use Valkyrja\Cli\Server\Constant\CommandName;
 
 final class Config extends CliConfig
@@ -37,8 +36,7 @@ final class Config extends CliConfig
             applicationName: 'cli',
             defaultCommandName: CommandName::LIST,
             providers: [
-                CliWithHttpApplicationComponentProvider::class,
-                ComponentProvider::class,
+                new ComponentProvider(),
             ],
             callbacks: [
                 [ComponentProvider::class, 'publish'],

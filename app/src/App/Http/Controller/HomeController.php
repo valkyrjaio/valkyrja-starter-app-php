@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Valkyrja Application package.
+ * This file is part of the Valkyrja Framework package.
  *
  * (c) Melech Mizrachi <melechmizrachi@gmail.com>
  *
@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Http\Controller;
 
 use App\Http\Controller\Abstract\Controller;
-use App\Http\Provider\RouteProvider;
+use App\Http\Provider\HttpRouteProvider;
 use Valkyrja\Application\Kernel\Contract\ApplicationContract;
 use Valkyrja\Http\Message\Enum\RequestMethod;
 use Valkyrja\Http\Message\Response\Contract\JsonResponseContract;
@@ -41,7 +41,7 @@ class HomeController extends Controller
     #[Route(path: '/version', name: 'version', requestMethods: [RequestMethod::GET])]
     #[Route(path: '/version', name: 'version.post', requestMethods: [RequestMethod::POST])]
     #[Route(path: '/version', name: 'version.put', requestMethods: [RequestMethod::PUT])]
-    #[RouteHandler([RouteProvider::class, 'versionHandler'])]
+    #[RouteHandler([HttpRouteProvider::class, 'versionHandler'])]
     public static function version(ApplicationContract $app, ResponseFactoryContract $responseFactory): TextResponseContract
     {
         return $responseFactory->createTextResponse($app->getVersion());
@@ -51,7 +51,7 @@ class HomeController extends Controller
      * Text action.
      */
     #[Route(path: '/text', name: 'text', requestMethods: [RequestMethod::GET])]
-    #[RouteHandler([RouteProvider::class, 'textHandler'])]
+    #[RouteHandler([HttpRouteProvider::class, 'textHandler'])]
     public static function text(): TextResponseContract
     {
         return new TextResponse('Hello World!');
@@ -62,7 +62,7 @@ class HomeController extends Controller
      * - Example of a view being returned.
      */
     #[Route(path: '/', name: 'welcome')]
-    #[RouteHandler([RouteProvider::class, 'welcomeHandler'])]
+    #[RouteHandler([HttpRouteProvider::class, 'welcomeHandler'])]
     public function welcome(ViewResponseFactoryContract $responseFactory): ResponseContract
     {
         return $responseFactory->createResponseFromView('index/index');
@@ -73,7 +73,7 @@ class HomeController extends Controller
      * - Example of a cacheable view being returned.
      */
     #[Route(path: '/cached', name: 'welcome.cached')]
-    #[RouteHandler([RouteProvider::class, 'welcomeCachedHandler'])]
+    #[RouteHandler([HttpRouteProvider::class, 'welcomeCachedHandler'])]
     #[Middleware(CacheResponseMiddleware::class)]
     public function welcomeCached(ViewResponseFactoryContract $responseFactory): ResponseContract
     {
@@ -85,7 +85,7 @@ class HomeController extends Controller
      * - Example of a view being returned.
      */
     #[Route(path: '/{value}', name: 'dynamicValue')]
-    #[RouteHandler([RouteProvider::class, 'dynamicHandler'])]
+    #[RouteHandler([HttpRouteProvider::class, 'dynamicHandler'])]
     public function dynamic(
         RouteContract $route,
         ViewResponseFactoryContract $responseFactory,
@@ -101,7 +101,7 @@ class HomeController extends Controller
     #[Get]
     #[Head]
     #[Route(path: '/home', name: 'home')]
-    #[RouteHandler([RouteProvider::class, 'homeHandler'])]
+    #[RouteHandler([HttpRouteProvider::class, 'homeHandler'])]
     public function home(ViewResponseFactoryContract $responseFactory): ResponseContract
     {
         return $responseFactory->createResponseFromView('home/home');
@@ -111,7 +111,7 @@ class HomeController extends Controller
      * Json action.
      */
     #[Route(path: '/json', name: 'json')]
-    #[RouteHandler([RouteProvider::class, 'jsonHandler'])]
+    #[RouteHandler([HttpRouteProvider::class, 'jsonHandler'])]
     public function json(ResponseFactoryContract $responseFactory): JsonResponseContract
     {
         return $responseFactory->createJsonResponse(['Json response example']);

@@ -29,7 +29,7 @@ final class DataServiceProvider implements ServiceProviderContract
      * @inheritDoc
      */
     #[Override]
-    public static function publishers(): array
+    public function publishers(): array
     {
         return [
             ContainerData::class   => [self::class, 'publishContainerData'],
