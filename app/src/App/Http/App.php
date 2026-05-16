@@ -26,7 +26,7 @@ final class App extends Http
     #[Override]
     public static function defaultExceptionHandler(): void
     {
-        (new ThrowableHandler())->enable(
+        new ThrowableHandler()->enable(
             displayErrors: true
         );
     }

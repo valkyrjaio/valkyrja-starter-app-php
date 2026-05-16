@@ -23,17 +23,6 @@ use Valkyrja\Container\Provider\Contract\ServiceProviderContract;
 final class ServiceProvider implements ServiceProviderContract
 {
     /**
-     * @inheritDoc
-     */
-    #[Override]
-    public function publishers(): array
-    {
-        return [
-            TestCommand::class => [self::class, 'publishTestCommand'],
-        ];
-    }
-
-    /**
      * Publish the test command.
      */
     public static function publishTestCommand(ContainerContract $container): void
@@ -45,5 +34,16 @@ final class ServiceProvider implements ServiceProviderContract
                 $container->getSingleton(OutputFactoryContract::class),
             )
         );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function publishers(): array
+    {
+        return [
+            TestCommand::class => [self::class, 'publishTestCommand'],
+        ];
     }
 }
