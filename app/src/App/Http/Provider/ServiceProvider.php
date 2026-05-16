@@ -23,17 +23,6 @@ use Valkyrja\Http\Message\Response\Factory\Contract\ResponseFactoryContract;
 final class ServiceProvider implements ServiceProviderContract
 {
     /**
-     * @inheritDoc
-     */
-    #[Override]
-    public static function publishers(): array
-    {
-        return [
-            HomeController::class => [self::class, 'publishHomeController'],
-        ];
-    }
-
-    /**
      * Publish the home controller.
      */
     public static function publishHomeController(ContainerContract $container): void
@@ -45,5 +34,16 @@ final class ServiceProvider implements ServiceProviderContract
                 $container->getSingleton(ResponseFactoryContract::class)
             )
         );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function publishers(): array
+    {
+        return [
+            HomeController::class => [self::class, 'publishHomeController'],
+        ];
     }
 }

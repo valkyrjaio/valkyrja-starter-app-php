@@ -26,7 +26,7 @@ final class App extends Cli
     #[Override]
     public static function defaultExceptionHandler(): void
     {
-        ThrowableHandler::enable(
+        new ThrowableHandler()->enable(
             displayErrors: true
         );
     }

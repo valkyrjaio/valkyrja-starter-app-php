@@ -26,19 +26,6 @@ use Valkyrja\Http\Routing\Data\HttpRoutingData;
 final class DataServiceProvider implements ServiceProviderContract
 {
     /**
-     * @inheritDoc
-     */
-    #[Override]
-    public static function publishers(): array
-    {
-        return [
-            ContainerData::class   => [self::class, 'publishContainerData'],
-            EventData::class       => [self::class, 'publishEventData'],
-            HttpRoutingData::class => [self::class, 'publishHttpRoutingData'],
-        ];
-    }
-
-    /**
      * Publish the container data.
      */
     public static function publishContainerData(ContainerContract $container): void
@@ -60,5 +47,18 @@ final class DataServiceProvider implements ServiceProviderContract
     public static function publishHttpRoutingData(ContainerContract $container): void
     {
         $container->setSingleton(HttpRoutingData::class, new AppHttpRoutingData());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function publishers(): array
+    {
+        return [
+            ContainerData::class   => [self::class, 'publishContainerData'],
+            EventData::class       => [self::class, 'publishEventData'],
+            HttpRoutingData::class => [self::class, 'publishHttpRoutingData'],
+        ];
     }
 }

@@ -13,64 +13,15 @@ declare(strict_types=1);
 
 namespace App\Cli\Provider;
 
-use App\Http\Provider\ComponentProvider as HttpComponentProvider;
+use App\Http\Provider\HttpRouteProvider;
 use Override;
 use Valkyrja\Application\Kernel\Contract\ApplicationContract;
+use Valkyrja\Application\Provider\CliWithHttpApplicationComponentProvider;
 use Valkyrja\Application\Provider\Contract\ComponentProviderContract;
 use Valkyrja\Container\Provider\ContainerServiceProvider;
 
 final class ComponentProvider implements ComponentProviderContract
 {
-    /**
-     * @inheritDoc
-     */
-    #[Override]
-    public static function getComponentProviders(ApplicationContract $app): array
-    {
-        return [];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    #[Override]
-    public static function getContainerProviders(ApplicationContract $app): array
-    {
-        return [
-            DataServiceProvider::class,
-            ServiceProvider::class,
-        ];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    #[Override]
-    public static function getEventProviders(ApplicationContract $app): array
-    {
-        return [];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    #[Override]
-    public static function getCliProviders(ApplicationContract $app): array
-    {
-        return [
-            RouteProvider::class,
-        ];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    #[Override]
-    public static function getHttpProviders(ApplicationContract $app): array
-    {
-        return HttpComponentProvider::getHttpProviders($app);
-    }
-
     /**
      * @inheritDoc
      */
@@ -85,5 +36,59 @@ final class ComponentProvider implements ComponentProviderContract
         }
 
         DataServiceProvider::publishContainerData(container: $container);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function getComponentProviders(ApplicationContract $app): array
+    {
+        return [
+            new CliWithHttpApplicationComponentProvider(),
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function getContainerProviders(ApplicationContract $app): array
+    {
+        return [
+            new DataServiceProvider(),
+            new ServiceProvider(),
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function getEventProviders(ApplicationContract $app): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function getCliProviders(ApplicationContract $app): array
+    {
+        return [
+            new CliRouteProvider(),
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function getHttpProviders(ApplicationContract $app): array
+    {
+        return [
+            new HttpRouteProvider(),
+        ];
     }
 }
