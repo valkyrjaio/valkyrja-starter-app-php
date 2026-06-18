@@ -13,37 +13,15 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-use Valkyrja\Type\Model\Abstract\Model;
-
-class Data extends Model
+class Data
 {
-    /**
-     * @var int
-     */
-    public int $id;
-
     /**
      * @var string
      */
-    protected string $needsExtraLogic;
+    public string $property = 'hello';
 
     /**
-     * Getter for a property with extra logic.
+     * @var string|null
      */
-    protected function getNeedsExtraLogic(): string
-    {
-        // Do extra logic before getting
-
-        return $this->needsExtraLogic;
-    }
-
-    /**
-     * Setter for a property with extra logic.
-     */
-    protected function setNeedsExtraLogic(string $needsExtraLogic): void
-    {
-        // Do extra checks before setting
-
-        $this->needsExtraLogic = $needsExtraLogic;
-    }
+    public string|null $propertyNullable = null;
 }

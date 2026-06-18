@@ -22,4 +22,6 @@
 
     <exclude-pattern>*/.github/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
+    <!-- Generated data files (built by sindri); may use FQNs for colliding class names -->
+    <exclude-pattern>*/app/src/App/*/Data/*</exclude-pattern>
 </ruleset>

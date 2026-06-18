@@ -37,5 +37,9 @@
         <include>
             <directory>../../../app/src</directory>
         </include>
+        <exclude>
+            <!-- Example/template files are copied by users, never autoloaded -->
+            <directory suffix=".example.php">../../../app/src</directory>
+        </exclude>
     </source>
 </phpunit>

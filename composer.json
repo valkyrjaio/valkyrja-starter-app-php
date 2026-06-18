@@ -33,7 +33,7 @@
     }
   },
   "scripts"           : {
-    "post-root-package-install"                   : [
+    "setup-example-files"                         : [
       "php -r \"file_exists('app/src/App/Http/Config.php') || copy('app/src/App/Http/Config.example.php', 'app/src/App/Http/Config.php');\"",
       "php -r \"file_exists('app/src/App/Cli/Config.php') || copy('app/src/App/Cli/Config.example.php', 'app/src/App/Cli/Config.php');\"",
       "php -r \"file_exists('app/src/App/Http/Data/AppContainerData.php') || copy('app/src/App/Http/Data/AppContainerData.example.php', 'app/src/App/Http/Data/AppContainerData.php');\"",
@@ -43,6 +43,15 @@
       "php -r \"file_exists('app/src/App/Cli/Data/AppEventData.php') || copy('app/src/App/Cli/Data/AppEventData.example.php', 'app/src/App/Cli/Data/AppEventData.php');\"",
       "php -r \"file_exists('app/src/App/Cli/Data/AppCliRoutingData.php') || copy('app/src/App/Cli/Data/AppCliRoutingData.example.php', 'app/src/App/Cli/Data/AppCliRoutingData.php');\"",
       "php -r \"file_exists('app/src/App/Cli/Data/AppHttpRoutingData.php') || copy('app/src/App/Cli/Data/AppHttpRoutingData.example.php', 'app/src/App/Cli/Data/AppHttpRoutingData.php');\""
+    ],
+    "post-root-package-install"                   : [
+      "@setup-example-files"
+    ],
+    "post-install-cmd"                            : [
+      "@setup-example-files"
+    ],
+    "post-update-cmd"                             : [
+      "@setup-example-files"
     ],
     "phparkitect"                                 : "cd .github/ci/phparkitect && composer check",
     "phparkitect-outdated-check"                  : "cd .github/ci/phparkitect && composer install && composer outdated --direct --minor-only",

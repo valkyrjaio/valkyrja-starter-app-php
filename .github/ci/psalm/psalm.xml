@@ -15,6 +15,8 @@
 
         <ignoreFiles>
             <directory name="../../../vendor" />
+            <!-- Example/template files are copied by users, never autoloaded -->
+            <file name="../../../app/src/**/*.example.php" />
         </ignoreFiles>
     </projectFiles>
 
