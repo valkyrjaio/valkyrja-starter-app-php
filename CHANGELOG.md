@@ -1,6 +1,8 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.3.0...26.x)
+## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.4.0...26.x)
+
+## [v26.4.0](https://github.com/valkyrjaio/application/compare/v26.3.0...v26.4.0) - 2026-06-17
 
 ## [v26.3.0](https://github.com/valkyrjaio/application/compare/v26.2.0...v26.3.0) - 2026-06-17
 
