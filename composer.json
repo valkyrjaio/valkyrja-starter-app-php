@@ -11,11 +11,11 @@
   "require"           : {
     "php"               : ">=8.4",
     "monolog/monolog"   : "^3.10.0",
-    "valkyrja/valkyrja" : "^26.4.1"
+    "valkyrja/valkyrja" : "^26.5.0"
   },
   "require-dev"       : {
     "filp/whoops"     : "^2.18.4",
-    "valkyrja/sindri" : "^26.4.3"
+    "valkyrja/sindri" : "^26.5.0"
   },
   "config"            : {
     "optimize-autoloader" : true,
