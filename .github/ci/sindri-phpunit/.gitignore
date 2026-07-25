@@ -1,0 +1,8 @@
+*
+!.gitignore
+!bootstrap.php
+!composer.json
+!composer.lock
+!phpunit.xml.dist
+!tests/
+!tests/**

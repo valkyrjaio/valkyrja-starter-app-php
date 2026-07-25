@@ -90,6 +90,15 @@
     "rector-outdated-check"                       : "cd .github/ci/rector && composer install && composer outdated --direct --minor-only",
     "rector-outdated-check-major-release"         : "cd .github/ci/rector && composer install && composer outdated --direct",
     "rector-composer-update"                      : "cd .github/ci/rector && composer update",
+    "sindri-generate"                             : [
+      "vendor/bin/sindri data:generate app/src/App/Http/Config.php",
+      "vendor/bin/sindri data:generate app/src/App/Cli/Config.php"
+    ],
+    "sindri-phpunit"                              : "cd .github/ci/sindri-phpunit && composer check",
+    "sindri-phpunit-coverage"                     : "cd .github/ci/sindri-phpunit && composer coverage",
+    "sindri-phpunit-outdated-check"               : "cd .github/ci/sindri-phpunit && composer install && composer outdated --direct --minor-only",
+    "sindri-phpunit-outdated-check-major-release" : "cd .github/ci/sindri-phpunit && composer install && composer outdated --direct",
+    "sindri-phpunit-composer-update"              : "cd .github/ci/sindri-phpunit && composer update",
     "root-outdated-check"                         : "composer install && composer outdated --direct --minor-only",
     "root-outdated-check-major-release"           : "composer install && composer outdated --direct"
   },
