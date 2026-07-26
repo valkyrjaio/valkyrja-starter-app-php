@@ -113,6 +113,69 @@ jobs:
           - 'composer.json'
     secrets: inherit
 
+  # Unlike `phpunit` (which copies the empty *.example.php stubs via the root
+  # `setup-example-files` Composer script and tests the app as it compiles without
+  # generation), this job runs sindri to generate the real App*Data classes and
+  # tests the app as it runs in production. It is an isolated, self-contained job
+  # so stubbed and generated results never mingle, and it doubles as a way to
+  # exercise sindri itself against a real application before a framework release.
+  # It cannot reuse the shared ci-phpunit-php workflow, which hard-codes
+  # `composer phpunit` (the stub suite) and has no hook to run the generator.
+  sindri-phpunit:
+    name: Sindri PHPUnit
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Determine if workflow should run based on files changed
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            files:
+              - '.github/ci/sindri-phpunit/**'
+              - '.github/workflows/ci.yml'
+              - 'app/src/**/*.php'
+              - 'composer.json'
+
+      - name: Setup PHP
+        if: steps.changes.outputs.files == 'true'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: 'mbstring, intl, sodium, fileinfo, pdo, php-sqlite3, pdo_sqlite'
+          ini-values: zend.assertions=1
+
+      # Installs the framework and sindri (root require-dev) and, via the root
+      # `post-install-cmd` hook, copies the *.example.php stubs into place. The
+      # generation step below then overwrites those stubs with the real classes.
+      - name: Install root Composer dependencies
+        if: steps.changes.outputs.files == 'true'
+        uses: ramsey/composer-install@v3
+        with:
+          composer-options: --prefer-dist --no-progress
+          custom-cache-suffix: $(date -u "+%Y-%m")
+
+      - name: Generate the data cache with sindri
+        if: steps.changes.outputs.files == 'true'
+        run: composer sindri-generate
+
+      - name: Install Sindri PHPUnit Composer dependencies
+        if: steps.changes.outputs.files == 'true'
+        uses: ramsey/composer-install@v3
+        with:
+          composer-options: --prefer-dist --no-progress
+          custom-cache-suffix: $(date -u "+%Y-%m")
+          working-directory: .github/ci/sindri-phpunit
+
+      - name: Run PHPUnit against the generated data cache
+        if: steps.changes.outputs.files == 'true'
+        run: composer sindri-phpunit
+
   psalm:
     name: Psalm
     uses: valkyrjaio/ci-psalm-php/.github/workflows/_workflow-call.yml@1f216925b5ff78a88c1728d734cab165071b11c2

@@ -20,5 +20,6 @@ jobs:
           {"name": "PHPStan",        "command": "phpstan-composer-update",        "directory": ".github/ci/phpstan"},
           {"name": "PHPUnit",        "command": "phpunit-composer-update",        "directory": ".github/ci/phpunit"},
           {"name": "Psalm",          "command": "psalm-composer-update",          "directory": ".github/ci/psalm"},
-          {"name": "Rector",         "command": "rector-composer-update",         "directory": ".github/ci/rector"}
+          {"name": "Rector",         "command": "rector-composer-update",         "directory": ".github/ci/rector"},
+          {"name": "Sindri PHPUnit", "command": "sindri-phpunit-composer-update", "directory": ".github/ci/sindri-phpunit"}
         ]
