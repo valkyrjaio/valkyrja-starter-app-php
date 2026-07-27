@@ -18,11 +18,9 @@ use Spiral\RoadRunner\Http\HttpWorker;
 use Valkyrja\Application\Entry\RoadRunner\RoadRunnerHttp;
 
 use function class_exists;
-use function exec;
 use function getenv;
 use function is_string;
 use function method_exists;
-use function trim;
 
 /**
  * End-to-end test for the RoadRunner runtime.
@@ -32,8 +30,11 @@ use function trim;
  * application, matches the welcome route, and renders its view — exercising the
  * framework's RoadRunner request/response bridge end to end.
  *
- * Skipped when the `rr` binary, the RoadRunner PHP worker package, or the
- * framework bridge is unavailable, so it never fails against an incomplete
+ * The RoadRunner server binary is provided explicitly via the RR_BINARY
+ * environment variable (the dedicated CI job downloads it and sets it). The test
+ * skips when RR_BINARY, the RoadRunner PHP worker package, or the framework
+ * bridge is unavailable — so it never runs against the spiral/roadrunner-cli PHP
+ * wrapper that shares the `rr` name, and never fails against an incomplete
  * environment.
  */
 final class RoadRunnerEntryTest extends RuntimeServerTestCase
@@ -42,10 +43,10 @@ final class RoadRunnerEntryTest extends RuntimeServerTestCase
 
     protected function setUp(): void
     {
-        $binary = $this->findRoadRunnerBinary();
+        $binary = getenv('RR_BINARY');
 
-        if ($binary === null) {
-            self::markTestSkipped('The RoadRunner (rr) binary is not available.');
+        if (! is_string($binary) || $binary === '') {
+            self::markTestSkipped('Set RR_BINARY to the RoadRunner server binary to run this test.');
         }
 
         if (! class_exists(HttpWorker::class)) {
@@ -80,30 +81,5 @@ final class RoadRunnerEntryTest extends RuntimeServerTestCase
         self::assertStringNotContainsString('404', $body);
         self::assertStringNotContainsString('Fatal error', $body);
         self::assertStringNotContainsString('Uncaught', $body);
-    }
-
-    /**
-     * Locate the RoadRunner binary, honoring an RR_BINARY override.
-     */
-    private function findRoadRunnerBinary(): string|null
-    {
-        $override = getenv('RR_BINARY');
-
-        if (is_string($override) && $override !== '') {
-            return $override;
-        }
-
-        $output   = [];
-        $exitCode = 0;
-
-        exec('command -v rr 2>/dev/null', $output, $exitCode);
-
-        if ($exitCode !== 0 || $output === []) {
-            return null;
-        }
-
-        $path = trim($output[0]);
-
-        return $path !== '' ? $path : null;
     }
 }
