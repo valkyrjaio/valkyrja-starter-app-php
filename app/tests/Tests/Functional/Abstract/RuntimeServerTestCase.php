@@ -15,7 +15,6 @@ namespace App\Tests\Functional\Abstract;
 
 use PHPUnit\Framework\TestCase;
 
-use function array_map;
 use function dirname;
 use function explode;
 use function fclose;
@@ -196,25 +195,48 @@ abstract class RuntimeServerTestCase extends TestCase
 
     /**
      * Terminate the server process and close its pipes.
+     *
+     * Sends SIGTERM, waits briefly for a graceful exit, then forces SIGKILL so a
+     * runtime with a long shutdown grace period (e.g. FrankenPHP) cannot hang the
+     * teardown.
      */
     private function stopServer(): void
     {
-        if (is_resource($this->process)) {
-            proc_terminate($this->process);
-            proc_close($this->process);
+        if (! is_resource($this->process)) {
+            $this->pipes = [];
 
-            $this->process = null;
+            return;
         }
 
-        $this->pipes = array_map(
-            static function ($pipe): void {
-                if (is_resource($pipe)) {
-                    fclose($pipe);
-                }
-            },
-            $this->pipes
-        );
+        proc_terminate($this->process);
 
-        $this->pipes = [];
+        $deadline = microtime(true) + 3.0;
+
+        while (microtime(true) < $deadline) {
+            $status = proc_get_status($this->process);
+
+            if (! ($status['running'] ?? false)) {
+                break;
+            }
+
+            usleep(50_000);
+        }
+
+        $status = proc_get_status($this->process);
+
+        if ($status['running'] ?? false) {
+            proc_terminate($this->process, 9);
+        }
+
+        foreach ($this->pipes as $pipe) {
+            if (is_resource($pipe)) {
+                fclose($pipe);
+            }
+        }
+
+        proc_close($this->process);
+
+        $this->process = null;
+        $this->pipes   = [];
     }
 }
