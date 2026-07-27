@@ -131,11 +131,11 @@ jobs:
       contents: read
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       - name: Determine if workflow should run based on files changed
         id: changes
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@d1c1ffe0248fe513906c8e24db8ea791d46f8590 # v3.0.3
         with:
           filters: |
             files:
@@ -146,7 +146,7 @@ jobs:
 
       - name: Setup PHP
         if: steps.changes.outputs.files == 'true'
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
           php-version: '8.4'
           extensions: 'mbstring, intl, sodium, fileinfo, pdo, php-sqlite3, pdo_sqlite'
@@ -157,7 +157,7 @@ jobs:
       # generation step below then overwrites those stubs with the real classes.
       - name: Install root Composer dependencies
         if: steps.changes.outputs.files == 'true'
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@a8d0d959dab41457692a5e2041bd9b757a119e3f # v3.2.1
         with:
           composer-options: --prefer-dist --no-progress
           custom-cache-suffix: $(date -u "+%Y-%m")
@@ -168,7 +168,7 @@ jobs:
 
       - name: Install Sindri PHPUnit Composer dependencies
         if: steps.changes.outputs.files == 'true'
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@a8d0d959dab41457692a5e2041bd9b757a119e3f # v3.2.1
         with:
           composer-options: --prefer-dist --no-progress
           custom-cache-suffix: $(date -u "+%Y-%m")
@@ -187,11 +187,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       - name: Determine if workflow should run based on files changed
         id: changes
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@d1c1ffe0248fe513906c8e24db8ea791d46f8590 # v3.0.3
         with:
           filters: |
             files:
@@ -205,14 +205,14 @@ jobs:
 
       - name: Setup PHP
         if: steps.changes.outputs.files == 'true'
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
           php-version: '8.4'
           extensions: 'mbstring, intl, sodium, fileinfo, pdo, php-sqlite3, pdo_sqlite'
 
       - name: Install root Composer dependencies
         if: steps.changes.outputs.files == 'true'
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@a8d0d959dab41457692a5e2041bd9b757a119e3f # v3.2.1
         with:
           composer-options: --prefer-dist --no-progress
           custom-cache-suffix: $(date -u "+%Y-%m")
@@ -223,7 +223,7 @@ jobs:
 
       - name: Install PHPUnit Composer dependencies
         if: steps.changes.outputs.files == 'true'
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@a8d0d959dab41457692a5e2041bd9b757a119e3f # v3.2.1
         with:
           composer-options: --prefer-dist --no-progress
           custom-cache-suffix: $(date -u "+%Y-%m")
