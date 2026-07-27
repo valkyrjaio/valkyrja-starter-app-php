@@ -82,6 +82,8 @@ jobs:
     uses: valkyrjaio/ci-phpstan-php/.github/workflows/_workflow-call.yml@2f158990fbf002b8b672653f02efa129f6788299
     with:
       php-version: '8.4'
+      extensions: 'openswoole'
+      composer-options: '--ignore-platform-req=ext-openswoole'
       paths: |
         ci:
           - '.github/ci/phpstan/**'
@@ -100,7 +102,7 @@ jobs:
     with:
       php-versions: '["8.4", "8.5", "8.6"]'
       php-version-bleeding-edge: '8.6'
-      extensions: 'mbstring, intl, sodium, fileinfo, pdo, php-mysql, php-sqlite3, php-pgsql, pdo_sqlite, pdo_pgsql, pdo_mysql xdebug'
+      extensions: 'mbstring, intl, sodium, fileinfo, pdo, php-mysql, php-sqlite3, php-pgsql, pdo_sqlite, pdo_pgsql, pdo_mysql, openswoole, xdebug'
       paths: |
         ci:
           - '.github/ci/phpunit/**'
@@ -182,6 +184,8 @@ jobs:
     with:
       php-version: '8.4'
       run-script: 'psalm-shepherd-with-stats'
+      extensions: 'openswoole'
+      composer-options: '--ignore-platform-req=ext-openswoole'
       paths: |
         ci:
           - '.github/ci/psalm/**'
