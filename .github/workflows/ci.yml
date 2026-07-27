@@ -178,6 +178,63 @@ jobs:
         if: steps.changes.outputs.files == 'true'
         run: composer sindri-phpunit
 
+  # Dedicated end-to-end job for the RoadRunner runtime. It downloads the real
+  # RoadRunner server binary (via spiral/roadrunner-cli) and runs the app under
+  # `rr serve`, which the shared PHPUnit workflow cannot do (no hook to fetch a
+  # server binary). RoadRunnerEntryTest self-skips if the binary is missing.
+  roadrunner-e2e:
+    name: RoadRunner E2E
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Determine if workflow should run based on files changed
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            files:
+              - '.github/ci/phpunit/**'
+              - '.github/workflows/ci.yml'
+              - '.rr.yaml'
+              - 'app/bin/roadrunner-worker.php'
+              - 'app/src/**/*.php'
+              - 'app/tests/**/*.php'
+              - 'composer.json'
+
+      - name: Setup PHP
+        if: steps.changes.outputs.files == 'true'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: 'mbstring, intl, sodium, fileinfo, pdo, php-sqlite3, pdo_sqlite'
+
+      - name: Install root Composer dependencies
+        if: steps.changes.outputs.files == 'true'
+        uses: ramsey/composer-install@v3
+        with:
+          composer-options: --prefer-dist --no-progress
+          custom-cache-suffix: $(date -u "+%Y-%m")
+
+      - name: Download the RoadRunner server binary
+        if: steps.changes.outputs.files == 'true'
+        run: ./vendor/bin/rr get-binary
+
+      - name: Install PHPUnit Composer dependencies
+        if: steps.changes.outputs.files == 'true'
+        uses: ramsey/composer-install@v3
+        with:
+          composer-options: --prefer-dist --no-progress
+          custom-cache-suffix: $(date -u "+%Y-%m")
+          working-directory: .github/ci/phpunit
+
+      - name: Run the RoadRunner end-to-end test
+        if: steps.changes.outputs.files == 'true'
+        env:
+          RR_BINARY: ${{ github.workspace }}/rr
+        run: .github/ci/phpunit/vendor/bin/phpunit -c .github/ci/phpunit/phpunit.xml.dist --filter RoadRunnerEntryTest
+
   psalm:
     name: Psalm
     uses: valkyrjaio/ci-psalm-php/.github/workflows/_workflow-call.yml@1f216925b5ff78a88c1728d734cab165071b11c2
