@@ -32,9 +32,11 @@ final class AppHttpRoutingDataTest extends TestCase
 
         self::assertInstanceOf(HttpRoutingData::class, $data);
 
-        self::assertCount(9, $data->routes);
+        // Nine routes on HomeController plus the eighteen routing permutations.
+        self::assertCount(27, $data->routes);
         self::assertArrayHasKey('welcome', $data->routes);
         self::assertArrayHasKey('version', $data->routes);
+        self::assertArrayHasKey('permutations.num', $data->routes);
 
         foreach ($data->routes as $routeFactory) {
             self::assertInstanceOf(RouteContract::class, $routeFactory());

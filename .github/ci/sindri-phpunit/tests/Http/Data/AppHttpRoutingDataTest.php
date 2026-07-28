@@ -34,8 +34,8 @@ final class AppHttpRoutingDataTest extends TestCase
 
         self::assertInstanceOf(HttpRoutingData::class, $data);
 
-        // The application defines nine HTTP routes across its controllers/providers.
-        self::assertCount(9, $data->routes);
+        // Nine routes on HomeController plus the eighteen routing permutations.
+        self::assertCount(27, $data->routes);
         self::assertArrayHasKey('welcome', $data->routes);
         self::assertArrayHasKey('welcome.cached', $data->routes);
         self::assertArrayHasKey('version', $data->routes);
@@ -57,5 +57,50 @@ final class AppHttpRoutingDataTest extends TestCase
         self::assertArrayHasKey('GET', $data->dynamicPaths);
         self::assertArrayHasKey('HEAD', $data->dynamicPaths);
         self::assertNotEmpty($data->regexes);
+    }
+
+    /**
+     * Every routing permutation is generated with the exact regex the framework's
+     * processor produces, so the cached routing table matches runtime matching.
+     */
+    public function testGeneratesExpectedRegexForEveryPermutation(): void
+    {
+        $data = new AppHttpRoutingData();
+
+        $expected = [
+            'permutations.num'                => '/^\/permutations\/num\/(?<value>\d+)$/',
+            'permutations.id'                 => '/^\/permutations\/id\/(?<value>\d+)$/',
+            'permutations.slug'               => '/^\/permutations\/slug\/(?<value>[a-zA-Z0-9-]+)$/',
+            'permutations.alpha'              => '/^\/permutations\/alpha\/(?<value>[a-zA-Z]+)$/',
+            'permutations.alphaLowercase'     => '/^\/permutations\/alpha-lowercase\/(?<value>[a-z]+)$/',
+            'permutations.alphaUppercase'     => '/^\/permutations\/alpha-uppercase\/(?<value>[A-Z]+)$/',
+            'permutations.alphaNum'           => '/^\/permutations\/alpha-num\/(?<value>[a-zA-Z0-9]+)$/',
+            'permutations.alphaNumUnderscore' => '/^\/permutations\/alpha-num-underscore\/(?<value>\w+)$/',
+            'permutations.any'                => '/^\/permutations\/any\/(?<value>.*)$/',
+            'permutations.multi'              => '/^\/permutations\/multi\/(?<first>\d+)\/(?<second>[a-zA-Z]+)$/',
+            // A non-capturing parameter produces a group without a name.
+            'permutations.nonCapture'         => '/^\/permutations\/non-capture\/(?:[a-zA-Z]+)$/',
+            // An optional parameter makes the preceding slash optional too.
+            'permutations.optional'           => '/^\/permutations\/optional(?:\/)?(?<value>[a-zA-Z]+)?$/',
+        ];
+
+        foreach ($expected as $name => $regex) {
+            self::assertArrayHasKey($name, $data->routes, "Route '$name' was not generated");
+            self::assertArrayHasKey($regex, $data->regexes['GET'], "Regex for '$name' was not generated");
+            self::assertSame($name, $data->regexes['GET'][$regex]);
+        }
+
+        // The static permutations are registered as paths rather than regexes.
+        self::assertArrayHasKey('/permutations/static', $data->paths['GET']);
+        self::assertSame('permutations.static', $data->paths['GET']['/permutations/static']);
+
+        // A method-restricted route is only registered under that method.
+        self::assertArrayHasKey('/permutations/post', $data->paths['POST']);
+        self::assertArrayNotHasKey('/permutations/post', $data->paths['GET']);
+
+        // A route declared for any method is registered under every method.
+        self::assertArrayHasKey('/permutations/any-method', $data->paths['GET']);
+        self::assertArrayHasKey('/permutations/any-method', $data->paths['POST']);
+        self::assertArrayHasKey('/permutations/any-method', $data->paths['DELETE']);
     }
 }
