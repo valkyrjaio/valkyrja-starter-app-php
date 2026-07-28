@@ -1,6 +1,22 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.5.1...26.x)
+## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.6.0...26.x)
+
+## [v26.6.0](https://github.com/valkyrjaio/application/compare/v26.5.1...v26.6.0) - 2026-07-28
+
+* [Documentation] Move stable release badge before PHP version badge in README by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/166
+* [Composer] Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/165
+* [Composer] Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/167
+* [Application] Add HTTP and OpenSwoole runtime end-to-end tests by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/168
+* [Application] Add RoadRunner runtime end-to-end test by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/169
+* [Application] Add FrankenPHP runtime end-to-end test by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/170
+* [Composer] Drop spiral/roadrunner-http v3 support by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/174
+* [GitHub] Update ci-phpstan-php workflow refs to v26.1.11 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/171
+* [GitHub] Use the PHP release workflow for releases by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/175
+* [GitHub] Update .github workflow refs to v26.12.0 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/176
+* [Composer] Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/177
+* [Http] Add the missing method not allowed error view by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/172
+* [Composer] Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/178
 
 ## [v26.5.1](https://github.com/valkyrjaio/application/compare/v26.5.0...v26.5.1) - 2026-07-25
 
