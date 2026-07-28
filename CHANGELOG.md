@@ -1,6 +1,10 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.6.0...26.x)
+## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.6.1...26.x)
+
+## [v26.6.1](https://github.com/valkyrjaio/application/compare/v26.6.0...v26.6.1) - 2026-07-28
+
+* [Http] Move the OpenSwoole, RoadRunner, and FrankenPHP entries into the Http namespace by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/179
 
 ## [v26.6.0](https://github.com/valkyrjaio/application/compare/v26.5.1...v26.6.0) - 2026-07-28
 
