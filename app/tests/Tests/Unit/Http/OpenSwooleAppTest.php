@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Tests\Unit\OpenSwoole;
+namespace App\Tests\Unit\Http;
 
-use App\OpenSwoole\App;
+use App\Http\OpenSwooleApp;
 use App\Throwable\Handler\ThrowableHandler;
 use OpenSwoole\Http\Server;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
@@ -27,16 +27,16 @@ use function putenv;
  * isolated process.
  */
 #[RunTestsInSeparateProcesses]
-final class AppTest extends TestCase
+final class OpenSwooleAppTest extends TestCase
 {
     public function testGetThrowableHandlerReturnsApplicationHandler(): void
     {
-        self::assertInstanceOf(ThrowableHandler::class, App::getThrowableHandler());
+        self::assertInstanceOf(ThrowableHandler::class, OpenSwooleApp::getThrowableHandler());
     }
 
     public function testDefaultExceptionHandlerRuns(): void
     {
-        App::defaultExceptionHandler();
+        OpenSwooleApp::defaultExceptionHandler();
 
         // The application handler's enable() is a no-op, so reaching here is the assertion.
         self::assertTrue(true);
@@ -52,7 +52,7 @@ final class AppTest extends TestCase
         putenv('APP_OPENSWOOLE_PORT=12345');
 
         try {
-            self::assertInstanceOf(Server::class, App::getSwooleServer());
+            self::assertInstanceOf(Server::class, OpenSwooleApp::getSwooleServer());
         } finally {
             putenv('APP_OPENSWOOLE_HOST');
             putenv('APP_OPENSWOOLE_PORT');

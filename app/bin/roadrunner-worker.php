@@ -12,8 +12,8 @@ declare(strict_types=1);
  */
 
 use App\Http\Config;
-use App\RoadRunner\App;
+use App\Http\RoadRunnerApp;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-App::run(config: new Config());
+RoadRunnerApp::run(config: new Config());

@@ -11,22 +11,22 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Tests\Unit\RoadRunner;
+namespace App\Tests\Unit\Http;
 
-use App\RoadRunner\App;
+use App\Http\RoadRunnerApp;
 use App\Throwable\Handler\ThrowableHandler;
 use PHPUnit\Framework\TestCase;
 
-final class AppTest extends TestCase
+final class RoadRunnerAppTest extends TestCase
 {
     public function testGetThrowableHandlerReturnsApplicationHandler(): void
     {
-        self::assertInstanceOf(ThrowableHandler::class, App::getThrowableHandler());
+        self::assertInstanceOf(ThrowableHandler::class, RoadRunnerApp::getThrowableHandler());
     }
 
     public function testDefaultExceptionHandlerRuns(): void
     {
-        App::defaultExceptionHandler();
+        RoadRunnerApp::defaultExceptionHandler();
 
         // The application handler's enable() is a no-op, so reaching here is the assertion.
         self::assertTrue(true);

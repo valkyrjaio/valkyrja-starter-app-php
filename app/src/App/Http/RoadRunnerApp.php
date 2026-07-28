@@ -11,14 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\FrankenPhp;
+namespace App\Http;
 
 use App\Throwable\Handler\ThrowableHandler;
 use Override;
-use Valkyrja\Application\Entry\FrankenPhp\FrankenPhpHttp;
+use Valkyrja\Application\Entry\RoadRunner\RoadRunnerHttp;
 use Valkyrja\Throwable\Handler\Contract\ThrowableHandlerContract;
 
-final class App extends FrankenPhpHttp
+final class RoadRunnerApp extends RoadRunnerHttp
 {
     /**
      * @inheritDoc
