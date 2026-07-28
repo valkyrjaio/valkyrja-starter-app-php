@@ -23,6 +23,7 @@ use function fsockopen;
 use function getenv;
 use function is_resource;
 use function microtime;
+use function preg_match;
 use function proc_close;
 use function proc_get_status;
 use function proc_open;
@@ -161,6 +162,46 @@ abstract class RuntimeServerTestCase extends TestCase
         }
 
         return $body;
+    }
+
+    /**
+     * Perform a request against the running server and return its status code and body.
+     *
+     * @param non-empty-string $method The request method
+     *
+     * @return array{status: int, body: string}
+     */
+    protected function httpRequest(string $path, string $method = 'GET'): array
+    {
+        $context = stream_context_create([
+            'http' => [
+                'method'        => $method,
+                'ignore_errors' => true,
+                'timeout'       => 5,
+            ],
+        ]);
+
+        $body = @file_get_contents("http://127.0.0.1:{$this->port}{$path}", false, $context);
+
+        if ($body === false) {
+            self::fail("Request to $path failed:\n" . $this->drainOutput());
+        }
+
+        $status = 0;
+
+        /** @var string[] $responseHeaders file_get_contents populates this in the local scope */
+        $responseHeaders = $http_response_header ?? [];
+
+        foreach ($responseHeaders as $header) {
+            if (preg_match('/^HTTP\/[\d.]+\s+(\d{3})/', $header, $matches) === 1) {
+                $status = (int) $matches[1];
+            }
+        }
+
+        return [
+            'status' => $status,
+            'body'   => $body,
+        ];
     }
 
     /**
