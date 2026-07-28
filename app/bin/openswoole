@@ -13,8 +13,8 @@ declare(strict_types=1);
  */
 
 use App\Http\Config;
-use App\OpenSwoole\App;
+use App\Http\OpenSwooleApp;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-App::run(config: new Config());
+OpenSwooleApp::run(config: new Config());

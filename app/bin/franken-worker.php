@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use App\FrankenPhp\App;
 use App\Http\Config;
+use App\Http\FrankenPhpApp;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-App::run(config: new Config());
+FrankenPhpApp::run(config: new Config());

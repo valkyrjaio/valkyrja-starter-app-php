@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\OpenSwoole;
+namespace App\Http;
 
 use App\Throwable\Handler\ThrowableHandler;
 use OpenSwoole\Http\Server;
@@ -21,7 +21,7 @@ use Valkyrja\Throwable\Handler\Contract\ThrowableHandlerContract;
 
 use function getenv;
 
-final class App extends OpenSwooleHttp
+final class OpenSwooleApp extends OpenSwooleHttp
 {
     /**
      * @inheritDoc

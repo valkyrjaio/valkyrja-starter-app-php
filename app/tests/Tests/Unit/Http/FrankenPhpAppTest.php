@@ -11,22 +11,22 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Tests\Unit\FrankenPhp;
+namespace App\Tests\Unit\Http;
 
-use App\FrankenPhp\App;
+use App\Http\FrankenPhpApp;
 use App\Throwable\Handler\ThrowableHandler;
 use PHPUnit\Framework\TestCase;
 
-final class AppTest extends TestCase
+final class FrankenPhpAppTest extends TestCase
 {
     public function testGetThrowableHandlerReturnsApplicationHandler(): void
     {
-        self::assertInstanceOf(ThrowableHandler::class, App::getThrowableHandler());
+        self::assertInstanceOf(ThrowableHandler::class, FrankenPhpApp::getThrowableHandler());
     }
 
     public function testDefaultExceptionHandlerRuns(): void
     {
-        App::defaultExceptionHandler();
+        FrankenPhpApp::defaultExceptionHandler();
 
         // The application handler's enable() is a no-op, so reaching here is the assertion.
         self::assertTrue(true);
