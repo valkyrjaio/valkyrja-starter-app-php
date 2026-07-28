@@ -20,7 +20,19 @@ permissions:
 
 jobs:
   release:
-    uses: valkyrjaio/.github/.github/workflows/_create-release.yml@716065aae4466b95f0f80c9c5a5e2a92de620af6
+    uses: valkyrjaio/.github/.github/workflows/_php-create-release.yml@95e2c292cc5cf9b80ae40e02bedd74d7d1428b12
     secrets: inherit
     with:
       bump: ${{ inputs.bump }}
+      dependencies: |
+        [
+          {"name": "Root Packages",   "command": "root-outdated-check"},
+          {"name": "PHPArkitect",     "command": "phparkitect-outdated-check"},
+          {"name": "PHPCodeSniffer",  "command": "phpcodesniffer-outdated-check"},
+          {"name": "PHP-CS-Fixer",    "command": "phpcsfixer-outdated-check"},
+          {"name": "PHPStan",         "command": "phpstan-outdated-check"},
+          {"name": "PHPUnit",         "command": "phpunit-outdated-check"},
+          {"name": "Psalm",           "command": "psalm-outdated-check"},
+          {"name": "Rector",          "command": "rector-outdated-check"},
+          {"name": "Sindri PHPUnit",  "command": "sindri-phpunit-outdated-check"}
+        ]
