@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Http\Provider;
 
 use App\Http\Controller\HomeController;
+use App\Http\Controller\RoutingPermutationsController;
 use Override;
 use Valkyrja\Container\Manager\Contract\ContainerContract;
 use Valkyrja\Container\Provider\Contract\ServiceProviderContract;
@@ -37,13 +38,28 @@ final class ServiceProvider implements ServiceProviderContract
     }
 
     /**
+     * Publish the routing permutations controller.
+     */
+    public static function publishRoutingPermutationsController(ContainerContract $container): void
+    {
+        $container->setSingleton(
+            RoutingPermutationsController::class,
+            new RoutingPermutationsController(
+                $container->getSingleton(ServerRequestContract::class),
+                $container->getSingleton(ResponseFactoryContract::class)
+            )
+        );
+    }
+
+    /**
      * @inheritDoc
      */
     #[Override]
     public function publishers(): array
     {
         return [
-            HomeController::class => [self::class, 'publishHomeController'],
+            HomeController::class                => [self::class, 'publishHomeController'],
+            RoutingPermutationsController::class => [self::class, 'publishRoutingPermutationsController'],
         ];
     }
 }
