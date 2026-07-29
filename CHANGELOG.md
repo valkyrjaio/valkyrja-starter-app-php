@@ -1,6 +1,12 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.6.1...26.x)
+## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.6.2...26.x)
+
+## [v26.6.2](https://github.com/valkyrjaio/application/compare/v26.6.1...v26.6.2) - 2026-07-28
+
+* [Cli] Add a command for every argument and option permutation with regression, smoke, and end-to-end tests by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/180
+* [GitHub] Update .github workflow refs to v26.12.1 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/181
+* [Composer] Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/182
 
 ## [v26.6.1](https://github.com/valkyrjaio/application/compare/v26.6.0...v26.6.1) - 2026-07-28
 
