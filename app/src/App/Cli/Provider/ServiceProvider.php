@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Cli\Provider;
 
+use App\Cli\Command\RoutingPermutationsCommand;
 use App\Cli\Command\TestCommand;
 use Override;
 use Valkyrja\Cli\Interaction\Input\Contract\InputContract;
@@ -37,13 +38,28 @@ final class ServiceProvider implements ServiceProviderContract
     }
 
     /**
+     * Publish the routing permutations command.
+     */
+    public static function publishRoutingPermutationsCommand(ContainerContract $container): void
+    {
+        $container->setSingleton(
+            RoutingPermutationsCommand::class,
+            new RoutingPermutationsCommand(
+                $container->getSingleton(InputContract::class),
+                $container->getSingleton(OutputFactoryContract::class),
+            )
+        );
+    }
+
+    /**
      * @inheritDoc
      */
     #[Override]
     public function publishers(): array
     {
         return [
-            TestCommand::class => [self::class, 'publishTestCommand'],
+            TestCommand::class                => [self::class, 'publishTestCommand'],
+            RoutingPermutationsCommand::class => [self::class, 'publishRoutingPermutationsCommand'],
         ];
     }
 }
