@@ -58,4 +58,22 @@ final class OpenSwooleAppTest extends TestCase
             putenv('APP_OPENSWOOLE_PORT');
         }
     }
+
+    public function testGetSwooleServerFallsBackToDefaultHostAndPort(): void
+    {
+        if (! extension_loaded('openswoole')) {
+            self::markTestSkipped('The openswoole extension is not loaded.');
+        }
+
+        // With neither variable set, getenv() returns false for both and the defaults apply. This
+        // is the other side of the two host/port ternaries the environment test above exercises.
+        putenv('APP_OPENSWOOLE_HOST');
+        putenv('APP_OPENSWOOLE_PORT');
+
+        $server = OpenSwooleApp::getSwooleServer();
+
+        self::assertInstanceOf(Server::class, $server);
+        self::assertSame('127.0.0.1', $server->host);
+        self::assertSame(9501, $server->port);
+    }
 }
