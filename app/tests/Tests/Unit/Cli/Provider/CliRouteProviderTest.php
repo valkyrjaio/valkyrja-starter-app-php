@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Cli\Provider;
 
+use App\Cli\Command\RoutingPermutationsCommand;
 use App\Cli\Command\TestCommand;
 use App\Cli\Config;
 use App\Cli\Provider\CliRouteProvider;
@@ -49,7 +50,10 @@ final class CliRouteProviderTest extends TestCase
 
     public function testGetControllerClasses(): void
     {
-        self::assertSame([TestCommand::class], new CliRouteProvider()->getControllerClasses());
+        self::assertSame(
+            [TestCommand::class, RoutingPermutationsCommand::class],
+            new CliRouteProvider()->getControllerClasses()
+        );
     }
 
     public function testGetRoutes(): void
