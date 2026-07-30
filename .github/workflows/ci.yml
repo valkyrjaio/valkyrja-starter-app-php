@@ -3,6 +3,7 @@ name: CI
 on:
   push:
     branches: [ 'master', '*.x' ]
+
   pull_request:
     # `edited` is included so a pull request that GitHub auto-retargets — which happens to a stacked
     # pull request the moment its parent merges — re-runs its checks against the new base. A
@@ -23,6 +24,7 @@ permissions:
   contents: read
 
 jobs:
+
   commit-message-check:
     name: Commit Message Check
     if: github.event_name == 'pull_request'
@@ -38,107 +40,6 @@ jobs:
       contents: read
     secrets: inherit
 
-  phparkitect:
-    name: PHPArkitect
-    uses: valkyrjaio/.github/.github/workflows/_php-ci-tool.yml@ddea291816127b905f6e00006e998f4a6851c1e8
-    with:
-      tool: 'phparkitect'
-      php-version: '8.4'
-      paths: |
-        ci:
-          - '.github/ci/phparkitect/**'
-          - '.github/workflows/ci.yml'
-        files:
-          - '.github/ci/phparkitect/**'
-          - '.github/workflows/ci.yml'
-          - 'app/src/**/*.php'
-          - 'app/tests/**/*.php'
-          - 'composer.json'
-    secrets: inherit
-
-  phpcodesniffer:
-    name: PHP Code Sniffer
-    uses: valkyrjaio/.github/.github/workflows/_php-ci-tool.yml@ddea291816127b905f6e00006e998f4a6851c1e8
-    with:
-      tool: 'phpcodesniffer'
-      php-version: '8.4'
-      paths: |
-        ci:
-          - '.github/ci/phpcodesniffer/**'
-          - '.github/workflows/ci.yml'
-        files:
-          - '.github/ci/phpcodesniffer/**'
-          - '.github/workflows/ci.yml'
-          - 'app/src/**/*.php'
-          - 'app/tests/**/*.php'
-          - 'composer.json'
-    secrets: inherit
-
-  phpcsfixer:
-    name: PHP CS Fixer
-    uses: valkyrjaio/.github/.github/workflows/_php-ci-tool.yml@ddea291816127b905f6e00006e998f4a6851c1e8
-    with:
-      tool: 'phpcsfixer'
-      php-version: '8.4'
-      paths: |
-        ci:
-          - '.github/ci/phpcsfixer/**'
-          - '.github/workflows/ci.yml'
-        files:
-          - '.github/ci/phpcsfixer/**'
-          - '.github/workflows/ci.yml'
-          - 'app/src/**/*.php'
-          - 'app/tests/**/*.php'
-          - 'composer.json'
-    secrets: inherit
-
-  phpstan:
-    name: PHPStan
-    uses: valkyrjaio/.github/.github/workflows/_php-ci-tool.yml@ddea291816127b905f6e00006e998f4a6851c1e8
-    with:
-      tool: 'phpstan'
-      php-version: '8.4'
-      extensions: 'openswoole'
-      composer-options: '--ignore-platform-req=ext-openswoole'
-      paths: |
-        ci:
-          - '.github/ci/phpstan/**'
-          - '.github/workflows/ci.yml'
-        files:
-          - '.github/ci/phpstan/**'
-          - '.github/workflows/ci.yml'
-          - 'app/src/**/*.php'
-          - 'app/tests/**/*.php'
-          - 'composer.json'
-    secrets: inherit
-
-  phpunit:
-    name: PHPUnit
-    uses: valkyrjaio/ci-phpunit-php/.github/workflows/_workflow-call.yml@ca27f8c28932012e8ec6e25c9c949bc410e68b02
-    with:
-      php-versions: '["8.4", "8.5", "8.6"]'
-      php-version-bleeding-edge: '8.6'
-      extensions: 'mbstring, intl, sodium, fileinfo, pdo, php-mysql, php-sqlite3, php-pgsql, pdo_sqlite, pdo_pgsql, pdo_mysql, openswoole, xdebug'
-      paths: |
-        ci:
-          - '.github/ci/phpunit/**'
-          - '.github/workflows/ci.yml'
-        files:
-          - '.github/ci/phpunit/**'
-          - '.github/workflows/ci.yml'
-          - 'app/src/**/*.php'
-          - 'app/tests/**/*.php'
-          - 'composer.json'
-    secrets: inherit
-
-  # Unlike `phpunit` (which copies the empty *.example.php stubs via the root
-  # `setup-example-files` Composer script and tests the app as it compiles without
-  # generation), this job runs sindri to generate the real App*Data classes and
-  # tests the app as it runs in production. It is an isolated, self-contained job
-  # so stubbed and generated results never mingle, and it doubles as a way to
-  # exercise sindri itself against a real application before a framework release.
-  # It cannot reuse the shared ci-phpunit-php workflow, which hard-codes
-  # `composer phpunit` (the stub suite) and has no hook to run the generator.
   sindri-phpunit:
     name: Sindri PHPUnit
     runs-on: ubuntu-latest
@@ -198,6 +99,7 @@ jobs:
   # RoadRunner server binary (via spiral/roadrunner-cli) and runs the app under
   # `rr serve`, which the shared PHPUnit workflow cannot do (no hook to fetch a
   # server binary). RoadRunnerEntryTest self-skips if the binary is missing.
+
   roadrunner-e2e:
     name: RoadRunner E2E
     runs-on: ubuntu-latest
@@ -255,6 +157,7 @@ jobs:
   # FrankenPHP server binary and runs the app under its worker mode, which the
   # shared PHPUnit workflow cannot do (no hook to fetch a server binary).
   # FrankenPhpEntryTest self-skips unless FRANKENPHP_BINARY is set.
+
   frankenphp-e2e:
     name: FrankenPHP E2E
     runs-on: ubuntu-latest
@@ -309,41 +212,21 @@ jobs:
           FRANKENPHP_BINARY: ${{ github.workspace }}/frankenphp
         run: .github/ci/phpunit/vendor/bin/phpunit -c .github/ci/phpunit/phpunit.xml.dist --filter FrankenPhpEntryTest
 
-  psalm:
-    name: Psalm
-    uses: valkyrjaio/.github/.github/workflows/_php-ci-tool.yml@ddea291816127b905f6e00006e998f4a6851c1e8
+  # A check's name is built from every job name down the call chain, so this composes
+  # as `CI / Tools / <Tool> / …`.
+  tools:
+    name: Tools
+    uses: valkyrjaio/.github/.github/workflows/_php-ci-tools.yml@1478335023fb7789f393f598134e00b43907f3f2
     with:
-      tool: 'psalm'
       php-version: '8.4'
-      run-script: 'psalm-shepherd-with-stats'
       extensions: 'openswoole'
       composer-options: '--ignore-platform-req=ext-openswoole'
-      paths: |
-        ci:
-          - '.github/ci/psalm/**'
-          - '.github/workflows/ci.yml'
-        files:
-          - '.github/ci/psalm/**'
-          - '.github/workflows/ci.yml'
-          - 'app/src/**/*.php'
-          - 'app/tests/**/*.php'
-          - 'composer.json'
-    secrets: inherit
-
-  rector:
-    name: Rector
-    uses: valkyrjaio/.github/.github/workflows/_php-ci-tool.yml@ddea291816127b905f6e00006e998f4a6851c1e8
-    with:
-      tool: 'rector'
-      php-version: '8.4'
-      paths: |
-        ci:
-          - '.github/ci/rector/**'
-          - '.github/workflows/ci.yml'
-        files:
-          - '.github/ci/rector/**'
-          - '.github/workflows/ci.yml'
-          - 'app/src/**/*.php'
-          - 'app/tests/**/*.php'
-          - 'composer.json'
+      php-versions: '["8.4", "8.5", "8.6"]'
+      php-version-bleeding-edge: '8.6'
+      phpunit-extensions: 'mbstring, intl, sodium, fileinfo, pdo, php-mysql, php-sqlite3, php-pgsql, pdo_sqlite, pdo_pgsql, pdo_mysql, openswoole, xdebug'
+      psalm-run-script: 'psalm-shepherd-with-stats'
+      source-paths: |
+        app/src/**/*.php
+        app/tests/**/*.php
+        composer.json
     secrets: inherit
