@@ -1,0 +1,53 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of the Valkyrja Application package.
+ *
+ * Copyright (c) 2016-present Melech Mizrachi
+ *
+ * Released under the MIT License. See LICENSE.md for details.
+ */
+
+use App\Grpc\App;
+use App\Grpc\Config;
+use Valkyrja\Grpc\Message\Call\ServiceCall;
+use Valkyrja\Grpc\Message\Response\Contract\ServiceResponseContract;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+/**
+ * Dispatch gRPC calls through the worker lifecycle an adapter drives.
+ *
+ * gRPC mandates HTTP/2 with trailers, so there is no in-core server to run and this entry does not
+ * open a port: it bootstraps once, then dispatches each `/package.Service/Method=message` argument
+ * exactly as a transport adapter would, writing the outcome to stdout. That makes the whole gRPC
+ * stack — bootstrap, service map, pipeline, generated cache — runnable and observable without a
+ * transport.
+ */
+$app  = App::bootstrap(new Config());
+$data = $app->getContainer()->getData();
+
+/** @var string[] $arguments */
+$arguments = array_slice($argv, 1);
+
+foreach ($arguments as $argument) {
+    [$method, $message] = array_pad(explode('=', $argument, 2), 2, '');
+
+    App::dispatch(
+        $app,
+        $data,
+        ServiceCall::unary($method, $message),
+        static function (ServiceResponseContract $response) use ($method): void {
+            echo $method . ' ' . $response->getStatus()->getCode()->name;
+
+            foreach ($response->getMessages() as $responseMessage) {
+                echo ' ' . $responseMessage;
+            }
+
+            echo \PHP_EOL;
+        }
+    );
+}

@@ -43,9 +43,10 @@ EXCLUDED=(
 
     # A PHP entry point that carries no `.php` extension. Each one holds the
     # header as a block comment, which is the form every PHP file in this
-    # repository uses, and PHP CS Fixer checks it: `.php_cs.dist.php` names both
-    # files. This check gives the block comment to a `*.php` path only, so it
+    # repository uses, and PHP CS Fixer checks it: `.php_cs.dist.php` names each
+    # file. This check gives the block comment to a `*.php` path only, so it
     # would ask these files for a line comment instead.
     'app/bin/cli'
+    'app/bin/grpc'
     'app/bin/openswoole'
 )
