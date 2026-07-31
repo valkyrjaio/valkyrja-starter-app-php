@@ -1,6 +1,25 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.6.2...26.x)
+## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.6.3...26.x)
+
+## [v26.6.3](https://github.com/valkyrjaio/application/compare/v26.6.2...v26.6.3) - 2026-07-31
+
+* [GitHub] Update .github workflow refs to v26.12.2 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/183
+* [Composer] Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/184
+* [Cli] Cover the absent-option and default-server branches by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/185
+* [Workflow] ci: Rerun checks when a pull request is edited or retargeted by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/187
+* [Workflow] ci: Run the full suite on pull request edits by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/188
+* [Workflow] ci: Migrate the CI tool jobs to the consolidated reusable workflow by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/190
+* [Workflow] ci: Update the release bump input to the conventional options by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/189
+* [Workflow] ci: Update .github workflow refs to v26.13.0 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/192
+* [Workflow] ci: Adopt the aggregate CI tools workflow by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/193
+* [Dependency] build: Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/194
+* [Workflow] ci: Update .github workflow refs to v26.14.0 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/197
+* [Workflow] ci: Update .github workflow refs to v26.14.1 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/198
+* [Workflow] ci: Update .github workflow refs to v26.15.0 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/199
+* [Workflow] ci: Update .github workflow refs to v26.16.0 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/200
+* [Workflow] ci: Ensure required workflow files by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/201
+* [Dependency] build: Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/202
 
 ## [v26.6.2](https://github.com/valkyrjaio/application/compare/v26.6.1...v26.6.2) - 2026-07-28
 
