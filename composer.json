@@ -15,6 +15,7 @@
   },
   "require-dev"       : {
     "filp/whoops": "^2.18.7",
+    "predis/predis": "^3.5.1",
     "spiral/roadrunner-cli": "^2.7.2",
     "spiral/roadrunner-http": "^4.2.1",
     "valkyrja/sindri": "^26.8.0"
@@ -48,7 +49,11 @@
       "php -r \"file_exists('app/src/App/Grpc/Config.php') || copy('app/src/App/Grpc/Config.example.php', 'app/src/App/Grpc/Config.php');\"",
       "php -r \"file_exists('app/src/App/Grpc/Data/AppContainerData.php') || copy('app/src/App/Grpc/Data/AppContainerData.example.php', 'app/src/App/Grpc/Data/AppContainerData.php');\"",
       "php -r \"file_exists('app/src/App/Grpc/Data/AppEventData.php') || copy('app/src/App/Grpc/Data/AppEventData.example.php', 'app/src/App/Grpc/Data/AppEventData.php');\"",
-      "php -r \"file_exists('app/src/App/Grpc/Data/AppGrpcRoutingData.php') || copy('app/src/App/Grpc/Data/AppGrpcRoutingData.example.php', 'app/src/App/Grpc/Data/AppGrpcRoutingData.php');\""
+      "php -r \"file_exists('app/src/App/Grpc/Data/AppGrpcRoutingData.php') || copy('app/src/App/Grpc/Data/AppGrpcRoutingData.example.php', 'app/src/App/Grpc/Data/AppGrpcRoutingData.php');\"",
+      "php -r \"file_exists('app/src/App/Queue/Config.php') || copy('app/src/App/Queue/Config.example.php', 'app/src/App/Queue/Config.php');\"",
+      "php -r \"file_exists('app/src/App/Queue/Data/AppContainerData.php') || copy('app/src/App/Queue/Data/AppContainerData.example.php', 'app/src/App/Queue/Data/AppContainerData.php');\"",
+      "php -r \"file_exists('app/src/App/Queue/Data/AppEventData.php') || copy('app/src/App/Queue/Data/AppEventData.example.php', 'app/src/App/Queue/Data/AppEventData.php');\"",
+      "php -r \"file_exists('app/src/App/Queue/Data/AppQueueRoutingData.php') || copy('app/src/App/Queue/Data/AppQueueRoutingData.example.php', 'app/src/App/Queue/Data/AppQueueRoutingData.php');\""
     ],
     "post-root-package-install"                   : [
       "@setup-example-files"
@@ -99,7 +104,8 @@
     "sindri-generate"                             : [
       "vendor/bin/sindri data:generate app/src/App/Http/Config.php",
       "vendor/bin/sindri data:generate app/src/App/Cli/Config.php",
-      "vendor/bin/sindri data:generate app/src/App/Grpc/Config.php"
+      "vendor/bin/sindri data:generate app/src/App/Grpc/Config.php",
+      "vendor/bin/sindri data:generate app/src/App/Queue/Config.php"
     ],
     "sindri-phpunit"                              : "cd .github/ci/sindri-phpunit && composer check",
     "sindri-phpunit-coverage"                     : "cd .github/ci/sindri-phpunit && composer coverage",
