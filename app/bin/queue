@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of the Valkyrja Framework package.
+ *
+ * (c) Melech Mizrachi <melechmizrachi@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+use App\Queue\App;
+use App\Queue\Config;
+use Predis\Client;
+use Valkyrja\Queue\Client\Manager\RedisClient;
+use Valkyrja\Queue\Client\Puller\RedisPuller;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+$dsn   = getenv('QUEUE_REDIS_DSN') ?: 'tcp://127.0.0.1:6379';
+$queue = getenv('QUEUE_NAME') ?: 'queues:default';
+
+// A bounded lifetime lets a supervisor cycle the process for memory hygiene.
+// The framework ships the entry, not the server: keep this alive with your own
+// process manager (systemd, a Docker CMD, a k8s Deployment).
+$maxJobs    = (int) (getenv('QUEUE_MAX_JOBS') ?: 1000);
+$maxSeconds = (int) (getenv('QUEUE_MAX_SECONDS') ?: 3600);
+
+$redis = new Client($dsn);
+
+App::run(
+    config: new Config(),
+    puller: new RedisPuller(redis: $redis, queue: $queue),
+    client: new RedisClient(redis: $redis, queue: $queue),
+    maxJobs: $maxJobs,
+    maxSeconds: $maxSeconds,
+);

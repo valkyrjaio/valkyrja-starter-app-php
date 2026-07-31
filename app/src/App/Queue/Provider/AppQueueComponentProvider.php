@@ -10,18 +10,18 @@ declare(strict_types=1);
  * Released under the MIT License. See LICENSE.md for details.
  */
 
-namespace App\Http\Provider;
+namespace App\Queue\Provider;
 
 use Override;
 use Valkyrja\Application\Kernel\Contract\ApplicationContract;
 use Valkyrja\Application\Provider\Contract\ComponentProviderContract;
-use Valkyrja\Application\Provider\HttpApplicationComponentProvider;
+use Valkyrja\Application\Provider\QueueApplicationComponentProvider;
 use Valkyrja\Container\Provider\ContainerServiceProvider;
 
-final class AppHttpComponentProvider implements ComponentProviderContract
+final class AppQueueComponentProvider implements ComponentProviderContract
 {
     /**
-     * @inheritDoc
+     * Publish the container data, generating it at runtime in debug mode.
      */
     public static function publish(ApplicationContract $app): void
     {
@@ -33,7 +33,7 @@ final class AppHttpComponentProvider implements ComponentProviderContract
             return;
         }
 
-        AppHttpDataServiceProvider::publishContainerData(container: $container);
+        AppQueueDataServiceProvider::publishContainerData(container: $container);
     }
 
     /**
@@ -43,7 +43,7 @@ final class AppHttpComponentProvider implements ComponentProviderContract
     public function getComponentProviders(ApplicationContract $app): array
     {
         return [
-            new HttpApplicationComponentProvider(),
+            new QueueApplicationComponentProvider(),
         ];
     }
 
@@ -54,8 +54,7 @@ final class AppHttpComponentProvider implements ComponentProviderContract
     public function getContainerProviders(ApplicationContract $app): array
     {
         return [
-            new AppHttpDataServiceProvider(),
-            new AppHttpServiceProvider(),
+            new AppQueueDataServiceProvider(),
         ];
     }
 
@@ -83,9 +82,7 @@ final class AppHttpComponentProvider implements ComponentProviderContract
     #[Override]
     public function getHttpProviders(ApplicationContract $app): array
     {
-        return [
-            new AppHttpRouteProvider(),
-        ];
+        return [];
     }
 
     /**
@@ -94,6 +91,8 @@ final class AppHttpComponentProvider implements ComponentProviderContract
     #[Override]
     public function getQueueProviders(ApplicationContract $app): array
     {
-        return [];
+        return [
+            new AppQueueRouteProvider(),
+        ];
     }
 }
