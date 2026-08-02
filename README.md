@@ -187,27 +187,15 @@ The Valkyrja framework and this starter are open-source software licensed
 under the [MIT license][MIT license url]. See [`LICENSE.md`](./LICENSE.md).
 
 [Valkyrja url]: https://valkyrja.io
-
 [framework url]: https://github.com/valkyrjaio/valkyrja-php
-
 [docker url]: https://github.com/valkyrjaio/valkyrja-docker-php
-
 [openswoole url]: https://github.com/valkyrjaio/valkyrja-openswoole-php
-
 [frankenphp url]: https://github.com/valkyrjaio/valkyrja-frankenphp-php
-
 [roadrunner url]: https://github.com/valkyrjaio/valkyrja-roadrunner-php
-
 [docs url]: https://github.com/valkyrjaio/valkyrja-php/tree/26.x/src/Valkyrja/README.md
-
 [http docs url]: https://github.com/valkyrjaio/valkyrja-php/tree/26.x/src/Valkyrja/Http/README.md
-
 [cli docs url]: https://github.com/valkyrjaio/valkyrja-php/tree/26.x/src/Valkyrja/Cli/README.md
-
 [container docs url]: https://github.com/valkyrjaio/valkyrja-php/tree/26.x/src/Valkyrja/Container/README.md
-
 [contributing url]: https://github.com/valkyrjaio/.github/blob/master/CONTRIBUTING.md
-
 [vocabulary url]: https://github.com/valkyrjaio/.github/blob/master/VOCABULARY.md
-
 [MIT license url]: https://opensource.org/licenses/MIT
