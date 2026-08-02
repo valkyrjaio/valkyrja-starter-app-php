@@ -28,6 +28,11 @@ $finder = Finder::create()
     // .github outside the header rule. Those files are this repository's own source
     // and carry the header too, so the finder descends into them.
     ->ignoreDotFiles(false)
+    // The finder matches *.php, which left the extensionless bin entry points outside every
+    // rule, including the header rule. Their headers went unchecked for that reason. Each
+    // name is added so the entry points get the same treatment as every other source file.
+    ->name('cli')
+    ->name('openswoole')
     ->exclude('.git')
     ->exclude('vendor')
     ->in(__DIR__ . '/../../../');
