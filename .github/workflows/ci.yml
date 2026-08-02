@@ -218,9 +218,14 @@ jobs:
       php-version-bleeding-edge: '8.6'
       phpunit-extensions: 'mbstring, intl, sodium, fileinfo, pdo, php-mysql, php-sqlite3, php-pgsql, pdo_sqlite, pdo_pgsql, pdo_mysql, openswoole, xdebug'
       psalm-run-script: 'psalm-shepherd-with-stats'
+      # The bin and public entry points are sources too. Without them an edit to an entry
+      # point reaches no tool and its header goes unchecked, which is the gap that let
+      # `app/bin/cli` carry the wrong package identifier.
       source-paths: |
         app/src/**/*.php
         app/tests/**/*.php
+        app/bin/**
+        app/public/**
         composer.json
     secrets:
       VALKYRJA_GHA_APP_ID: ${{ secrets.VALKYRJA_GHA_APP_ID }}
