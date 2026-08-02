@@ -22,14 +22,14 @@ use Valkyrja\Auth\Entity\Trait\VerifiableUserMethods;
 use Valkyrja\Orm\Entity\Abstract\Entity;
 use Valkyrja\Orm\Entity\Contract\DatedEntityContract;
 use Valkyrja\Orm\Entity\Contract\SoftDeleteEntityContract;
-use Valkyrja\Orm\Entity\Trait\Dateable;
-use Valkyrja\Orm\Entity\Trait\SoftDeletable;
+use Valkyrja\Orm\Entity\Trait\DatedFields;
+use Valkyrja\Orm\Entity\Trait\SoftDeleteFields;
 
 class User extends Entity implements UserContract, DatedEntityContract, SoftDeleteEntityContract, VerifiableUserContract
 {
-    use Dateable;
+    use DatedFields;
     use MailableUserMethods;
-    use SoftDeletable;
+    use SoftDeleteFields;
     use UserMethods;
     use VerifiableUserMethods;
 
