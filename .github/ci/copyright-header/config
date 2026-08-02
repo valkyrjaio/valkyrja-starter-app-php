@@ -1,0 +1,51 @@
+#
+# This file is part of the Valkyrja Application package.
+#
+# Copyright (c) 2016-present Melech Mizrachi
+#
+# Released under the MIT License. See LICENSE.md for details.
+#
+
+# The package this repository is. COPYRIGHT_HEADER.md in the .github repository
+# maps every repository to its own identifier.
+IDENTIFIER='Valkyrja Application'
+
+# The files that carry no copyright header. Every other tracked file must carry
+# it, so a new file fails the check until a person adds the header or adds the
+# file here.
+EXCLUDED=(
+    # A document, a lock file, a workflow, and a configuration file hold no
+    # program code.
+    '*.md'
+    '*.json'
+    '*.lock'
+    '*.neon'
+    '*.xml'
+    '*.yaml'
+    '*.yml'
+    '*.dist'
+    '*.gitattributes'
+    '*.editorconfig'
+    '*.gitignore'
+    'app/public/.htaccess'
+
+    # A view that the application renders. The header would become part of the
+    # response that the browser receives.
+    'app/resources/views/*'
+
+    # An empty asset that an application author fills. The file holds no content
+    # at all, and `#` opens no comment in JavaScript, in LESS, or in Sass.
+    'app/resources/assets/*'
+
+    # A test that the PHPT format reads. The format reserves the top of the file
+    # for its own sections.
+    'app/tests/end-to-end/*.phpt'
+
+    # A PHP entry point that carries no `.php` extension. Each one holds the
+    # header as a block comment, which is the form every PHP file in this
+    # repository uses, and PHP CS Fixer checks it: `.php_cs.dist.php` names both
+    # files. This check gives the block comment to a `*.php` path only, so it
+    # would ask these files for a line comment instead.
+    'app/bin/cli'
+    'app/bin/openswoole'
+)
