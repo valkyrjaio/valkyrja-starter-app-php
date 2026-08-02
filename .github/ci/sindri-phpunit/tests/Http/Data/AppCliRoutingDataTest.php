@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Valkyrja Framework package.
+ * This file is part of the Valkyrja Application package.
  *
  * (c) Melech Mizrachi <melechmizrachi@gmail.com>
  *
@@ -15,8 +15,8 @@ namespace App\Tests\Generated\Http\Data;
 
 use App\Http\Data\AppCliRoutingData;
 use PHPUnit\Framework\TestCase;
-use Valkyrja\Cli\Routing\Data\Contract\RouteContract;
 use Valkyrja\Cli\Routing\Data\CliRoutingData;
+use Valkyrja\Cli\Routing\Data\Contract\RouteContract;
 
 /**
  * Assert the sindri-generated HTTP-component {@see AppCliRoutingData}.
