@@ -21,7 +21,7 @@ use Valkyrja\Cli\Interaction\Output\Factory\Contract\OutputFactoryContract;
 use Valkyrja\Container\Manager\Contract\ContainerContract;
 use Valkyrja\Container\Provider\Contract\ServiceProviderContract;
 
-final class ServiceProvider implements ServiceProviderContract
+final class AppCliServiceProvider implements ServiceProviderContract
 {
     /**
      * Publish the test command.

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Http;
 
 use App\Http\Config;
-use App\Http\Provider\ComponentProvider;
+use App\Http\Provider\AppHttpComponentProvider;
 use PHPUnit\Framework\TestCase;
 use Valkyrja\Application\Data\HttpConfig;
 
@@ -40,6 +40,6 @@ final class ConfigTest extends TestCase
 
     public function testRegistersComponentProvider(): void
     {
-        self::assertInstanceOf(ComponentProvider::class, new Config()->providers[0]);
+        self::assertInstanceOf(AppHttpComponentProvider::class, new Config()->providers[0]);
     }
 }

@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace App\Http;
 
-use App\Http\Provider\ComponentProvider;
+use App\Http\Provider\AppHttpComponentProvider;
 use Valkyrja\Application\Data\HttpConfig;
 use Valkyrja\Http\Server\Middleware\CacheResponseMiddleware;
 
@@ -34,10 +34,10 @@ final class Config extends HttpConfig
             dataPath: 'src/App/Http/Data',
             dataNamespace: 'App\\Http\\Data',
             providers: [
-                new ComponentProvider(),
+                new AppHttpComponentProvider(),
             ],
             callbacks: [
-                [ComponentProvider::class, 'publish'],
+                [AppHttpComponentProvider::class, 'publish'],
             ],
             requestReceivedMiddleware: [
                 CacheResponseMiddleware::class,

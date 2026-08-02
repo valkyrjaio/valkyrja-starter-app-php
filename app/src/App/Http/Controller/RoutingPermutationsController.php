@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Http\Controller;
 
 use App\Http\Controller\Abstract\Controller;
-use App\Http\Provider\HttpRouteProvider;
+use App\Http\Provider\AppHttpRouteProvider;
 use Valkyrja\Http\Message\Enum\RequestMethod;
 use Valkyrja\Http\Message\Response\Contract\TextResponseContract;
 use Valkyrja\Http\Message\Response\TextResponse;
@@ -37,7 +37,7 @@ class RoutingPermutationsController extends Controller
      * A numeric parameter.
      */
     #[Route(path: '/permutations/num/{value}', name: 'permutations.num')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsNumHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsNumHandler'])]
     public function num(
         #[Parameter(name: 'value', regex: Regex::NUM)]
         string $value
@@ -49,7 +49,7 @@ class RoutingPermutationsController extends Controller
      * An id parameter.
      */
     #[Route(path: '/permutations/id/{value}', name: 'permutations.id')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsIdHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsIdHandler'])]
     public function id(
         #[Parameter(name: 'value', regex: Regex::ID)]
         string $value
@@ -61,7 +61,7 @@ class RoutingPermutationsController extends Controller
      * A slug parameter.
      */
     #[Route(path: '/permutations/slug/{value}', name: 'permutations.slug')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsSlugHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsSlugHandler'])]
     public function slug(
         #[Parameter(name: 'value', regex: Regex::SLUG)]
         string $value
@@ -73,7 +73,7 @@ class RoutingPermutationsController extends Controller
      * An alphabetic parameter.
      */
     #[Route(path: '/permutations/alpha/{value}', name: 'permutations.alpha')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsAlphaHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsAlphaHandler'])]
     public function alpha(
         #[Parameter(name: 'value', regex: Regex::ALPHA)]
         string $value
@@ -85,7 +85,7 @@ class RoutingPermutationsController extends Controller
      * A lowercase alphabetic parameter.
      */
     #[Route(path: '/permutations/alpha-lowercase/{value}', name: 'permutations.alphaLowercase')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsAlphaLowercaseHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsAlphaLowercaseHandler'])]
     public function alphaLowercase(
         #[Parameter(name: 'value', regex: Regex::ALPHA_LOWERCASE)]
         string $value
@@ -97,7 +97,7 @@ class RoutingPermutationsController extends Controller
      * An uppercase alphabetic parameter.
      */
     #[Route(path: '/permutations/alpha-uppercase/{value}', name: 'permutations.alphaUppercase')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsAlphaUppercaseHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsAlphaUppercaseHandler'])]
     public function alphaUppercase(
         #[Parameter(name: 'value', regex: Regex::ALPHA_UPPERCASE)]
         string $value
@@ -109,7 +109,7 @@ class RoutingPermutationsController extends Controller
      * An alphanumeric parameter.
      */
     #[Route(path: '/permutations/alpha-num/{value}', name: 'permutations.alphaNum')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsAlphaNumHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsAlphaNumHandler'])]
     public function alphaNum(
         #[Parameter(name: 'value', regex: Regex::ALPHA_NUM)]
         string $value
@@ -121,7 +121,7 @@ class RoutingPermutationsController extends Controller
      * An alphanumeric parameter that also allows underscores.
      */
     #[Route(path: '/permutations/alpha-num-underscore/{value}', name: 'permutations.alphaNumUnderscore')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsAlphaNumUnderscoreHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsAlphaNumUnderscoreHandler'])]
     public function alphaNumUnderscore(
         #[Parameter(name: 'value', regex: Regex::ALPHA_NUM_UNDERSCORE)]
         string $value
@@ -133,7 +133,7 @@ class RoutingPermutationsController extends Controller
      * A parameter that matches anything.
      */
     #[Route(path: '/permutations/any/{value}', name: 'permutations.any')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsAnyHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsAnyHandler'])]
     public function any(
         #[Parameter(name: 'value', regex: Regex::ANY)]
         string $value
@@ -145,7 +145,7 @@ class RoutingPermutationsController extends Controller
      * A uuid parameter.
      */
     #[Route(path: '/permutations/uuid/{value}', name: 'permutations.uuid')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsUuidHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsUuidHandler'])]
     public function uuid(
         #[Parameter(name: 'value', regex: Regex::UUID)]
         string $value
@@ -157,7 +157,7 @@ class RoutingPermutationsController extends Controller
      * A ulid parameter.
      */
     #[Route(path: '/permutations/ulid/{value}', name: 'permutations.ulid')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsUlidHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsUlidHandler'])]
     public function ulid(
         #[Parameter(name: 'value', regex: Regex::ULID)]
         string $value
@@ -169,7 +169,7 @@ class RoutingPermutationsController extends Controller
      * A vlid parameter.
      */
     #[Route(path: '/permutations/vlid/{value}', name: 'permutations.vlid')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsVlidHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsVlidHandler'])]
     public function vlid(
         #[Parameter(name: 'value', regex: Regex::VLID)]
         string $value
@@ -181,7 +181,7 @@ class RoutingPermutationsController extends Controller
      * An optional parameter that falls back to its default when absent.
      */
     #[Route(path: '/permutations/optional/{value?}', name: 'permutations.optional')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsOptionalHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsOptionalHandler'])]
     public function optional(
         #[Parameter(name: 'value', regex: Regex::ALPHA, isOptional: true, default: 'default')]
         string $value
@@ -193,7 +193,7 @@ class RoutingPermutationsController extends Controller
      * Multiple parameters separated by a static segment.
      */
     #[Route(path: '/permutations/multi/{first}/{second}', name: 'permutations.multi')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsMultiHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsMultiHandler'])]
     public function multi(
         #[Parameter(name: 'first', regex: Regex::NUM)]
         string $first,
@@ -207,7 +207,7 @@ class RoutingPermutationsController extends Controller
      * A parameter that is matched but deliberately not captured.
      */
     #[Route(path: '/permutations/non-capture/{value}', name: 'permutations.nonCapture')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsNonCaptureHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsNonCaptureHandler'])]
     public function nonCapture(
         #[Parameter(name: 'value', regex: Regex::ALPHA, shouldCapture: false)]
         string $value = 'non-capture'
@@ -219,7 +219,7 @@ class RoutingPermutationsController extends Controller
      * A route with no parameters at all.
      */
     #[Route(path: '/permutations/static', name: 'permutations.static')]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsStaticHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsStaticHandler'])]
     public function staticRoute(): TextResponseContract
     {
         return new TextResponse('static');
@@ -229,7 +229,7 @@ class RoutingPermutationsController extends Controller
      * A route restricted to a single request method.
      */
     #[Route(path: '/permutations/post', name: 'permutations.post', requestMethods: [RequestMethod::POST])]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsPostHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsPostHandler'])]
     public function post(): TextResponseContract
     {
         return new TextResponse('post');
@@ -239,7 +239,7 @@ class RoutingPermutationsController extends Controller
      * A route that answers to every request method.
      */
     #[Route(path: '/permutations/any-method', name: 'permutations.anyMethod', requestMethods: [RequestMethod::ANY])]
-    #[RouteHandler([HttpRouteProvider::class, 'permutationsAnyMethodHandler'])]
+    #[RouteHandler([AppHttpRouteProvider::class, 'permutationsAnyMethodHandler'])]
     public function anyMethod(): TextResponseContract
     {
         return new TextResponse('any-method');

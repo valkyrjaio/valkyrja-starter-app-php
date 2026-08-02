@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace App\Cli;
 
-use App\Cli\Provider\ComponentProvider;
+use App\Cli\Provider\AppCliComponentProvider;
 use Valkyrja\Application\Data\CliConfig;
 use Valkyrja\Cli\Server\Constant\CommandName;
 
@@ -36,10 +36,10 @@ final class Config extends CliConfig
             applicationName: 'cli',
             defaultCommandName: CommandName::LIST,
             providers: [
-                new ComponentProvider(),
+                new AppCliComponentProvider(),
             ],
             callbacks: [
-                [ComponentProvider::class, 'publish'],
+                [AppCliComponentProvider::class, 'publish'],
             ],
         );
     }

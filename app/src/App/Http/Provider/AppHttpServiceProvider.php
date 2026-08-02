@@ -21,7 +21,7 @@ use Valkyrja\Container\Provider\Contract\ServiceProviderContract;
 use Valkyrja\Http\Message\Request\Contract\ServerRequestContract;
 use Valkyrja\Http\Message\Response\Factory\Contract\ResponseFactoryContract;
 
-final class ServiceProvider implements ServiceProviderContract
+final class AppHttpServiceProvider implements ServiceProviderContract
 {
     /**
      * Publish the home controller.

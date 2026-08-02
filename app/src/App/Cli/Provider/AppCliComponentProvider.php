@@ -13,14 +13,14 @@ declare(strict_types=1);
 
 namespace App\Cli\Provider;
 
-use App\Http\Provider\HttpRouteProvider;
+use App\Http\Provider\AppHttpRouteProvider;
 use Override;
 use Valkyrja\Application\Kernel\Contract\ApplicationContract;
 use Valkyrja\Application\Provider\CliWithHttpApplicationComponentProvider;
 use Valkyrja\Application\Provider\Contract\ComponentProviderContract;
 use Valkyrja\Container\Provider\ContainerServiceProvider;
 
-final class ComponentProvider implements ComponentProviderContract
+final class AppCliComponentProvider implements ComponentProviderContract
 {
     /**
      * @inheritDoc
@@ -35,7 +35,7 @@ final class ComponentProvider implements ComponentProviderContract
             return;
         }
 
-        DataServiceProvider::publishContainerData(container: $container);
+        AppCliDataServiceProvider::publishContainerData(container: $container);
     }
 
     /**
@@ -56,8 +56,8 @@ final class ComponentProvider implements ComponentProviderContract
     public function getContainerProviders(ApplicationContract $app): array
     {
         return [
-            new DataServiceProvider(),
-            new ServiceProvider(),
+            new AppCliDataServiceProvider(),
+            new AppCliServiceProvider(),
         ];
     }
 
@@ -77,7 +77,7 @@ final class ComponentProvider implements ComponentProviderContract
     public function getCliProviders(ApplicationContract $app): array
     {
         return [
-            new CliRouteProvider(),
+            new AppCliRouteProvider(),
         ];
     }
 
@@ -88,7 +88,7 @@ final class ComponentProvider implements ComponentProviderContract
     public function getHttpProviders(ApplicationContract $app): array
     {
         return [
-            new HttpRouteProvider(),
+            new AppHttpRouteProvider(),
         ];
     }
 }

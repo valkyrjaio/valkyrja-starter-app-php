@@ -19,7 +19,7 @@ use Valkyrja\Application\Provider\Contract\ComponentProviderContract;
 use Valkyrja\Application\Provider\HttpApplicationComponentProvider;
 use Valkyrja\Container\Provider\ContainerServiceProvider;
 
-final class ComponentProvider implements ComponentProviderContract
+final class AppHttpComponentProvider implements ComponentProviderContract
 {
     /**
      * @inheritDoc
@@ -34,7 +34,7 @@ final class ComponentProvider implements ComponentProviderContract
             return;
         }
 
-        DataServiceProvider::publishContainerData(container: $container);
+        AppHttpDataServiceProvider::publishContainerData(container: $container);
     }
 
     /**
@@ -55,8 +55,8 @@ final class ComponentProvider implements ComponentProviderContract
     public function getContainerProviders(ApplicationContract $app): array
     {
         return [
-            new DataServiceProvider(),
-            new ServiceProvider(),
+            new AppHttpDataServiceProvider(),
+            new AppHttpServiceProvider(),
         ];
     }
 
@@ -85,7 +85,7 @@ final class ComponentProvider implements ComponentProviderContract
     public function getHttpProviders(ApplicationContract $app): array
     {
         return [
-            new HttpRouteProvider(),
+            new AppHttpRouteProvider(),
         ];
     }
 }

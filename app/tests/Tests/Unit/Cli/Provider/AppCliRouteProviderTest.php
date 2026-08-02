@@ -16,7 +16,7 @@ namespace App\Tests\Unit\Cli\Provider;
 use App\Cli\Command\RoutingPermutationsCommand;
 use App\Cli\Command\TestCommand;
 use App\Cli\Config;
-use App\Cli\Provider\CliRouteProvider;
+use App\Cli\Provider\AppCliRouteProvider;
 use PHPUnit\Framework\TestCase;
 use Valkyrja\Application\Data\Contract\CliConfigContract;
 use Valkyrja\Cli\Interaction\Input\Contract\InputContract;
@@ -25,7 +25,7 @@ use Valkyrja\Cli\Interaction\Output\Factory\Contract\OutputFactoryContract;
 use Valkyrja\Cli\Routing\Data\Contract\RouteContract;
 use Valkyrja\Container\Manager\Container;
 
-final class CliRouteProviderTest extends TestCase
+final class AppCliRouteProviderTest extends TestCase
 {
     public function testTestCommandHandler(): void
     {
@@ -44,7 +44,7 @@ final class CliRouteProviderTest extends TestCase
 
         self::assertInstanceOf(
             OutputContract::class,
-            CliRouteProvider::testCommandHandler($container, self::createStub(RouteContract::class)),
+            AppCliRouteProvider::testCommandHandler($container, self::createStub(RouteContract::class)),
         );
     }
 
@@ -52,12 +52,12 @@ final class CliRouteProviderTest extends TestCase
     {
         self::assertSame(
             [TestCommand::class, RoutingPermutationsCommand::class],
-            new CliRouteProvider()->getControllerClasses()
+            new AppCliRouteProvider()->getControllerClasses()
         );
     }
 
     public function testGetRoutes(): void
     {
-        self::assertSame([], new CliRouteProvider()->getRoutes());
+        self::assertSame([], new AppCliRouteProvider()->getRoutes());
     }
 }

@@ -25,7 +25,7 @@ use Valkyrja\Http\Routing\Data\Contract\RouteContract;
 use Valkyrja\Http\Routing\Provider\Contract\HttpRouteProviderContract;
 use Valkyrja\View\Factory\Contract\ViewResponseFactoryContract;
 
-final class HttpRouteProvider implements HttpRouteProviderContract
+final class AppHttpRouteProvider implements HttpRouteProviderContract
 {
     public static function versionHandler(ContainerContract $container, RouteContract $route): ResponseContract
     {

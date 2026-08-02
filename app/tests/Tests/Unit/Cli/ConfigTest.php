@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Cli;
 
 use App\Cli\Config;
-use App\Cli\Provider\ComponentProvider;
+use App\Cli\Provider\AppCliComponentProvider;
 use PHPUnit\Framework\TestCase;
 use Valkyrja\Application\Data\CliConfig;
 
@@ -40,6 +40,6 @@ final class ConfigTest extends TestCase
 
     public function testRegistersComponentProvider(): void
     {
-        self::assertInstanceOf(ComponentProvider::class, new Config()->providers[0]);
+        self::assertInstanceOf(AppCliComponentProvider::class, new Config()->providers[0]);
     }
 }
