@@ -13,18 +13,18 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Cli\Provider;
 
-use App\Cli\Provider\CliRouteProvider;
-use App\Cli\Provider\ComponentProvider;
-use App\Cli\Provider\DataServiceProvider;
-use App\Cli\Provider\ServiceProvider;
-use App\Http\Provider\HttpRouteProvider;
+use App\Cli\Provider\AppCliComponentProvider;
+use App\Cli\Provider\AppCliDataServiceProvider;
+use App\Cli\Provider\AppCliRouteProvider;
+use App\Cli\Provider\AppCliServiceProvider;
+use App\Http\Provider\AppHttpRouteProvider;
 use PHPUnit\Framework\TestCase;
 use Valkyrja\Application\Kernel\Contract\ApplicationContract;
 use Valkyrja\Application\Provider\CliWithHttpApplicationComponentProvider;
 use Valkyrja\Container\Data\ContainerData;
 use Valkyrja\Container\Manager\Container;
 
-final class ComponentProviderTest extends TestCase
+final class AppCliComponentProviderTest extends TestCase
 {
     public function testPublishInProductionUsesAppContainerData(): void
     {
@@ -33,7 +33,7 @@ final class ComponentProviderTest extends TestCase
         $app->method('getContainer')->willReturn($container);
         $app->method('getDebugMode')->willReturn(false);
 
-        ComponentProvider::publish($app);
+        AppCliComponentProvider::publish($app);
 
         self::assertTrue($container->isSingletonInstance(ContainerData::class));
     }
@@ -47,14 +47,14 @@ final class ComponentProviderTest extends TestCase
         $app->method('getContainerProviders')->willReturn([]);
         $container->setSingleton(ApplicationContract::class, $app);
 
-        ComponentProvider::publish($app);
+        AppCliComponentProvider::publish($app);
 
         self::assertTrue($container->isSingletonInstance(ContainerData::class));
     }
 
     public function testGetComponentProviders(): void
     {
-        $providers = new ComponentProvider()->getComponentProviders(self::createStub(ApplicationContract::class));
+        $providers = new AppCliComponentProvider()->getComponentProviders(self::createStub(ApplicationContract::class));
 
         self::assertCount(1, $providers);
         self::assertInstanceOf(CliWithHttpApplicationComponentProvider::class, $providers[0]);
@@ -62,30 +62,30 @@ final class ComponentProviderTest extends TestCase
 
     public function testGetContainerProviders(): void
     {
-        $providers = new ComponentProvider()->getContainerProviders(self::createStub(ApplicationContract::class));
+        $providers = new AppCliComponentProvider()->getContainerProviders(self::createStub(ApplicationContract::class));
 
-        self::assertInstanceOf(DataServiceProvider::class, $providers[0]);
-        self::assertInstanceOf(ServiceProvider::class, $providers[1]);
+        self::assertInstanceOf(AppCliDataServiceProvider::class, $providers[0]);
+        self::assertInstanceOf(AppCliServiceProvider::class, $providers[1]);
     }
 
     public function testGetEventProviders(): void
     {
-        self::assertSame([], new ComponentProvider()->getEventProviders(self::createStub(ApplicationContract::class)));
+        self::assertSame([], new AppCliComponentProvider()->getEventProviders(self::createStub(ApplicationContract::class)));
     }
 
     public function testGetCliProviders(): void
     {
-        $providers = new ComponentProvider()->getCliProviders(self::createStub(ApplicationContract::class));
+        $providers = new AppCliComponentProvider()->getCliProviders(self::createStub(ApplicationContract::class));
 
         self::assertCount(1, $providers);
-        self::assertInstanceOf(CliRouteProvider::class, $providers[0]);
+        self::assertInstanceOf(AppCliRouteProvider::class, $providers[0]);
     }
 
     public function testGetHttpProviders(): void
     {
-        $providers = new ComponentProvider()->getHttpProviders(self::createStub(ApplicationContract::class));
+        $providers = new AppCliComponentProvider()->getHttpProviders(self::createStub(ApplicationContract::class));
 
         self::assertCount(1, $providers);
-        self::assertInstanceOf(HttpRouteProvider::class, $providers[0]);
+        self::assertInstanceOf(AppHttpRouteProvider::class, $providers[0]);
     }
 }

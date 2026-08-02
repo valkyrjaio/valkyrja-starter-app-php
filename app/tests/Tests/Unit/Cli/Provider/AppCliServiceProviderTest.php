@@ -15,13 +15,13 @@ namespace App\Tests\Unit\Cli\Provider;
 
 use App\Cli\Command\RoutingPermutationsCommand;
 use App\Cli\Command\TestCommand;
-use App\Cli\Provider\ServiceProvider;
+use App\Cli\Provider\AppCliServiceProvider;
 use PHPUnit\Framework\TestCase;
 use Valkyrja\Cli\Interaction\Input\Contract\InputContract;
 use Valkyrja\Cli\Interaction\Output\Factory\Contract\OutputFactoryContract;
 use Valkyrja\Container\Manager\Container;
 
-final class ServiceProviderTest extends TestCase
+final class AppCliServiceProviderTest extends TestCase
 {
     public function testPublishTestCommand(): void
     {
@@ -29,7 +29,7 @@ final class ServiceProviderTest extends TestCase
         $container->setSingleton(InputContract::class, self::createStub(InputContract::class));
         $container->setSingleton(OutputFactoryContract::class, self::createStub(OutputFactoryContract::class));
 
-        ServiceProvider::publishTestCommand($container);
+        AppCliServiceProvider::publishTestCommand($container);
 
         self::assertInstanceOf(TestCommand::class, $container->getSingleton(TestCommand::class));
     }
@@ -40,7 +40,7 @@ final class ServiceProviderTest extends TestCase
         $container->setSingleton(InputContract::class, self::createStub(InputContract::class));
         $container->setSingleton(OutputFactoryContract::class, self::createStub(OutputFactoryContract::class));
 
-        ServiceProvider::publishRoutingPermutationsCommand($container);
+        AppCliServiceProvider::publishRoutingPermutationsCommand($container);
 
         self::assertInstanceOf(
             RoutingPermutationsCommand::class,
@@ -52,10 +52,10 @@ final class ServiceProviderTest extends TestCase
     {
         self::assertSame(
             [
-                TestCommand::class                => [ServiceProvider::class, 'publishTestCommand'],
-                RoutingPermutationsCommand::class => [ServiceProvider::class, 'publishRoutingPermutationsCommand'],
+                TestCommand::class                => [AppCliServiceProvider::class, 'publishTestCommand'],
+                RoutingPermutationsCommand::class => [AppCliServiceProvider::class, 'publishRoutingPermutationsCommand'],
             ],
-            new ServiceProvider()->publishers(),
+            new AppCliServiceProvider()->publishers(),
         );
     }
 }

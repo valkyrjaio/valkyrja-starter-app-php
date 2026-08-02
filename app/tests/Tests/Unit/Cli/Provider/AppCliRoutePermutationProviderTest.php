@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Cli\Provider;
 
 use App\Cli\Command\RoutingPermutationsCommand;
-use App\Cli\Provider\CliRouteProvider;
+use App\Cli\Provider\AppCliRouteProvider;
 use Closure;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -35,7 +35,7 @@ use function array_map;
  * Assert every routing permutation handler binds its route's arguments and options and
  * delegates to the command with the values a real invocation would produce.
  */
-final class CliRoutePermutationProviderTest extends TestCase
+final class AppCliRoutePermutationProviderTest extends TestCase
 {
     private ContainerContract $container;
 
@@ -45,21 +45,21 @@ final class CliRoutePermutationProviderTest extends TestCase
     public static function permutationHandlerProvider(): array
     {
         return [
-            'argument required'       => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsArgumentRequiredHandler($c, $r), ['value' => ['foo']], [], 'argument-required:foo'],
-            'argument optional'       => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsArgumentOptionalHandler($c, $r), ['value' => ['bar']], [], 'argument-optional:bar'],
-            'argument array'          => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsArgumentArrayHandler($c, $r), ['values' => ['a', 'b', 'c']], [], 'argument-array:a,b,c'],
-            'argument required array' => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsArgumentRequiredArrayHandler($c, $r), ['values' => ['x', 'y']], [], 'argument-required-array:x,y'],
-            'option none given'       => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsOptionNoneHandler($c, $r), [], ['flag' => ['']], 'option-none:yes'],
-            'option none absent'      => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsOptionNoneHandler($c, $r), [], ['flag' => []], 'option-none:no'],
-            'option default'          => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsOptionDefaultHandler($c, $r), [], ['value' => ['hello']], 'option-default:hello'],
-            'option array'            => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsOptionArrayHandler($c, $r), [], ['tag' => ['x', 'y']], 'option-array:x,y'],
-            'option required'         => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsOptionRequiredHandler($c, $r), [], ['value' => ['req']], 'option-required:req'],
-            'option required none'    => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsOptionRequiredNoneHandler($c, $r), [], ['flag' => ['']], 'option-required-none:yes'],
-            'option required array'   => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsOptionRequiredArrayHandler($c, $r), [], ['tag' => ['one']], 'option-required-array:one'],
-            'option short given'      => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsOptionShortHandler($c, $r), [], ['marker' => ['']], 'option-short:yes'],
-            'option short absent'     => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsOptionShortHandler($c, $r), [], ['marker' => []], 'option-short:no'],
-            'option valid values'     => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsOptionValidValuesHandler($c, $r), [], ['format' => ['json']], 'option-valid-values:json'],
-            'mixed'                   => [static fn (ContainerContract $c, RouteContract $r): OutputContract => CliRouteProvider::permutationsMixedHandler($c, $r), ['name' => ['bob']], ['tag' => ['t1', 't2']], 'mixed:bob:t1,t2'],
+            'argument required'       => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsArgumentRequiredHandler($c, $r), ['value' => ['foo']], [], 'argument-required:foo'],
+            'argument optional'       => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsArgumentOptionalHandler($c, $r), ['value' => ['bar']], [], 'argument-optional:bar'],
+            'argument array'          => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsArgumentArrayHandler($c, $r), ['values' => ['a', 'b', 'c']], [], 'argument-array:a,b,c'],
+            'argument required array' => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsArgumentRequiredArrayHandler($c, $r), ['values' => ['x', 'y']], [], 'argument-required-array:x,y'],
+            'option none given'       => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsOptionNoneHandler($c, $r), [], ['flag' => ['']], 'option-none:yes'],
+            'option none absent'      => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsOptionNoneHandler($c, $r), [], ['flag' => []], 'option-none:no'],
+            'option default'          => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsOptionDefaultHandler($c, $r), [], ['value' => ['hello']], 'option-default:hello'],
+            'option array'            => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsOptionArrayHandler($c, $r), [], ['tag' => ['x', 'y']], 'option-array:x,y'],
+            'option required'         => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsOptionRequiredHandler($c, $r), [], ['value' => ['req']], 'option-required:req'],
+            'option required none'    => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsOptionRequiredNoneHandler($c, $r), [], ['flag' => ['']], 'option-required-none:yes'],
+            'option required array'   => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsOptionRequiredArrayHandler($c, $r), [], ['tag' => ['one']], 'option-required-array:one'],
+            'option short given'      => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsOptionShortHandler($c, $r), [], ['marker' => ['']], 'option-short:yes'],
+            'option short absent'     => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsOptionShortHandler($c, $r), [], ['marker' => []], 'option-short:no'],
+            'option valid values'     => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsOptionValidValuesHandler($c, $r), [], ['format' => ['json']], 'option-valid-values:json'],
+            'mixed'                   => [static fn (ContainerContract $c, RouteContract $r): OutputContract => AppCliRouteProvider::permutationsMixedHandler($c, $r), ['name' => ['bob']], ['tag' => ['t1', 't2']], 'mixed:bob:t1,t2'],
         ];
     }
 
@@ -93,7 +93,7 @@ final class CliRoutePermutationProviderTest extends TestCase
     {
         $route = $this->route([], [], defaultValue: 'fallback');
 
-        $output = CliRouteProvider::permutationsOptionDefaultValueHandler($this->container, $route);
+        $output = AppCliRouteProvider::permutationsOptionDefaultValueHandler($this->container, $route);
 
         self::assertSame('option-default-value:fallback', $output->getMessages()[0]->getText());
     }
@@ -102,7 +102,7 @@ final class CliRoutePermutationProviderTest extends TestCase
     {
         $route = $this->route([], ['value' => ['given']], defaultValue: 'fallback');
 
-        $output = CliRouteProvider::permutationsOptionDefaultValueHandler($this->container, $route);
+        $output = AppCliRouteProvider::permutationsOptionDefaultValueHandler($this->container, $route);
 
         self::assertSame('option-default-value:given', $output->getMessages()[0]->getText());
     }

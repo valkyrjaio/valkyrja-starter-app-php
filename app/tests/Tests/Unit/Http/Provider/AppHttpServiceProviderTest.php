@@ -15,13 +15,13 @@ namespace App\Tests\Unit\Http\Provider;
 
 use App\Http\Controller\HomeController;
 use App\Http\Controller\RoutingPermutationsController;
-use App\Http\Provider\ServiceProvider;
+use App\Http\Provider\AppHttpServiceProvider;
 use PHPUnit\Framework\TestCase;
 use Valkyrja\Container\Manager\Container;
 use Valkyrja\Http\Message\Request\Contract\ServerRequestContract;
 use Valkyrja\Http\Message\Response\Factory\Contract\ResponseFactoryContract;
 
-final class ServiceProviderTest extends TestCase
+final class AppHttpServiceProviderTest extends TestCase
 {
     public function testPublishHomeController(): void
     {
@@ -29,7 +29,7 @@ final class ServiceProviderTest extends TestCase
         $container->setSingleton(ServerRequestContract::class, self::createStub(ServerRequestContract::class));
         $container->setSingleton(ResponseFactoryContract::class, self::createStub(ResponseFactoryContract::class));
 
-        ServiceProvider::publishHomeController($container);
+        AppHttpServiceProvider::publishHomeController($container);
 
         self::assertInstanceOf(HomeController::class, $container->getSingleton(HomeController::class));
     }
@@ -40,7 +40,7 @@ final class ServiceProviderTest extends TestCase
         $container->setSingleton(ServerRequestContract::class, self::createStub(ServerRequestContract::class));
         $container->setSingleton(ResponseFactoryContract::class, self::createStub(ResponseFactoryContract::class));
 
-        ServiceProvider::publishRoutingPermutationsController($container);
+        AppHttpServiceProvider::publishRoutingPermutationsController($container);
 
         self::assertInstanceOf(
             RoutingPermutationsController::class,
@@ -52,10 +52,10 @@ final class ServiceProviderTest extends TestCase
     {
         self::assertSame(
             [
-                HomeController::class                => [ServiceProvider::class, 'publishHomeController'],
-                RoutingPermutationsController::class => [ServiceProvider::class, 'publishRoutingPermutationsController'],
+                HomeController::class                => [AppHttpServiceProvider::class, 'publishHomeController'],
+                RoutingPermutationsController::class => [AppHttpServiceProvider::class, 'publishRoutingPermutationsController'],
             ],
-            new ServiceProvider()->publishers(),
+            new AppHttpServiceProvider()->publishers(),
         );
     }
 }

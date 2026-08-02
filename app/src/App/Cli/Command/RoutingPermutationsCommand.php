@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Cli\Command;
 
 use App\Cli\Controller\Abstract\Controller;
-use App\Cli\Provider\CliRouteProvider;
+use App\Cli\Provider\AppCliRouteProvider;
 use Valkyrja\Cli\Interaction\Message\Contract\MessageContract;
 use Valkyrja\Cli\Interaction\Message\Message;
 use Valkyrja\Cli\Interaction\Output\Contract\OutputContract;
@@ -54,7 +54,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'A required single value argument',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsArgumentRequiredHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsArgumentRequiredHandler'])]
     #[ArgumentParameter(
         name: 'value',
         description: 'A required single value argument',
@@ -74,7 +74,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'An optional single value argument',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsArgumentOptionalHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsArgumentOptionalHandler'])]
     #[ArgumentParameter(
         name: 'value',
         description: 'An optional single value argument',
@@ -96,7 +96,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'An optional array argument',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsArgumentArrayHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsArgumentArrayHandler'])]
     #[ArgumentParameter(
         name: 'values',
         description: 'An optional array argument',
@@ -118,7 +118,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'A required array argument',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsArgumentRequiredArrayHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsArgumentRequiredArrayHandler'])]
     #[ArgumentParameter(
         name: 'values',
         description: 'A required array argument',
@@ -138,7 +138,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'An optional valueless flag option',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsOptionNoneHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsOptionNoneHandler'])]
     #[OptionParameter(
         name: 'flag',
         description: 'An optional valueless flag option',
@@ -158,7 +158,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'An optional single value option',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsOptionDefaultHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsOptionDefaultHandler'])]
     #[OptionParameter(
         name: 'value',
         description: 'An optional single value option',
@@ -180,7 +180,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'An optional repeatable option',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsOptionArrayHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsOptionArrayHandler'])]
     #[OptionParameter(
         name: 'tag',
         description: 'An optional repeatable option',
@@ -200,7 +200,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'A required single value option',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsOptionRequiredHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsOptionRequiredHandler'])]
     #[OptionParameter(
         name: 'value',
         description: 'A required single value option',
@@ -220,7 +220,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'A required valueless flag option',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsOptionRequiredNoneHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsOptionRequiredNoneHandler'])]
     #[OptionParameter(
         name: 'flag',
         description: 'A required valueless flag option',
@@ -242,7 +242,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'A required repeatable option',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsOptionRequiredArrayHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsOptionRequiredArrayHandler'])]
     #[OptionParameter(
         name: 'tag',
         description: 'A required repeatable option',
@@ -266,7 +266,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'An option with short names',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsOptionShortHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsOptionShortHandler'])]
     #[OptionParameter(
         name: 'marker',
         description: 'An option with short names',
@@ -287,7 +287,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'An option restricted to valid values',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsOptionValidValuesHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsOptionValidValuesHandler'])]
     #[OptionParameter(
         name: 'format',
         description: 'An option restricted to valid values',
@@ -308,7 +308,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'An option with a default value',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsOptionDefaultValueHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsOptionDefaultValueHandler'])]
     #[OptionParameter(
         name: 'value',
         description: 'An option with a default value',
@@ -331,7 +331,7 @@ class RoutingPermutationsCommand extends Controller
         description: 'Arguments and options together',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'permutationsMixedHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'permutationsMixedHandler'])]
     #[ArgumentParameter(
         name: 'name',
         description: 'A required single value argument',

@@ -15,7 +15,7 @@ namespace App\Cli\Command;
 
 use App\Cli\Config;
 use App\Cli\Controller\Abstract\Controller;
-use App\Cli\Provider\CliRouteProvider;
+use App\Cli\Provider\AppCliRouteProvider;
 use Valkyrja\Application\Data\Contract\CliConfigContract;
 use Valkyrja\Cli\Interaction\Message\Answer;
 use Valkyrja\Cli\Interaction\Message\Contract\AnswerContract;
@@ -47,7 +47,7 @@ class TestCommand extends Controller
         description: 'Test command',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([CliRouteProvider::class, 'testCommandHandler'])]
+    #[RouteHandler([AppCliRouteProvider::class, 'testCommandHandler'])]
     public function run(RouteContract $route, CliConfigContract $config): OutputContract
     {
         /**

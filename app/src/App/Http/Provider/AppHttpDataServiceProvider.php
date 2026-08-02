@@ -11,21 +11,19 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Cli\Provider;
+namespace App\Http\Provider;
 
-use App\Cli\Data\AppCliRoutingData;
-use App\Cli\Data\AppContainerData;
-use App\Cli\Data\AppEventData;
-use App\Cli\Data\AppHttpRoutingData;
+use App\Http\Data\AppContainerData;
+use App\Http\Data\AppEventData;
+use App\Http\Data\AppHttpRoutingData;
 use Override;
-use Valkyrja\Cli\Routing\Data\CliRoutingData;
 use Valkyrja\Container\Data\ContainerData;
 use Valkyrja\Container\Manager\Contract\ContainerContract;
 use Valkyrja\Container\Provider\Contract\ServiceProviderContract;
 use Valkyrja\Event\Data\EventData;
 use Valkyrja\Http\Routing\Data\HttpRoutingData;
 
-final class DataServiceProvider implements ServiceProviderContract
+final class AppHttpDataServiceProvider implements ServiceProviderContract
 {
     /**
      * Publish the container data.
@@ -41,14 +39,6 @@ final class DataServiceProvider implements ServiceProviderContract
     public static function publishEventData(ContainerContract $container): void
     {
         $container->setSingleton(EventData::class, new AppEventData());
-    }
-
-    /**
-     * Publish the cli routing data.
-     */
-    public static function publishCliRoutingData(ContainerContract $container): void
-    {
-        $container->setSingleton(CliRoutingData::class, new AppCliRoutingData());
     }
 
     /**
@@ -68,7 +58,6 @@ final class DataServiceProvider implements ServiceProviderContract
         return [
             ContainerData::class   => [self::class, 'publishContainerData'],
             EventData::class       => [self::class, 'publishEventData'],
-            CliRoutingData::class  => [self::class, 'publishCliRoutingData'],
             HttpRoutingData::class => [self::class, 'publishHttpRoutingData'],
         ];
     }

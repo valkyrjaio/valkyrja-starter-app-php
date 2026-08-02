@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Http\Provider;
 
-use App\Http\Provider\ComponentProvider;
-use App\Http\Provider\DataServiceProvider;
-use App\Http\Provider\HttpRouteProvider;
-use App\Http\Provider\ServiceProvider;
+use App\Http\Provider\AppHttpComponentProvider;
+use App\Http\Provider\AppHttpDataServiceProvider;
+use App\Http\Provider\AppHttpRouteProvider;
+use App\Http\Provider\AppHttpServiceProvider;
 use PHPUnit\Framework\TestCase;
 use Valkyrja\Application\Kernel\Contract\ApplicationContract;
 use Valkyrja\Application\Provider\HttpApplicationComponentProvider;
 use Valkyrja\Container\Data\ContainerData;
 use Valkyrja\Container\Manager\Container;
 
-final class ComponentProviderTest extends TestCase
+final class AppHttpComponentProviderTest extends TestCase
 {
     public function testPublishInProductionUsesAppContainerData(): void
     {
@@ -32,7 +32,7 @@ final class ComponentProviderTest extends TestCase
         $app->method('getContainer')->willReturn($container);
         $app->method('getDebugMode')->willReturn(false);
 
-        ComponentProvider::publish($app);
+        AppHttpComponentProvider::publish($app);
 
         self::assertTrue($container->isSingletonInstance(ContainerData::class));
     }
@@ -46,14 +46,14 @@ final class ComponentProviderTest extends TestCase
         $app->method('getContainerProviders')->willReturn([]);
         $container->setSingleton(ApplicationContract::class, $app);
 
-        ComponentProvider::publish($app);
+        AppHttpComponentProvider::publish($app);
 
         self::assertTrue($container->isSingletonInstance(ContainerData::class));
     }
 
     public function testGetComponentProviders(): void
     {
-        $providers = new ComponentProvider()->getComponentProviders(self::createStub(ApplicationContract::class));
+        $providers = new AppHttpComponentProvider()->getComponentProviders(self::createStub(ApplicationContract::class));
 
         self::assertCount(1, $providers);
         self::assertInstanceOf(HttpApplicationComponentProvider::class, $providers[0]);
@@ -61,27 +61,27 @@ final class ComponentProviderTest extends TestCase
 
     public function testGetContainerProviders(): void
     {
-        $providers = new ComponentProvider()->getContainerProviders(self::createStub(ApplicationContract::class));
+        $providers = new AppHttpComponentProvider()->getContainerProviders(self::createStub(ApplicationContract::class));
 
-        self::assertInstanceOf(DataServiceProvider::class, $providers[0]);
-        self::assertInstanceOf(ServiceProvider::class, $providers[1]);
+        self::assertInstanceOf(AppHttpDataServiceProvider::class, $providers[0]);
+        self::assertInstanceOf(AppHttpServiceProvider::class, $providers[1]);
     }
 
     public function testGetEventProviders(): void
     {
-        self::assertSame([], new ComponentProvider()->getEventProviders(self::createStub(ApplicationContract::class)));
+        self::assertSame([], new AppHttpComponentProvider()->getEventProviders(self::createStub(ApplicationContract::class)));
     }
 
     public function testGetCliProviders(): void
     {
-        self::assertSame([], new ComponentProvider()->getCliProviders(self::createStub(ApplicationContract::class)));
+        self::assertSame([], new AppHttpComponentProvider()->getCliProviders(self::createStub(ApplicationContract::class)));
     }
 
     public function testGetHttpProviders(): void
     {
-        $providers = new ComponentProvider()->getHttpProviders(self::createStub(ApplicationContract::class));
+        $providers = new AppHttpComponentProvider()->getHttpProviders(self::createStub(ApplicationContract::class));
 
         self::assertCount(1, $providers);
-        self::assertInstanceOf(HttpRouteProvider::class, $providers[0]);
+        self::assertInstanceOf(AppHttpRouteProvider::class, $providers[0]);
     }
 }

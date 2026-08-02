@@ -26,7 +26,7 @@ use Valkyrja\Container\Manager\Contract\ContainerContract;
 
 use function array_map;
 
-final class CliRouteProvider implements CliRouteProviderContract
+final class AppCliRouteProvider implements CliRouteProviderContract
 {
     /**
      * The test command handler.

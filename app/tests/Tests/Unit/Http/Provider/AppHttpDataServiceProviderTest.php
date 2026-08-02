@@ -11,27 +11,25 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Tests\Unit\Cli\Provider;
+namespace App\Tests\Unit\Http\Provider;
 
-use App\Cli\Data\AppCliRoutingData;
-use App\Cli\Data\AppContainerData;
-use App\Cli\Data\AppEventData;
-use App\Cli\Data\AppHttpRoutingData;
-use App\Cli\Provider\DataServiceProvider;
+use App\Http\Data\AppContainerData;
+use App\Http\Data\AppEventData;
+use App\Http\Data\AppHttpRoutingData;
+use App\Http\Provider\AppHttpDataServiceProvider;
 use PHPUnit\Framework\TestCase;
-use Valkyrja\Cli\Routing\Data\CliRoutingData;
 use Valkyrja\Container\Data\ContainerData;
 use Valkyrja\Container\Manager\Container;
 use Valkyrja\Event\Data\EventData;
 use Valkyrja\Http\Routing\Data\HttpRoutingData;
 
-final class DataServiceProviderTest extends TestCase
+final class AppHttpDataServiceProviderTest extends TestCase
 {
     public function testPublishContainerData(): void
     {
         $container = new Container();
 
-        DataServiceProvider::publishContainerData($container);
+        AppHttpDataServiceProvider::publishContainerData($container);
 
         self::assertInstanceOf(AppContainerData::class, $container->getSingleton(ContainerData::class));
     }
@@ -40,25 +38,16 @@ final class DataServiceProviderTest extends TestCase
     {
         $container = new Container();
 
-        DataServiceProvider::publishEventData($container);
+        AppHttpDataServiceProvider::publishEventData($container);
 
         self::assertInstanceOf(AppEventData::class, $container->getSingleton(EventData::class));
-    }
-
-    public function testPublishCliRoutingData(): void
-    {
-        $container = new Container();
-
-        DataServiceProvider::publishCliRoutingData($container);
-
-        self::assertInstanceOf(AppCliRoutingData::class, $container->getSingleton(CliRoutingData::class));
     }
 
     public function testPublishHttpRoutingData(): void
     {
         $container = new Container();
 
-        DataServiceProvider::publishHttpRoutingData($container);
+        AppHttpDataServiceProvider::publishHttpRoutingData($container);
 
         self::assertInstanceOf(AppHttpRoutingData::class, $container->getSingleton(HttpRoutingData::class));
     }
@@ -67,12 +56,11 @@ final class DataServiceProviderTest extends TestCase
     {
         self::assertSame(
             [
-                ContainerData::class   => [DataServiceProvider::class, 'publishContainerData'],
-                EventData::class       => [DataServiceProvider::class, 'publishEventData'],
-                CliRoutingData::class  => [DataServiceProvider::class, 'publishCliRoutingData'],
-                HttpRoutingData::class => [DataServiceProvider::class, 'publishHttpRoutingData'],
+                ContainerData::class   => [AppHttpDataServiceProvider::class, 'publishContainerData'],
+                EventData::class       => [AppHttpDataServiceProvider::class, 'publishEventData'],
+                HttpRoutingData::class => [AppHttpDataServiceProvider::class, 'publishHttpRoutingData'],
             ],
-            new DataServiceProvider()->publishers(),
+            new AppHttpDataServiceProvider()->publishers(),
         );
     }
 }
