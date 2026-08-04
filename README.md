@@ -196,6 +196,6 @@ under the [MIT license][MIT license url]. See [`LICENSE.md`](./LICENSE.md).
 [http docs url]: https://github.com/valkyrjaio/valkyrja-php/tree/26.x/src/Valkyrja/Http/README.md
 [cli docs url]: https://github.com/valkyrjaio/valkyrja-php/tree/26.x/src/Valkyrja/Cli/README.md
 [container docs url]: https://github.com/valkyrjaio/valkyrja-php/tree/26.x/src/Valkyrja/Container/README.md
-[contributing url]: https://github.com/valkyrjaio/.github/blob/master/CONTRIBUTING.md
-[vocabulary url]: https://github.com/valkyrjaio/.github/blob/master/VOCABULARY.md
+[contributing url]: https://github.com/valkyrjaio/.github/blob/26.x/CONTRIBUTING.md
+[vocabulary url]: https://github.com/valkyrjaio/.github/blob/26.x/VOCABULARY.md
 [MIT license url]: https://opensource.org/licenses/MIT
