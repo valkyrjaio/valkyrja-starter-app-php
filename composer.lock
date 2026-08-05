@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "457015e8ca6600bafb58792e392fc333",
+    "content-hash": "31a7ada1dc6e570225c0a3bcb15ee77d",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -373,16 +373,16 @@
         },
         {
             "name": "valkyrja/valkyrja",
-            "version": "v26.8.0",
+            "version": "v26.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/valkyrja-php.git",
-                "reference": "9e8a4a872b7bcbb9267885b8865eaa7c4ec2d2f7"
+                "reference": "96ad6d1a5cdd2f90baac507833490e5e178e7db1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/valkyrja-php/zipball/9e8a4a872b7bcbb9267885b8865eaa7c4ec2d2f7",
-                "reference": "9e8a4a872b7bcbb9267885b8865eaa7c4ec2d2f7",
+                "url": "https://api.github.com/repos/valkyrjaio/valkyrja-php/zipball/96ad6d1a5cdd2f90baac507833490e5e178e7db1",
+                "reference": "96ad6d1a5cdd2f90baac507833490e5e178e7db1",
                 "shasum": ""
             },
             "require": {
@@ -466,9 +466,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/valkyrja-php/issues",
-                "source": "https://github.com/valkyrjaio/valkyrja-php/tree/v26.8.0"
+                "source": "https://github.com/valkyrjaio/valkyrja-php/tree/v26.9.0"
             },
-            "time": "2026-08-02T08:45:25+00:00"
+            "time": "2026-08-05T16:15:15+00:00"
         }
     ],
     "packages-dev": [
@@ -845,22 +845,22 @@
         },
         {
             "name": "spiral/core",
-            "version": "3.17.1",
+            "version": "3.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spiral/core.git",
-                "reference": "7ea8547b24aba2acb678bcef2eded6fdadd6a38c"
+                "reference": "ca5b8483610aed0c82d4f06bc7907e191d88aca0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spiral/core/zipball/7ea8547b24aba2acb678bcef2eded6fdadd6a38c",
-                "reference": "7ea8547b24aba2acb678bcef2eded6fdadd6a38c",
+                "url": "https://api.github.com/repos/spiral/core/zipball/ca5b8483610aed0c82d4f06bc7907e191d88aca0",
+                "reference": "ca5b8483610aed0c82d4f06bc7907e191d88aca0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
                 "psr/container": "^1.1|^2.0",
-                "spiral/security": "^3.17.1"
+                "spiral/security": "^3.17.2"
             },
             "provide": {
                 "psr/container-implementation": "^1.1|^2.0"
@@ -915,7 +915,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:22:36+00:00"
+            "time": "2026-08-05T12:07:26+00:00"
         },
         {
             "name": "spiral/goridge",
@@ -1006,23 +1006,23 @@
         },
         {
             "name": "spiral/hmvc",
-            "version": "3.17.1",
+            "version": "3.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spiral/hmvc.git",
-                "reference": "830ba10c386d410e7183e51ff36c27a44ed7e35d"
+                "reference": "11111aac577f3d7ccc9bbe8b79dc6441fd21b9c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spiral/hmvc/zipball/830ba10c386d410e7183e51ff36c27a44ed7e35d",
-                "reference": "830ba10c386d410e7183e51ff36c27a44ed7e35d",
+                "url": "https://api.github.com/repos/spiral/hmvc/zipball/11111aac577f3d7ccc9bbe8b79dc6441fd21b9c5",
+                "reference": "11111aac577f3d7ccc9bbe8b79dc6441fd21b9c5",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
                 "psr/event-dispatcher": "^1.0",
-                "spiral/core": "^3.17.1",
-                "spiral/interceptors": "^3.17.1"
+                "spiral/core": "^3.17.2",
+                "spiral/interceptors": "^3.17.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "^10.5.41",
@@ -1076,26 +1076,26 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:28:49+00:00"
+            "time": "2026-08-05T12:00:27+00:00"
         },
         {
             "name": "spiral/interceptors",
-            "version": "3.17.1",
+            "version": "3.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spiral/interceptors.git",
-                "reference": "70dac5a5f388d212895636667eb4271aeeefa8f9"
+                "reference": "ea0e10ecb2c6058541a2b097a660fd2b532a5ffa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spiral/interceptors/zipball/70dac5a5f388d212895636667eb4271aeeefa8f9",
-                "reference": "70dac5a5f388d212895636667eb4271aeeefa8f9",
+                "url": "https://api.github.com/repos/spiral/interceptors/zipball/ea0e10ecb2c6058541a2b097a660fd2b532a5ffa",
+                "reference": "ea0e10ecb2c6058541a2b097a660fd2b532a5ffa",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
                 "psr/event-dispatcher": "^1.0",
-                "spiral/core": "^3.17.1"
+                "spiral/core": "^3.17.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "^10.5.41",
@@ -1154,26 +1154,26 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:25:25+00:00"
+            "time": "2026-08-05T12:00:37+00:00"
         },
         {
             "name": "spiral/logger",
-            "version": "3.17.1",
+            "version": "3.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spiral/logger.git",
-                "reference": "53b192a6f05284f950d6cbfde98637b578c4eddd"
+                "reference": "671d91a3427019a14670b614474cc57156d5cd69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spiral/logger/zipball/53b192a6f05284f950d6cbfde98637b578c4eddd",
-                "reference": "53b192a6f05284f950d6cbfde98637b578c4eddd",
+                "url": "https://api.github.com/repos/spiral/logger/zipball/671d91a3427019a14670b614474cc57156d5cd69",
+                "reference": "671d91a3427019a14670b614474cc57156d5cd69",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
                 "psr/log": "1 - 3",
-                "spiral/core": "^3.17.1"
+                "spiral/core": "^3.17.2"
             },
             "require-dev": {
                 "mockery/mockery": "^1.6.12",
@@ -1225,7 +1225,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:26:56+00:00"
+            "time": "2026-08-05T12:05:38+00:00"
         },
         {
             "name": "spiral/roadrunner",
@@ -1522,27 +1522,27 @@
         },
         {
             "name": "spiral/security",
-            "version": "3.17.1",
+            "version": "3.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spiral/security.git",
-                "reference": "3454c2d08d084bb688708eca82c24258dfbeb54e"
+                "reference": "aefd664efb3e618d0a57c967546f1ad5d9784580"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spiral/security/zipball/3454c2d08d084bb688708eca82c24258dfbeb54e",
-                "reference": "3454c2d08d084bb688708eca82c24258dfbeb54e",
+                "url": "https://api.github.com/repos/spiral/security/zipball/aefd664efb3e618d0a57c967546f1ad5d9784580",
+                "reference": "aefd664efb3e618d0a57c967546f1ad5d9784580",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
-                "spiral/core": "^3.17.1",
-                "spiral/hmvc": "^3.17.1"
+                "spiral/core": "^3.17.2",
+                "spiral/hmvc": "^3.17.2"
             },
             "require-dev": {
                 "mockery/mockery": "^1.6.12",
                 "phpunit/phpunit": "^10.5.41",
-                "spiral/console": "^3.17.1",
+                "spiral/console": "^3.17.2",
                 "vimeo/psalm": "^6.0"
             },
             "type": "library",
@@ -1590,35 +1590,35 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:26:20+00:00"
+            "time": "2026-08-05T12:07:41+00:00"
         },
         {
             "name": "spiral/tokenizer",
-            "version": "3.17.1",
+            "version": "3.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spiral/tokenizer.git",
-                "reference": "d1498bf7b8e6c3ad91e41e363531a486fa594fb9"
+                "reference": "fcb7a36672d7aef900dc36377ff997ba6f8cde0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spiral/tokenizer/zipball/d1498bf7b8e6c3ad91e41e363531a486fa594fb9",
-                "reference": "d1498bf7b8e6c3ad91e41e363531a486fa594fb9",
+                "url": "https://api.github.com/repos/spiral/tokenizer/zipball/fcb7a36672d7aef900dc36377ff997ba6f8cde0b",
+                "reference": "fcb7a36672d7aef900dc36377ff997ba6f8cde0b",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
                 "php": ">=8.1",
-                "spiral/core": "^3.17.1",
-                "spiral/logger": "^3.17.1",
+                "spiral/core": "^3.17.2",
+                "spiral/logger": "^3.17.2",
                 "symfony/finder": "^6.4.30 || ^7.4 || ^8.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.6.12",
                 "phpunit/phpunit": "^10.5.41",
                 "spiral/attributes": "^2.8|^3.0",
-                "spiral/boot": "^3.17.1",
-                "spiral/files": "^3.17.1",
+                "spiral/boot": "^3.17.2",
+                "spiral/files": "^3.17.2",
                 "vimeo/psalm": "^6.0"
             },
             "type": "library",
@@ -1666,7 +1666,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:26:46+00:00"
+            "time": "2026-08-05T12:05:29+00:00"
         },
         {
             "name": "symfony/console",
@@ -2836,22 +2836,22 @@
         },
         {
             "name": "valkyrja/sindri",
-            "version": "v26.6.5",
+            "version": "v26.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/sindri-php.git",
-                "reference": "abb9b634f0f68dbed7ff2f007e6b84def30a35bc"
+                "reference": "a979e53db21b8bcc20fcc520b4c09be043775a96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/abb9b634f0f68dbed7ff2f007e6b84def30a35bc",
-                "reference": "abb9b634f0f68dbed7ff2f007e6b84def30a35bc",
+                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/a979e53db21b8bcc20fcc520b4c09be043775a96",
+                "reference": "a979e53db21b8bcc20fcc520b4c09be043775a96",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^5.8.0",
                 "php": ">=8.4",
-                "valkyrja/valkyrja": "^26.8.0"
+                "valkyrja/valkyrja": "^26.9.0"
             },
             "bin": [
                 "bin/sindri"
@@ -2881,9 +2881,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/sindri-php/issues",
-                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.6.5"
+                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.6.6"
             },
-            "time": "2026-08-04T16:56:50+00:00"
+            "time": "2026-08-05T16:35:09+00:00"
         }
     ],
     "aliases": [],
