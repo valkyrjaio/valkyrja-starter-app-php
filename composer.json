@@ -17,7 +17,7 @@
     "filp/whoops": "^2.18.4",
     "spiral/roadrunner-cli": "^2.7.2",
     "spiral/roadrunner-http": "^4.1.0",
-    "valkyrja/sindri": "^26.6.4"
+    "valkyrja/sindri": "^26.6.5"
   },
   "config"            : {
     "optimize-autoloader" : true,
