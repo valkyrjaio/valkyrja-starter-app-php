@@ -19,6 +19,7 @@ use Valkyrja\Application\Entry\Queue;
 use Valkyrja\Queue\Client\Manager\DeferredClient;
 use Valkyrja\Queue\Client\Manager\InMemoryClient;
 use Valkyrja\Queue\Client\Manager\SyncClient;
+use Valkyrja\Queue\Client\Throwable\Exception\QueueClientSyncJobFailedException;
 use Valkyrja\Queue\Message\Job\Factory\JobFactory;
 use Valkyrja\Queue\Message\Job\Job;
 
@@ -58,7 +59,13 @@ switch ($adapter) {
         // Runs the job now, blocking, retries and all
         $client = new SyncClient(config: $config);
 
-        $client->push($job);
+        try {
+            $client->push($job);
+        } catch (QueueClientSyncJobFailedException) {
+            // A sync push blocks until the job finishes, so a chain that ends
+            // in a dead letter reaches the caller as a throw. That is the one
+            // deliberate difference from an asynchronous push
+        }
 
         echo 'handled=', count($client->getPushed()), PHP_EOL;
 
