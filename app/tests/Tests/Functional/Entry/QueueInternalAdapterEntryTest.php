@@ -21,23 +21,6 @@ use function implode;
 
 use const PHP_BINARY;
 
-/**
- * End-to-end tests for the three in-process queue adapters.
- *
- * Each runs the real `app/bin/queue-internal` binary in a subprocess, so a job
- * is published and consumed inside a genuinely booted application rather than a
- * test harness.
- *
- * These adapters are a *testing* shape by design: in a real deployment an app
- * publishes to a broker and a separate worker consumes. An app self-consuming
- * its own jobs is realistically only wanted in a test or a zero-infrastructure
- * dev environment — which is exactly why they are worth pinning down, since
- * that is where they will actually be used.
- *
- * Consumption is asserted through the retry chain rather than a side effect: a
- * retry hands an incremented job back to the client, so the handover count is
- * external proof the job ran and settled rather than merely being enqueued.
- */
 final class QueueInternalAdapterEntryTest extends TestCase
 {
     public function testSyncRunsTheJobImmediately(): void

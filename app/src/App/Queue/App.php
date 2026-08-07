@@ -17,14 +17,6 @@ use Override;
 use Valkyrja\Application\Entry\PullQueue;
 use Valkyrja\Throwable\Handler\Contract\ThrowableHandlerContract;
 
-/**
- * The default consumer: a plain long-running poll loop, run under whatever
- * process manager you already use.
- *
- * The runtime is in the class name, not the directory — the app groups its
- * entries by protocol, so a per-runtime push worker sits beside this as
- * OpenSwoolePushApp rather than nesting under a runtime segment.
- */
 final class App extends PullQueue
 {
     /**

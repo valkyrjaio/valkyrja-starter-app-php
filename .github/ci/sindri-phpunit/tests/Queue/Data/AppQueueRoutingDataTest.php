@@ -18,13 +18,6 @@ use PHPUnit\Framework\TestCase;
 use Valkyrja\Queue\Routing\Data\Contract\RouteContract;
 use Valkyrja\Queue\Routing\Data\QueueRoutingData;
 
-/**
- * Assert the sindri-generated queue-component {@see AppQueueRoutingData} is populated.
- *
- * Unlike the root PHPUnit suite — which tests the empty *.example.php stubs —
- * this job runs real generation first, so it is the only place the generated
- * queue cache is exercised as the framework would load it.
- */
 final class AppQueueRoutingDataTest extends TestCase
 {
     public function testGeneratesPopulatedQueueRoutingData(): void

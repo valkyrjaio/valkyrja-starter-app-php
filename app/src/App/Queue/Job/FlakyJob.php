@@ -18,19 +18,6 @@ use Valkyrja\Queue\Routing\Attribute\Route;
 use Valkyrja\Queue\Routing\Attribute\Route\RouteHandler;
 use Valkyrja\Queue\Routing\Data\Contract\RouteContract;
 
-/**
- * A job that always asks to be retried.
- *
- * This exists to demonstrate — and to test — the retry chain: because a retry
- * hands an incremented job back to the client, the number of jobs a client was
- * handed is the only externally visible proof that a job was actually consumed
- * and settled rather than merely enqueued. The framework converts the last
- * retry into a dead-letter once the attempt ceiling is reached, so the chain
- * always terminates.
- *
- * A real job would return a retry only for a *transient* failure; one that
- * always retries is a demonstration, not a pattern to copy.
- */
 final class FlakyJob
 {
     /** @var non-empty-string */
