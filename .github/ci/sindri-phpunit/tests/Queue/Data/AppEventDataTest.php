@@ -16,13 +16,6 @@ use App\Queue\Data\AppEventData;
 use PHPUnit\Framework\TestCase;
 use Valkyrja\Event\Data\EventData;
 
-/**
- * Assert the sindri-generated queue-component {@see AppEventData}.
- *
- * The queue component declares no listeners, so the generated event data is
- * empty — the assertion is that generation still emits a valid, loadable class
- * rather than skipping it.
- */
 final class AppEventDataTest extends TestCase
 {
     public function testGeneratesLoadableEventData(): void

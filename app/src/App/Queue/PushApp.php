@@ -17,13 +17,6 @@ use Override;
 use Valkyrja\Application\Entry\PushQueue;
 use Valkyrja\Throwable\Handler\Contract\ThrowableHandlerContract;
 
-/**
- * The push consumer, in CGI mode — one job per invocation.
- *
- * A managed processor POSTs the envelope and reads the response status as the
- * settlement, so this rides on the web server already serving the app rather
- * than needing a queue-specific one.
- */
 final class PushApp extends PushQueue
 {
     /**

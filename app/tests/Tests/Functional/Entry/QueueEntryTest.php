@@ -21,17 +21,6 @@ use function implode;
 
 use const PHP_BINARY;
 
-/**
- * End-to-end smoke test for the queue entry (`app/bin/queue-sync`).
- *
- * Runs the real binary in a subprocess and asserts a job boots the isolated
- * queue application, resolves through the router, and settles — catching
- * regressions in the entry wiring, provider bootstrap, or job routing that
- * class-level tests miss.
- *
- * A subprocess also keeps the debug throwable handler the boot installs out of
- * the test process, which is why the other entry tests here work the same way.
- */
 final class QueueEntryTest extends TestCase
 {
     public function testQueueBootsAndRunsTheApplicationJob(): void

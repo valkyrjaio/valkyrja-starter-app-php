@@ -19,9 +19,6 @@ use Valkyrja\Queue\Client\Manager\Contract\ClientContract;
 use Valkyrja\Queue\Routing\Dispatcher\Contract\RouterContract;
 use Valkyrja\Queue\Server\Handler\Contract\JobHandlerContract;
 
-/**
- * Assert the sindri-generated queue-component {@see AppContainerData} is correct and populated.
- */
 final class AppContainerDataTest extends TestCase
 {
     public function testGeneratesPopulatedContainerData(): void

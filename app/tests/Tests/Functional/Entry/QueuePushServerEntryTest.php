@@ -22,17 +22,6 @@ use function json_encode;
 
 use const PHP_BINARY;
 
-/**
- * End-to-end test for the push queue entry.
- *
- * Serves `app/public` through PHP's built-in web server and POSTs a real wire
- * envelope at `queue.php`, exercising the whole push path over a socket: the
- * processor's request is mapped to a job, routed, handled, and settled — and
- * the response status *is* the settlement the processor would act on.
- *
- * This is the CGI form, which is why no queue-specific server is involved: push
- * rides on the web server the application already runs.
- */
 final class QueuePushServerEntryTest extends RuntimeServerTestCase
 {
     public function testAnAcknowledgedJobSettlesWithATwoHundred(): void

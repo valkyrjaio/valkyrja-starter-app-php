@@ -28,17 +28,6 @@ use function is_string;
 
 use const PHP_BINARY;
 
-/**
- * End-to-end test for the pull queue worker (`app/bin/queue`).
- *
- * Enqueues a real job into a real Redis, then runs the actual worker binary in
- * a subprocess with a one-job lifetime and asserts the job was consumed —
- * exercising the whole pull path over a socket: connect, blocking pop, decode,
- * route, handle, settle, disconnect.
- *
- * This is the only place the application's worker is checked against a real
- * broker rather than a test double.
- */
 final class QueueRedisWorkerEntryTest extends TestCase
 {
     /** @var non-empty-string */
