@@ -10,19 +10,18 @@ declare(strict_types=1);
  * Released under the MIT License. See LICENSE.md for details.
  */
 
-namespace App\Tests\Unit\Http\Provider;
+namespace App\Tests\Unit\Queue\Provider;
 
-use App\Http\Provider\AppHttpComponentProvider;
-use App\Http\Provider\AppHttpDataServiceProvider;
-use App\Http\Provider\AppHttpRouteProvider;
-use App\Http\Provider\AppHttpServiceProvider;
+use App\Queue\Provider\AppQueueComponentProvider;
+use App\Queue\Provider\AppQueueDataServiceProvider;
+use App\Queue\Provider\AppQueueRouteProvider;
 use PHPUnit\Framework\TestCase;
 use Valkyrja\Application\Kernel\Contract\ApplicationContract;
-use Valkyrja\Application\Provider\HttpApplicationComponentProvider;
+use Valkyrja\Application\Provider\QueueApplicationComponentProvider;
 use Valkyrja\Container\Data\ContainerData;
 use Valkyrja\Container\Manager\Container;
 
-final class AppHttpComponentProviderTest extends TestCase
+final class AppQueueComponentProviderTest extends TestCase
 {
     public function testPublishInProductionUsesAppContainerData(): void
     {
@@ -31,7 +30,7 @@ final class AppHttpComponentProviderTest extends TestCase
         $app->method('getContainer')->willReturn($container);
         $app->method('getDebugMode')->willReturn(false);
 
-        AppHttpComponentProvider::publish($app);
+        AppQueueComponentProvider::publish($app);
 
         self::assertTrue($container->isSingletonInstance(ContainerData::class));
     }
@@ -45,47 +44,47 @@ final class AppHttpComponentProviderTest extends TestCase
         $app->method('getContainerProviders')->willReturn([]);
         $container->setSingleton(ApplicationContract::class, $app);
 
-        AppHttpComponentProvider::publish($app);
+        AppQueueComponentProvider::publish($app);
 
         self::assertTrue($container->isSingletonInstance(ContainerData::class));
     }
 
     public function testGetComponentProviders(): void
     {
-        $providers = new AppHttpComponentProvider()->getComponentProviders(self::createStub(ApplicationContract::class));
+        $providers = new AppQueueComponentProvider()->getComponentProviders(self::createStub(ApplicationContract::class));
 
         self::assertCount(1, $providers);
-        self::assertInstanceOf(HttpApplicationComponentProvider::class, $providers[0]);
+        self::assertInstanceOf(QueueApplicationComponentProvider::class, $providers[0]);
     }
 
     public function testGetContainerProviders(): void
     {
-        $providers = new AppHttpComponentProvider()->getContainerProviders(self::createStub(ApplicationContract::class));
+        $providers = new AppQueueComponentProvider()->getContainerProviders(self::createStub(ApplicationContract::class));
 
-        self::assertInstanceOf(AppHttpDataServiceProvider::class, $providers[0]);
-        self::assertInstanceOf(AppHttpServiceProvider::class, $providers[1]);
+        self::assertInstanceOf(AppQueueDataServiceProvider::class, $providers[0]);
     }
 
     public function testGetEventProviders(): void
     {
-        self::assertSame([], new AppHttpComponentProvider()->getEventProviders(self::createStub(ApplicationContract::class)));
+        self::assertSame([], new AppQueueComponentProvider()->getEventProviders(self::createStub(ApplicationContract::class)));
     }
 
     public function testGetCliProviders(): void
     {
-        self::assertSame([], new AppHttpComponentProvider()->getCliProviders(self::createStub(ApplicationContract::class)));
+        self::assertSame([], new AppQueueComponentProvider()->getCliProviders(self::createStub(ApplicationContract::class)));
     }
 
     public function testGetHttpProviders(): void
     {
-        $providers = new AppHttpComponentProvider()->getHttpProviders(self::createStub(ApplicationContract::class));
-
-        self::assertCount(1, $providers);
-        self::assertInstanceOf(AppHttpRouteProvider::class, $providers[0]);
+        // A queue-only app loads no Http stack — the dependency is one-way
+        self::assertSame([], new AppQueueComponentProvider()->getHttpProviders(self::createStub(ApplicationContract::class)));
     }
 
     public function testGetQueueProviders(): void
     {
-        self::assertSame([], new AppHttpComponentProvider()->getQueueProviders(self::createStub(ApplicationContract::class)));
+        $providers = new AppQueueComponentProvider()->getQueueProviders(self::createStub(ApplicationContract::class));
+
+        self::assertCount(1, $providers);
+        self::assertInstanceOf(AppQueueRouteProvider::class, $providers[0]);
     }
 }

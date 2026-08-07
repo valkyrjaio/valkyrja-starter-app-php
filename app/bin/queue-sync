@@ -1,0 +1,36 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of the Valkyrja Framework package.
+ *
+ * (c) Melech Mizrachi <melechmizrachi@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+use App\Queue\Config;
+use App\Queue\Job\SendWelcomeEmailJob;
+use Valkyrja\Queue\Client\Manager\SyncClient;
+use Valkyrja\Queue\Message\Job\Factory\JobFactory;
+use Valkyrja\Queue\Message\Job\Job;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+// Runs a job in-process with no broker at all — the zero-config default. The
+// same handler, routes, and config serve a real worker; only the processor
+// differs, and that is a config change rather than a code one.
+$userId = isset($argv[1])
+    ? (int) $argv[1]
+    : 42;
+
+$client = new SyncClient(config: new Config());
+
+$client->push(new JobFactory()->create(SendWelcomeEmailJob::NAME, ['user_id' => $userId]));
+
+foreach ($client->getPushed() as $pushed) {
+    echo $pushed->getName(), ' attempt=', $pushed->getAttempts(), ' id=', $pushed->getId(), PHP_EOL;
+}

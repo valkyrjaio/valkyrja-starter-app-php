@@ -15,6 +15,7 @@
   },
   "require-dev"       : {
     "filp/whoops": "^2.18.4",
+    "predis/predis": "^3.5.1",
     "spiral/roadrunner-cli": "^2.7.2",
     "spiral/roadrunner-http": "^4.1.0",
     "valkyrja/sindri": "^26.6.6"
@@ -44,7 +45,11 @@
       "php -r \"file_exists('app/src/App/Cli/Data/AppContainerData.php') || copy('app/src/App/Cli/Data/AppContainerData.example.php', 'app/src/App/Cli/Data/AppContainerData.php');\"",
       "php -r \"file_exists('app/src/App/Cli/Data/AppEventData.php') || copy('app/src/App/Cli/Data/AppEventData.example.php', 'app/src/App/Cli/Data/AppEventData.php');\"",
       "php -r \"file_exists('app/src/App/Cli/Data/AppCliRoutingData.php') || copy('app/src/App/Cli/Data/AppCliRoutingData.example.php', 'app/src/App/Cli/Data/AppCliRoutingData.php');\"",
-      "php -r \"file_exists('app/src/App/Cli/Data/AppHttpRoutingData.php') || copy('app/src/App/Cli/Data/AppHttpRoutingData.example.php', 'app/src/App/Cli/Data/AppHttpRoutingData.php');\""
+      "php -r \"file_exists('app/src/App/Cli/Data/AppHttpRoutingData.php') || copy('app/src/App/Cli/Data/AppHttpRoutingData.example.php', 'app/src/App/Cli/Data/AppHttpRoutingData.php');\"",
+      "php -r \"file_exists('app/src/App/Queue/Config.php') || copy('app/src/App/Queue/Config.example.php', 'app/src/App/Queue/Config.php');\"",
+      "php -r \"file_exists('app/src/App/Queue/Data/AppContainerData.php') || copy('app/src/App/Queue/Data/AppContainerData.example.php', 'app/src/App/Queue/Data/AppContainerData.php');\"",
+      "php -r \"file_exists('app/src/App/Queue/Data/AppEventData.php') || copy('app/src/App/Queue/Data/AppEventData.example.php', 'app/src/App/Queue/Data/AppEventData.php');\"",
+      "php -r \"file_exists('app/src/App/Queue/Data/AppQueueRoutingData.php') || copy('app/src/App/Queue/Data/AppQueueRoutingData.example.php', 'app/src/App/Queue/Data/AppQueueRoutingData.php');\""
     ],
     "post-root-package-install"                   : [
       "@setup-example-files"
@@ -94,7 +99,8 @@
     "rector-composer-update"                      : "cd .github/ci/rector && composer update",
     "sindri-generate"                             : [
       "vendor/bin/sindri data:generate app/src/App/Http/Config.php",
-      "vendor/bin/sindri data:generate app/src/App/Cli/Config.php"
+      "vendor/bin/sindri data:generate app/src/App/Cli/Config.php",
+      "vendor/bin/sindri data:generate app/src/App/Queue/Config.php"
     ],
     "sindri-phpunit"                              : "cd .github/ci/sindri-phpunit && composer check",
     "sindri-phpunit-coverage"                     : "cd .github/ci/sindri-phpunit && composer coverage",
