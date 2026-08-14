@@ -11,13 +11,13 @@
   "require"           : {
     "php"               : ">=8.4",
     "monolog/monolog"   : "^3.10.0",
-    "valkyrja/valkyrja" : "^26.11.4"
+    "valkyrja/valkyrja" : "^26.12.0"
   },
   "require-dev"       : {
     "filp/whoops": "^2.18.4",
     "spiral/roadrunner-cli": "^2.7.2",
     "spiral/roadrunner-http": "^4.1.0",
-    "valkyrja/sindri": "^26.6.13"
+    "valkyrja/sindri": "^26.6.14"
   },
   "config"            : {
     "optimize-autoloader" : true,
