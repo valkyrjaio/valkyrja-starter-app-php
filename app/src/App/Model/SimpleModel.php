@@ -48,8 +48,6 @@ class SimpleModel extends Model
     }
 
     /**
-     * Specify which method resolves a property on magic __get.
-     *
      * @inheritDoc
      */
     #[Override]
@@ -61,8 +59,6 @@ class SimpleModel extends Model
     }
 
     /**
-     * Specify which method resolves a property on magic __set.
-     *
      * @inheritDoc
      */
     #[Override]
