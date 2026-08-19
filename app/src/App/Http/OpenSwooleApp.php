@@ -44,13 +44,11 @@ final class OpenSwooleApp extends OpenSwooleHttp
 
     /**
      * @inheritDoc
-     *
-     * Host and port are read from the environment so the server can be bound to
-     * a chosen address (e.g. a free port during end-to-end tests).
      */
     #[Override]
     public static function getSwooleServer(): Server
     {
+        // Read from the environment so a caller can bind a chosen address.
         $host = getenv('APP_OPENSWOOLE_HOST');
         $port = getenv('APP_OPENSWOOLE_PORT');
 
