@@ -1670,16 +1670,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v8.1.4",
+            "version": "v8.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "68efa2ebfd9a362951eb5a8b09fd177c66ddec24"
+                "reference": "d07c06839e33047e2c894a6793248f3fb66c8129"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/68efa2ebfd9a362951eb5a8b09fd177c66ddec24",
-                "reference": "68efa2ebfd9a362951eb5a8b09fd177c66ddec24",
+                "url": "https://api.github.com/repos/symfony/console/zipball/d07c06839e33047e2c894a6793248f3fb66c8129",
+                "reference": "d07c06839e33047e2c894a6793248f3fb66c8129",
                 "shasum": ""
             },
             "require": {
@@ -1746,7 +1746,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v8.1.4"
+                "source": "https://github.com/symfony/console/tree/v8.1.5"
             },
             "funding": [
                 {
@@ -1766,7 +1766,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-31T12:43:13+00:00"
+            "time": "2026-08-21T14:29:57+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1841,16 +1841,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v8.1.1",
+            "version": "v8.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "e2989e762c70f9490fa3a00a0ac0fae5aa97a531"
+                "reference": "8d7acede2b2ae07605783d1c43e49b5767036474"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/e2989e762c70f9490fa3a00a0ac0fae5aa97a531",
-                "reference": "e2989e762c70f9490fa3a00a0ac0fae5aa97a531",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/8d7acede2b2ae07605783d1c43e49b5767036474",
+                "reference": "8d7acede2b2ae07605783d1c43e49b5767036474",
                 "shasum": ""
             },
             "require": {
@@ -1885,7 +1885,7 @@
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/finder/tree/v8.1.1"
+                "source": "https://github.com/symfony/finder/tree/v8.1.5"
             },
             "funding": [
                 {
@@ -1905,20 +1905,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-27T09:05:56+00:00"
+            "time": "2026-08-21T12:16:08+00:00"
         },
         {
             "name": "symfony/http-client",
-            "version": "v8.1.4",
+            "version": "v8.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "f8d33e21c749e931a33c98b1f6a8ea378b29627a"
+                "reference": "9f941ed000bb11f16dc7eafed98a7b646d3b3e5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/f8d33e21c749e931a33c98b1f6a8ea378b29627a",
-                "reference": "f8d33e21c749e931a33c98b1f6a8ea378b29627a",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/9f941ed000bb11f16dc7eafed98a7b646d3b3e5d",
+                "reference": "9f941ed000bb11f16dc7eafed98a7b646d3b3e5d",
                 "shasum": ""
             },
             "require": {
@@ -1982,7 +1982,7 @@
                 "http"
             ],
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v8.1.4"
+                "source": "https://github.com/symfony/http-client/tree/v8.1.5"
             },
             "funding": [
                 {
@@ -2002,7 +2002,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-06T21:11:24+00:00"
+            "time": "2026-08-21T17:47:34+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
@@ -2760,16 +2760,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v8.1.2",
+            "version": "v8.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "faabdbe998e8c5c599dceffa27aa265b185c0736"
+                "reference": "b3fc9e8888eeb9daddc33bfbd15d282a61f543cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/faabdbe998e8c5c599dceffa27aa265b185c0736",
-                "reference": "faabdbe998e8c5c599dceffa27aa265b185c0736",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/b3fc9e8888eeb9daddc33bfbd15d282a61f543cd",
+                "reference": "b3fc9e8888eeb9daddc33bfbd15d282a61f543cd",
                 "shasum": ""
             },
             "require": {
@@ -2812,7 +2812,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v8.1.2"
+                "source": "https://github.com/symfony/yaml/tree/v8.1.5"
             },
             "funding": [
                 {
@@ -2832,20 +2832,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-22T15:42:13+00:00"
+            "time": "2026-08-21T12:16:08+00:00"
         },
         {
             "name": "valkyrja/sindri",
-            "version": "v26.6.21",
+            "version": "v26.6.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/sindri-php.git",
-                "reference": "9bba703a1cf170b8557da4e1e60885e0b225dc19"
+                "reference": "d8ffbe56a435e4bd4a85095112231ee7f07f8c26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/9bba703a1cf170b8557da4e1e60885e0b225dc19",
-                "reference": "9bba703a1cf170b8557da4e1e60885e0b225dc19",
+                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/d8ffbe56a435e4bd4a85095112231ee7f07f8c26",
+                "reference": "d8ffbe56a435e4bd4a85095112231ee7f07f8c26",
                 "shasum": ""
             },
             "require": {
@@ -2881,9 +2881,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/sindri-php/issues",
-                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.6.21"
+                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.6.22"
             },
-            "time": "2026-08-21T13:49:27+00:00"
+            "time": "2026-08-22T13:36:07+00:00"
         }
     ],
     "aliases": [],

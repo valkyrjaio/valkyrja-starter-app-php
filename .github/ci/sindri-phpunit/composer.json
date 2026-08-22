@@ -3,7 +3,7 @@
     "php" : ">=8.4"
   },
   "require-dev"       : {
-    "valkyrja/ci-phpunit" : "^26.6.14"
+    "valkyrja/ci-phpunit" : "^26.6.15"
   },
   "autoload-dev"      : {
     "psr-4" : {
