@@ -373,16 +373,16 @@
         },
         {
             "name": "valkyrja/valkyrja",
-            "version": "v26.14.3",
+            "version": "v26.14.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/valkyrja-php.git",
-                "reference": "94d026822c8093c3e269e9d9d38a908f38f257ff"
+                "reference": "e91dcb5167a1691206c325bbf2255a0a3ec1168d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/valkyrja-php/zipball/94d026822c8093c3e269e9d9d38a908f38f257ff",
-                "reference": "94d026822c8093c3e269e9d9d38a908f38f257ff",
+                "url": "https://api.github.com/repos/valkyrjaio/valkyrja-php/zipball/e91dcb5167a1691206c325bbf2255a0a3ec1168d",
+                "reference": "e91dcb5167a1691206c325bbf2255a0a3ec1168d",
                 "shasum": ""
             },
             "require": {
@@ -466,9 +466,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/valkyrja-php/issues",
-                "source": "https://github.com/valkyrjaio/valkyrja-php/tree/v26.14.3"
+                "source": "https://github.com/valkyrjaio/valkyrja-php/tree/v26.14.4"
             },
-            "time": "2026-08-25T13:04:34+00:00"
+            "time": "2026-08-26T13:10:16+00:00"
         }
     ],
     "packages-dev": [
@@ -2836,22 +2836,22 @@
         },
         {
             "name": "valkyrja/sindri",
-            "version": "v26.6.25",
+            "version": "v26.6.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/sindri-php.git",
-                "reference": "d1b8d54ef8bd10efc6d3543a94c1af5e42583a85"
+                "reference": "e452594f4353c74391cb70bb35bc36f9557de226"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/d1b8d54ef8bd10efc6d3543a94c1af5e42583a85",
-                "reference": "d1b8d54ef8bd10efc6d3543a94c1af5e42583a85",
+                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/e452594f4353c74391cb70bb35bc36f9557de226",
+                "reference": "e452594f4353c74391cb70bb35bc36f9557de226",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^5.8.0",
                 "php": ">=8.4",
-                "valkyrja/valkyrja": "^26.14.3"
+                "valkyrja/valkyrja": "^26.14.4"
             },
             "bin": [
                 "bin/sindri"
@@ -2881,9 +2881,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/sindri-php/issues",
-                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.6.25"
+                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.6.26"
             },
-            "time": "2026-08-25T13:55:25+00:00"
+            "time": "2026-08-26T13:59:22+00:00"
         }
     ],
     "aliases": [],
