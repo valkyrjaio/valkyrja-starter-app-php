@@ -1,6 +1,12 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.6.22...26.x)
+## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.6.23...26.x)
+
+## [v26.6.23](https://github.com/valkyrjaio/application/compare/v26.6.22...v26.6.23) - 2026-08-27
+
+* [Workflow] ci: Update .github workflow refs to v26.25.4 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/302
+* [Dependency] build: Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/301
+* [Dependency] build: Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/303
 
 ## [v26.6.22](https://github.com/valkyrjaio/application/compare/v26.6.21...v26.6.22) - 2026-08-26
 
