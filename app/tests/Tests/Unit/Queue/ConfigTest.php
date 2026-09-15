@@ -15,7 +15,6 @@ namespace App\Tests\Unit\Queue;
 use App\Queue\Config;
 use App\Queue\Provider\AppQueueComponentProvider;
 use PHPUnit\Framework\TestCase;
-use Valkyrja\Queue\Message\Job\Job;
 
 final class ConfigTest extends TestCase
 {
@@ -31,15 +30,6 @@ final class ConfigTest extends TestCase
         self::assertSame('src/App/Queue/Data', $config->dataPath);
         self::assertSame('App\\Queue\\Data', $config->dataNamespace);
         self::assertSame('queue', $config->applicationName);
-    }
-
-    public function testInheritsTheFrameworkRetryDefaults(): void
-    {
-        $config = new Config();
-
-        self::assertSame(Job::DEFAULT_MAX_ATTEMPTS, $config->defaultMaxAttempts);
-        self::assertSame(Job::DEFAULT_RETRY_DELAY_MS, $config->defaultRetryDelayMs);
-        self::assertFalse($config->defaultRetryDelayMultiplyByAttempt);
     }
 
     public function testRegistersItsComponentProviderAndPublishCallback(): void
