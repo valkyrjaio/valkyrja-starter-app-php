@@ -13,6 +13,7 @@ declare(strict_types=1);
  */
 
 use App\Queue\Config;
+use App\Queue\InternalApp;
 use App\Queue\Job\FlakyJob;
 use App\Queue\Job\SendWelcomeEmailJob;
 use Valkyrja\Application\Entry\Queue;
@@ -57,7 +58,7 @@ $job = $mode === 'retry'
 switch ($adapter) {
     case 'sync':
         // Runs the job now, blocking, retries and all
-        $client = new SyncClient(config: $config);
+        $client = new SyncClient(entry: InternalApp::class);
 
         try {
             $client->push($job);
@@ -73,7 +74,7 @@ switch ($adapter) {
 
     case 'deferred':
         // Buffers; the host drains it once the response is out
-        $client = new DeferredClient(config: $config);
+        $client = new DeferredClient(entry: InternalApp::class);
 
         $client->push($job);
 
