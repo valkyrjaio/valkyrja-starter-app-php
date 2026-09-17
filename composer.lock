@@ -375,16 +375,16 @@
         },
         {
             "name": "valkyrja/valkyrja",
-            "version": "v26.16.1",
+            "version": "v26.16.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/valkyrja-php.git",
-                "reference": "51bc2f5014fc5f14b291cff0eea5a3d1466328cf"
+                "reference": "48b519e9235daf81d9029673963ed1fd3a292767"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/valkyrja-php/zipball/51bc2f5014fc5f14b291cff0eea5a3d1466328cf",
-                "reference": "51bc2f5014fc5f14b291cff0eea5a3d1466328cf",
+                "url": "https://api.github.com/repos/valkyrjaio/valkyrja-php/zipball/48b519e9235daf81d9029673963ed1fd3a292767",
+                "reference": "48b519e9235daf81d9029673963ed1fd3a292767",
                 "shasum": ""
             },
             "require": {
@@ -468,9 +468,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/valkyrja-php/issues",
-                "source": "https://github.com/valkyrjaio/valkyrja-php/tree/v26.16.1"
+                "source": "https://github.com/valkyrjaio/valkyrja-php/tree/v26.16.2"
             },
-            "time": "2026-09-16T16:45:31+00:00"
+            "time": "2026-09-17T16:52:22+00:00"
         }
     ],
     "packages-dev": [
@@ -624,16 +624,16 @@
         },
         {
             "name": "google/protobuf",
-            "version": "v5.36.1",
+            "version": "v5.36.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/protocolbuffers/protobuf-php.git",
-                "reference": "d64d16befba8632967f604b9644c0bb8f64cfbc3"
+                "reference": "020bc8e831611869ac387ddd38fbbadd78d15195"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/d64d16befba8632967f604b9644c0bb8f64cfbc3",
-                "reference": "d64d16befba8632967f604b9644c0bb8f64cfbc3",
+                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/020bc8e831611869ac387ddd38fbbadd78d15195",
+                "reference": "020bc8e831611869ac387ddd38fbbadd78d15195",
                 "shasum": ""
             },
             "require": {
@@ -662,9 +662,9 @@
                 "proto"
             ],
             "support": {
-                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v5.36.1"
+                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v5.36.2"
             },
-            "time": "2026-08-31T22:07:31+00:00"
+            "time": "2026-09-17T15:56:42+00:00"
         },
         {
             "name": "nikic/php-parser",
