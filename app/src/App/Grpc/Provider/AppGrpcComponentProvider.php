@@ -10,19 +10,18 @@ declare(strict_types=1);
  * Released under the MIT License. See LICENSE.md for details.
  */
 
-namespace App\Cli\Provider;
+namespace App\Grpc\Provider;
 
-use App\Http\Provider\AppHttpRouteProvider;
 use Override;
 use Valkyrja\Application\Kernel\Contract\ApplicationContract;
-use Valkyrja\Application\Provider\CliWithHttpApplicationComponentProvider;
 use Valkyrja\Application\Provider\Contract\ComponentProviderContract;
+use Valkyrja\Application\Provider\GrpcApplicationComponentProvider;
 use Valkyrja\Container\Provider\ContainerServiceProvider;
 
-final class AppCliComponentProvider implements ComponentProviderContract
+final class AppGrpcComponentProvider implements ComponentProviderContract
 {
     /**
-     * @inheritDoc
+     * Publish the container data, scanning in debug mode and loading the generated cache otherwise.
      */
     public static function publish(ApplicationContract $app): void
     {
@@ -34,7 +33,7 @@ final class AppCliComponentProvider implements ComponentProviderContract
             return;
         }
 
-        AppCliDataServiceProvider::publishContainerData(container: $container);
+        AppGrpcDataServiceProvider::publishContainerData(container: $container);
     }
 
     /**
@@ -44,7 +43,7 @@ final class AppCliComponentProvider implements ComponentProviderContract
     public function getComponentProviders(ApplicationContract $app): array
     {
         return [
-            new CliWithHttpApplicationComponentProvider(),
+            new GrpcApplicationComponentProvider(),
         ];
     }
 
@@ -55,8 +54,7 @@ final class AppCliComponentProvider implements ComponentProviderContract
     public function getContainerProviders(ApplicationContract $app): array
     {
         return [
-            new AppCliDataServiceProvider(),
-            new AppCliServiceProvider(),
+            new AppGrpcDataServiceProvider(),
         ];
     }
 
@@ -75,9 +73,7 @@ final class AppCliComponentProvider implements ComponentProviderContract
     #[Override]
     public function getCliProviders(ApplicationContract $app): array
     {
-        return [
-            new AppCliRouteProvider(),
-        ];
+        return [];
     }
 
     /**
@@ -86,9 +82,7 @@ final class AppCliComponentProvider implements ComponentProviderContract
     #[Override]
     public function getHttpProviders(ApplicationContract $app): array
     {
-        return [
-            new AppHttpRouteProvider(),
-        ];
+        return [];
     }
 
     /**
@@ -97,6 +91,8 @@ final class AppCliComponentProvider implements ComponentProviderContract
     #[Override]
     public function getGrpcProviders(ApplicationContract $app): array
     {
-        return [];
+        return [
+            new AppGrpcRouteProvider(),
+        ];
     }
 }

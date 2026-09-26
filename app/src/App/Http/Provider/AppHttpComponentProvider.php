@@ -87,4 +87,13 @@ final class AppHttpComponentProvider implements ComponentProviderContract
             new AppHttpRouteProvider(),
         ];
     }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function getGrpcProviders(ApplicationContract $app): array
+    {
+        return [];
+    }
 }

@@ -37,6 +37,7 @@
             <!-- The sindri-generated data classes, as they run in production -->
             <directory suffix="Data.php">../../../app/src/App/Http/Data</directory>
             <directory suffix="Data.php">../../../app/src/App/Cli/Data</directory>
+            <directory suffix="Data.php">../../../app/src/App/Grpc/Data</directory>
         </include>
         <exclude>
             <!-- Example/template stubs are copied by users, never autoloaded -->
