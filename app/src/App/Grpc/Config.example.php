@@ -31,7 +31,6 @@ final class Config extends GrpcConfig
             key: 'some_secret_app_key',
             dataPath: 'src/App/Grpc/Data',
             dataNamespace: 'App\\Grpc\\Data',
-            port: 50051,
             providers: [
                 new AppGrpcComponentProvider(),
             ],
