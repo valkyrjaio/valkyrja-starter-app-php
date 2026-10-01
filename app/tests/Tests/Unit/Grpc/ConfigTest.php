@@ -33,7 +33,6 @@ final class ConfigTest extends TestCase
         self::assertSame('production', $config->environment);
         self::assertTrue($config->debugMode);
         self::assertSame('UTC', $config->timezone);
-        self::assertSame(50051, $config->port);
         self::assertSame('src/App/Grpc/Data', $config->dataPath);
         self::assertSame('App\\Grpc\\Data', $config->dataNamespace);
     }
