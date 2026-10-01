@@ -53,8 +53,8 @@ final class GreeterController
         $name = self::firstMessage($call);
 
         $messages = (static function () use ($name): iterable {
-            foreach (['one', 'two', 'three'] as $index) {
-                yield "$index: $name";
+            foreach (['one', 'two', 'three'] as $ordinal) {
+                yield "$ordinal: $name";
             }
         })();
 
