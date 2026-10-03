@@ -375,16 +375,16 @@
         },
         {
             "name": "valkyrja/valkyrja",
-            "version": "v26.17.0",
+            "version": "v26.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/valkyrja-php.git",
-                "reference": "24c8f2f2e34b54336032b2e5bf9a3a8ab994afea"
+                "reference": "c95f15c56ed2382f60676d8c141372f39bb6f166"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/valkyrja-php/zipball/24c8f2f2e34b54336032b2e5bf9a3a8ab994afea",
-                "reference": "24c8f2f2e34b54336032b2e5bf9a3a8ab994afea",
+                "url": "https://api.github.com/repos/valkyrjaio/valkyrja-php/zipball/c95f15c56ed2382f60676d8c141372f39bb6f166",
+                "reference": "c95f15c56ed2382f60676d8c141372f39bb6f166",
                 "shasum": ""
             },
             "require": {
@@ -468,9 +468,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/valkyrja-php/issues",
-                "source": "https://github.com/valkyrjaio/valkyrja-php/tree/v26.17.0"
+                "source": "https://github.com/valkyrjaio/valkyrja-php/tree/v26.17.1"
             },
-            "time": "2026-10-02T17:51:14+00:00"
+            "time": "2026-10-03T16:09:38+00:00"
         }
     ],
     "packages-dev": [
@@ -553,16 +553,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.18.5",
+            "version": "2.18.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "baec851ad6ae00db8bd0fdd30d208afc1b71c56e"
+                "reference": "7d0a2cde892089bb09372f4366e9b960eb3001a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/baec851ad6ae00db8bd0fdd30d208afc1b71c56e",
-                "reference": "baec851ad6ae00db8bd0fdd30d208afc1b71c56e",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/7d0a2cde892089bb09372f4366e9b960eb3001a9",
+                "reference": "7d0a2cde892089bb09372f4366e9b960eb3001a9",
                 "shasum": ""
             },
             "require": {
@@ -612,7 +612,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.18.5"
+                "source": "https://github.com/filp/whoops/tree/2.18.6"
             },
             "funding": [
                 {
@@ -620,7 +620,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-09-18T12:00:00+00:00"
+            "time": "2026-10-03T17:03:57+00:00"
         },
         {
             "name": "google/protobuf",
