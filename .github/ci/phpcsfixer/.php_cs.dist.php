@@ -22,6 +22,7 @@ $finder = Finder::create()
     // rule, including the header rule. Their headers went unchecked for that reason. Each
     // name is added so the entry points get the same treatment as every other source file.
     ->name('cli')
+    ->name('grpc')
     ->name('openswoole')
     ->exclude('.git')
     ->exclude('vendor')
