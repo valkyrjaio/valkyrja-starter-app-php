@@ -16,7 +16,7 @@
   "require-dev"       : {
     "filp/whoops": "^2.18.6",
     "spiral/roadrunner-cli": "^2.7.2",
-    "spiral/roadrunner-http": "^4.1.0",
+    "spiral/roadrunner-http": "^4.2.0",
     "valkyrja/sindri": "^26.6.44"
   },
   "config"            : {
