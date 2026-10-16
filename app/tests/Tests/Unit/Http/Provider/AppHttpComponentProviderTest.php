@@ -83,4 +83,9 @@ final class AppHttpComponentProviderTest extends TestCase
         self::assertCount(1, $providers);
         self::assertInstanceOf(AppHttpRouteProvider::class, $providers[0]);
     }
+
+    public function testGetGrpcProviders(): void
+    {
+        self::assertSame([], new AppHttpComponentProvider()->getGrpcProviders(self::createStub(ApplicationContract::class)));
+    }
 }

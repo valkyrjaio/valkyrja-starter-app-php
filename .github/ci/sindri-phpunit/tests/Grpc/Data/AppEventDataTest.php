@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of the Valkyrja Application package.
+ *
+ * Copyright (c) 2016-present Melech Mizrachi
+ *
+ * Released under the MIT License. See LICENSE.md for details.
+ */
+
+namespace App\Tests\Generated\Grpc\Data;
+
+use App\Grpc\Data\AppEventData;
+use PHPUnit\Framework\TestCase;
+use Valkyrja\Event\Data\EventData;
+
+/**
+ * Assert the sindri-generated gRPC-component {@see AppEventData}.
+ *
+ * The application registers no events or listeners, so the generated event data is correctly empty
+ * — the generator ran and produced valid, empty collections.
+ */
+final class AppEventDataTest extends TestCase
+{
+    public function testGeneratesEmptyEventData(): void
+    {
+        $data = new AppEventData();
+
+        self::assertInstanceOf(EventData::class, $data);
+        self::assertEmpty($data->events);
+        self::assertEmpty($data->listeners);
+    }
+}
