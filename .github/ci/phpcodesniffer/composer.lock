@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d43e96bd433cc8479b425fa9acdee431",
+    "content-hash": "4c3f2586b89306789bd4791f608f99ce",
     "packages": [],
     "packages-dev": [
         {
@@ -301,16 +301,16 @@
         },
         {
             "name": "valkyrja/ci-phpcodesniffer",
-            "version": "v26.3.63",
+            "version": "v26.3.71",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/ci-phpcodesniffer-php.git",
-                "reference": "2833f0792ae8af32b16db86be7e0cdeb1f724b57"
+                "reference": "5ed61682277739742a43e83dcd2eab1f9d841090"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/ci-phpcodesniffer-php/zipball/2833f0792ae8af32b16db86be7e0cdeb1f724b57",
-                "reference": "2833f0792ae8af32b16db86be7e0cdeb1f724b57",
+                "url": "https://api.github.com/repos/valkyrjaio/ci-phpcodesniffer-php/zipball/5ed61682277739742a43e83dcd2eab1f9d841090",
+                "reference": "5ed61682277739742a43e83dcd2eab1f9d841090",
                 "shasum": ""
             },
             "require": {
@@ -343,9 +343,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/ci-phpcodesniffer-php/issues",
-                "source": "https://github.com/valkyrjaio/ci-phpcodesniffer-php/tree/v26.3.63"
+                "source": "https://github.com/valkyrjaio/ci-phpcodesniffer-php/tree/v26.3.71"
             },
-            "time": "2026-10-09T17:22:56+00:00"
+            "time": "2026-10-17T14:03:17+00:00"
         }
     ],
     "aliases": [],
