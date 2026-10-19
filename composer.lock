@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4137b076af26dcefc577921d0d0b918",
+    "content-hash": "964deeffb3f76e595ec535ca22ce4c40",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -2885,22 +2885,22 @@
         },
         {
             "name": "valkyrja/sindri",
-            "version": "v26.6.44",
+            "version": "v26.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/sindri-php.git",
-                "reference": "54664855910157bd424238d855bd613565079e11"
+                "reference": "272405a787d4715665c75321f0079acea116ea1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/54664855910157bd424238d855bd613565079e11",
-                "reference": "54664855910157bd424238d855bd613565079e11",
+                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/272405a787d4715665c75321f0079acea116ea1d",
+                "reference": "272405a787d4715665c75321f0079acea116ea1d",
                 "shasum": ""
             },
             "require": {
-                "nikic/php-parser": "^5.8.0",
+                "nikic/php-parser": "^5.9.0",
                 "php": ">=8.4",
-                "valkyrja/valkyrja": "^26.15.9"
+                "valkyrja/valkyrja": "^26.19.1"
             },
             "bin": [
                 "bin/sindri"
@@ -2930,9 +2930,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/sindri-php/issues",
-                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.6.44"
+                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.7.0"
             },
-            "time": "2026-09-13T16:56:23+00:00"
+            "time": "2026-10-19T00:40:59+00:00"
         }
     ],
     "aliases": [],
