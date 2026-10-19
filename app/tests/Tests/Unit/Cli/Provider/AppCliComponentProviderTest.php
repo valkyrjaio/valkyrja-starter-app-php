@@ -87,4 +87,9 @@ final class AppCliComponentProviderTest extends TestCase
         self::assertCount(1, $providers);
         self::assertInstanceOf(AppHttpRouteProvider::class, $providers[0]);
     }
+
+    public function testGetQueueProviders(): void
+    {
+        self::assertSame([], new AppCliComponentProvider()->getQueueProviders(self::createStub(ApplicationContract::class)));
+    }
 }

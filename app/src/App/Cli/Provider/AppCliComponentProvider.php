@@ -90,4 +90,13 @@ final class AppCliComponentProvider implements ComponentProviderContract
             new AppHttpRouteProvider(),
         ];
     }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function getQueueProviders(ApplicationContract $app): array
+    {
+        return [];
+    }
 }
