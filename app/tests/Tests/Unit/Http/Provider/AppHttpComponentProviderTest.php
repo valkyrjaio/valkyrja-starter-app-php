@@ -88,4 +88,9 @@ final class AppHttpComponentProviderTest extends TestCase
     {
         self::assertSame([], new AppHttpComponentProvider()->getQueueProviders(self::createStub(ApplicationContract::class)));
     }
+
+    public function testGetGrpcProviders(): void
+    {
+        self::assertSame([], new AppHttpComponentProvider()->getGrpcProviders(self::createStub(ApplicationContract::class)));
+    }
 }

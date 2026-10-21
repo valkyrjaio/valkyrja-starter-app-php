@@ -92,4 +92,9 @@ final class AppCliComponentProviderTest extends TestCase
     {
         self::assertSame([], new AppCliComponentProvider()->getQueueProviders(self::createStub(ApplicationContract::class)));
     }
+
+    public function testGetGrpcProviders(): void
+    {
+        self::assertSame([], new AppCliComponentProvider()->getGrpcProviders(self::createStub(ApplicationContract::class)));
+    }
 }
