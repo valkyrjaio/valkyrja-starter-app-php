@@ -81,5 +81,6 @@ final class AppGrpcComponentProviderTest extends TestCase
         self::assertSame([], $provider->getEventProviders($app));
         self::assertSame([], $provider->getCliProviders($app));
         self::assertSame([], $provider->getHttpProviders($app));
+        self::assertSame([], $provider->getQueueProviders($app));
     }
 }
