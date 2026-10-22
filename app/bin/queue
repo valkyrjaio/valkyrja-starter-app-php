@@ -19,7 +19,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 // A bounded lifetime lets a supervisor cycle the process for memory hygiene.
 // The framework ships the entry, not the server: keep this alive with your own
 // process manager (systemd, a Docker CMD, a k8s Deployment).
-// A zero means no bound, so an unset variable is told apart from an empty one
+// A zero means no bound, so a zero is told apart from an unset variable
 $maxJobs    = getenv('QUEUE_MAX_JOBS');
 $maxSeconds = getenv('QUEUE_MAX_SECONDS');
 
