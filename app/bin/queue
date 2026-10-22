@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of the Valkyrja Application package.
+ *
+ * Copyright (c) 2016-present Melech Mizrachi
+ *
+ * Released under the MIT License. See LICENSE.md for details.
+ */
+
+use App\Queue\App;
+use App\Queue\Config;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+// A bounded lifetime lets a supervisor cycle the process for memory hygiene.
+// The framework ships the entry, not the server: keep this alive with your own
+// process manager (systemd, a Docker CMD, a k8s Deployment).
+// A zero means no bound, so a zero is told apart from an unset variable
+$maxJobs    = getenv('QUEUE_MAX_JOBS');
+$maxSeconds = getenv('QUEUE_MAX_SECONDS');
+
+// The entry opens its own connection from the config, so `App\Queue\Config`
+// names the server and this worker's slot, reading QUEUE_REDIS_HOST,
+// QUEUE_REDIS_PORT, QUEUE_REDIS_PREFIX, QUEUE_NAME and QUEUE_WORKER_NAME.
+App::run(
+    config: new Config(),
+    maxJobs: $maxJobs !== false && $maxJobs !== '' ? (int) $maxJobs : 1000,
+    maxSeconds: $maxSeconds !== false && $maxSeconds !== '' ? (int) $maxSeconds : 3600,
+);

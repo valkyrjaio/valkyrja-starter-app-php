@@ -77,7 +77,8 @@ app/
 │   └── App/           # your application code lives here
 │       ├── Cli/       # CLI commands, providers, and configuration
 │       ├── Grpc/      # gRPC services, providers, and configuration
-│       └── Http/      # HTTP controllers, providers, and configuration
+│       ├── Http/      # HTTP controllers, providers, and configuration
+│       └── Queue/     # queue jobs, providers, and configuration
 ├── bootstrap/         # application entry points (HTTP and CLI)
 ├── config/            # environment and runtime configuration
 └── tests/             # your test suite
@@ -117,6 +118,45 @@ each `/package.Service/Method=message` argument exactly as a transport adapter
 would, and writes the status and any response messages to stdout. Pass several
 arguments to dispatch several calls. To serve real traffic, supply a transport
 adapter and hand it the service handler.
+
+**Queue:**
+
+The module ships three entry classes — `App`, `InternalApp` and `PushApp` — for
+the three ways a job reaches an application. The files below drive them.
+
+```
+php app/bin/queue
+```
+
+A worker that takes jobs from Redis. It reads `QUEUE_REDIS_HOST`,
+`QUEUE_REDIS_PORT`, `QUEUE_REDIS_PREFIX`, `QUEUE_NAME` and `QUEUE_WORKER_NAME`
+for the connection and this worker's own slot, and `QUEUE_MAX_JOBS` and
+`QUEUE_MAX_SECONDS` for a bounded lifetime. A zero on either bound means no
+bound. The framework ships the entry and not the server, so a process manager
+keeps the worker alive.
+
+Warning: give each worker its own `QUEUE_WORKER_NAME`, such as a pod ordinal or
+a supervisor slot number. Two workers that share a name share an in-flight list,
+and then a restart of one hands the other's running job back as a second
+delivery.
+
+```
+php app/bin/queue-internal <sync|deferred|inmemory> [ack|retry]
+```
+
+The three in-process clients, which need no broker at all. A sync push runs the
+job and blocks, a deferred push buffers until the response is out, and an
+in-memory push holds the job until something drains it.
+
+```
+php app/bin/queue-sync 42
+```
+
+One job through the sync client, which is the smallest shape that runs a job.
+
+A hosted processor that pushes jobs over HTTP reaches `app/public/queue.php`
+instead. The front controller settles each job with a status code: 204 deletes
+the message, 503 asks for redelivery, and 422 ends the chain.
 
 ### Writing Code
 

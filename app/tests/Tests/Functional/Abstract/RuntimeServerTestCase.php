@@ -32,6 +32,7 @@ use function stream_get_contents;
 use function stream_set_blocking;
 use function stream_socket_get_name;
 use function stream_socket_server;
+use function strlen;
 use function usleep;
 
 /**
@@ -200,6 +201,55 @@ abstract class RuntimeServerTestCase extends TestCase
         return [
             'status' => $status,
             'body'   => $body,
+        ];
+    }
+
+    /**
+     * Perform a request with a body against the running server.
+     *
+     * @param non-empty-string $path        The request path
+     * @param string           $body        The request body
+     * @param non-empty-string $method      The request method
+     * @param non-empty-string $contentType The request content type
+     *
+     * @return array{status: int, body: string}
+     */
+    protected function httpSend(
+        string $path,
+        string $body,
+        string $method = 'POST',
+        string $contentType = 'application/json',
+    ): array {
+        $context = stream_context_create([
+            'http' => [
+                'method'        => $method,
+                'header'        => "Content-Type: $contentType\r\nContent-Length: " . strlen($body),
+                'content'       => $body,
+                'ignore_errors' => true,
+                'timeout'       => 5,
+            ],
+        ]);
+
+        $responseBody = @file_get_contents("http://127.0.0.1:{$this->port}{$path}", false, $context);
+
+        if ($responseBody === false) {
+            self::fail("Request to $path failed:\n" . $this->drainOutput());
+        }
+
+        $status = 0;
+
+        /** @var string[] $responseHeaders file_get_contents populates this in the local scope */
+        $responseHeaders = $http_response_header ?? [];
+
+        foreach ($responseHeaders as $header) {
+            if (preg_match('/^HTTP\/[\d.]+\s+(\d{3})/', $header, $matches) === 1) {
+                $status = (int) $matches[1];
+            }
+        }
+
+        return [
+            'status' => $status,
+            'body'   => $responseBody,
         ];
     }
 

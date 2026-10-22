@@ -1,0 +1,110 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of the Valkyrja Application package.
+ *
+ * Copyright (c) 2016-present Melech Mizrachi
+ *
+ * Released under the MIT License. See LICENSE.md for details.
+ */
+
+use App\Queue\InternalApp;
+use App\Queue\Job\FlakyJob;
+use App\Queue\Job\SendWelcomeEmailJob;
+use Valkyrja\Container\Data\ContainerData;
+use Valkyrja\Queue\Client\Manager\DeferredClient;
+use Valkyrja\Queue\Client\Manager\InMemoryClient;
+use Valkyrja\Queue\Client\Manager\SyncClient;
+use Valkyrja\Queue\Client\Throwable\Exception\QueueClientSyncJobFailedException;
+use Valkyrja\Queue\Message\Job\Factory\JobFactory;
+use Valkyrja\Queue\Message\Job\Job;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+/*
+ * Demonstrates the three in-process adapters: produce and consume fuse into one
+ * process, no broker required.
+ *
+ * This is deliberately a *testing* shape. In a real deployment an app pushes to
+ * a broker and a separate worker consumes it; an app self-consuming its own
+ * jobs is almost only ever something you want in a test or a zero-infrastructure
+ * dev environment. It is exercised here precisely because that is where these
+ * adapters earn their keep — and because app code only ever calls
+ * `Client::push`, swapping any of them for a real broker is a config change
+ * with no code change at all.
+ *
+ * Consumption is made observable through the retry chain: a retry hands an
+ * incremented job back to the client, so the number of jobs the client was
+ * handed is external proof the job was actually run and settled, not merely
+ * enqueued.
+ *
+ * Usage: queue-internal <sync|deferred|inmemory> [ack|retry]
+ */
+$adapter = $argv[1] ?? 'sync';
+$mode    = $argv[2] ?? 'ack';
+
+$job = $mode === 'retry'
+    // maxAttempts of 3 means: run, retry, retry, then dead-letter — 3 handovers
+    ? new Job(name: FlakyJob::NAME, maxAttempts: 3)
+    : new JobFactory()->create(SendWelcomeEmailJob::NAME, ['user_id' => 42]);
+
+switch ($adapter) {
+    case 'sync':
+        // Runs the job now, blocking, retries and all
+        $client = new SyncClient(entry: InternalApp::class);
+
+        try {
+            $client->push($job);
+        } catch (QueueClientSyncJobFailedException) {
+            // A sync push blocks until the job finishes, so a chain that ends
+            // in a dead letter reaches the caller as a throw. That is the one
+            // deliberate difference from an asynchronous push
+        }
+
+        echo 'handled=', count($client->getPushed()), \PHP_EOL;
+
+        break;
+
+    case 'deferred':
+        // Buffers; the host drains it once the response is out
+        $client = new DeferredClient(entry: InternalApp::class);
+
+        $client->push($job);
+
+        echo 'buffered=', count($client->getBuffered()), ' handled=0', \PHP_EOL;
+
+        $client->drain();
+
+        echo 'handled=', count($client->getPushed()), \PHP_EOL;
+
+        break;
+
+    case 'inmemory':
+        // Buffers and holds — nothing runs until a test drains it and feeds
+        // each job to the entry, which is the documented test flow
+        $client = new InMemoryClient();
+
+        $client->push($job);
+
+        echo 'buffered=', count($client->getBuffered()), ' handled=0', \PHP_EOL;
+
+        // Settling needs the client, so the job goes through the entry the
+        // same way `SyncClient` and `DeferredClient` send theirs. A retry then
+        // requeues into this buffer rather than one the script cannot read.
+        $app  = InternalApp::bootstrap(InternalApp::getConfig());
+        $data = $app->getContainer()->getSingleton(ContainerData::class);
+
+        foreach ($client->drain() as $drained) {
+            InternalApp::handle(app: $app, data: $data, job: $drained, client: $client);
+        }
+
+        echo 'handled=', count($client->getPushed()), \PHP_EOL;
+
+        break;
+
+    default:
+        throw new InvalidArgumentException("Unknown adapter `$adapter`");
+}
