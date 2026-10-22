@@ -72,6 +72,21 @@ final class GrpcEntryTest extends TestCase
         self::assertStringContainsString('/app.Greeter/Fanout OK one: third', $output);
     }
 
+    public function testTheEntryBootsWithNoCallArguments(): void
+    {
+        $output = $this->runEntry([]);
+
+        // Nothing to dispatch, so the entry bootstraps and exits without emitting a call line.
+        self::assertStringNotContainsString('/app.Greeter/', $output);
+    }
+
+    public function testAnArgumentWithNoMessageDispatchesAnEmptyOne(): void
+    {
+        $output = $this->runEntry(['/app.Greeter/SayHello']);
+
+        self::assertStringContainsString('/app.Greeter/SayHello OK Hello, !', $output);
+    }
+
     /**
      * Run the gRPC entry with the given call arguments and return its output.
      *
