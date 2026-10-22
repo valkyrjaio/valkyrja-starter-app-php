@@ -12,9 +12,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Entry;
 
+use App\Queue\Job\FlakyJob;
 use App\Queue\Job\SendWelcomeEmailJob;
 use App\Tests\Functional\Abstract\RuntimeServerTestCase;
-use Valkyrja\Queue\Message\Constant\EnvelopeField;
 use Valkyrja\Queue\Message\Job\Factory\JobFactory;
 use Valkyrja\Queue\Message\Job\Job;
 
@@ -56,21 +56,32 @@ final class QueuePushServerEntryTest extends RuntimeServerTestCase
         self::assertSame(422, $response['status']);
     }
 
+    public function testARetryableJobBelowItsCeilingAsksForRedelivery(): void
+    {
+        $this->startQueueServer();
+
+        // FlakyJob always asks to be retried, so the attempt budget alone
+        // decides between redelivery and a terminal settlement
+        $response = $this->push(new Job(
+            name: FlakyJob::NAME,
+            attempts: 1,
+            maxAttempts: 5,
+        ));
+
+        self::assertSame(503, $response['status']);
+    }
+
     public function testAnExhaustedRetryChainSettlesAsTerminal(): void
     {
         $this->startQueueServer();
 
-        // A job already at its ceiling cannot be retried again
-        $job = new Job(
-            name: SendWelcomeEmailJob::NAME,
+        // The same always-retryable job at its ceiling, so a 422 here can only
+        // come from the budget running out
+        $response = $this->push(new Job(
+            name: FlakyJob::NAME,
             attempts: 5,
             maxAttempts: 5,
-        );
-
-        $envelope                                = $job->asArray();
-        $envelope[EnvelopeField::PAYLOAD]        = ['user_id' => 'not-an-int'];
-
-        $response = $this->pushEnvelope($envelope);
+        ));
 
         self::assertSame(422, $response['status']);
     }
