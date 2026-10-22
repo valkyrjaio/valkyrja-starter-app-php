@@ -21,16 +21,6 @@ use function implode;
 
 use const PHP_BINARY;
 
-/**
- * End-to-end smoke test for the gRPC entry point (`app/bin/grpc`).
- *
- * Runs the real entry in a subprocess and dispatches calls through the same worker lifecycle a
- * transport adapter drives — catching regressions in the entry wiring, provider bootstrap, service
- * map, or pipeline that class-level tests miss.
- *
- * The app config runs in debug mode, so this exercises the attribute scan. The generated service
- * map is asserted separately, against the real emitted classes, by the sindri-phpunit suite.
- */
 final class GrpcEntryTest extends TestCase
 {
     public function testGrpcBootsAndServesAUnaryCall(): void
