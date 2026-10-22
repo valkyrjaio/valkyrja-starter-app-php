@@ -24,7 +24,9 @@ use function escapeshellarg;
 use function exec;
 use function getenv;
 use function implode;
+use function is_array;
 use function is_string;
+use function parse_url;
 
 use const PHP_BINARY;
 
@@ -111,7 +113,14 @@ final class QueueRedisWorkerEntryTest extends TestCase
     {
         $bin = dirname(__DIR__, 5) . '/app/bin/queue';
 
-        $command = 'QUEUE_REDIS_DSN=' . escapeshellarg($this->dsn)
+        // The worker builds its own connection from the config, which reads the
+        // host and the port separately, so the DSN is split for the subprocess
+        $parts = parse_url($this->dsn);
+        $host  = is_array($parts) && isset($parts['host']) ? $parts['host'] : '127.0.0.1';
+        $port  = is_array($parts) && isset($parts['port']) ? (string) $parts['port'] : '6379';
+
+        $command = 'QUEUE_REDIS_HOST=' . escapeshellarg($host)
+            . ' QUEUE_REDIS_PORT=' . escapeshellarg($port)
             . ' QUEUE_NAME=' . escapeshellarg(self::QUEUE)
             . ' QUEUE_MAX_JOBS=' . escapeshellarg((string) $maxJobs)
             . ' QUEUE_MAX_SECONDS=' . escapeshellarg((string) $maxSeconds)

@@ -16,9 +16,70 @@ namespace App\Queue;
 
 use App\Queue\Provider\AppQueueComponentProvider;
 use Valkyrja\Application\Data\QueueConfig;
+use Valkyrja\Queue\Client\Data\Contract\QueueRedisClientConfigContract;
 
-final class Config extends QueueConfig
+use function getenv;
+
+final class Config extends QueueConfig implements QueueRedisClientConfigContract
 {
+    /** @var non-empty-string */
+    public string $queueRedisClientHost {
+        get {
+            $host = getenv('QUEUE_REDIS_HOST');
+
+            return $host !== false && $host !== ''
+                ? $host
+                : '127.0.0.1';
+        }
+    }
+
+    public int $queueRedisClientPort {
+        get {
+            $port = getenv('QUEUE_REDIS_PORT');
+
+            return $port !== false && $port !== ''
+                ? (int) $port
+                : 6379;
+        }
+    }
+
+    public string $queueRedisClientPrefix {
+        get {
+            $prefix = getenv('QUEUE_REDIS_PREFIX');
+
+            return $prefix !== false
+                ? $prefix
+                : '';
+        }
+    }
+
+    /** @var non-empty-string */
+    public string $queueRedisClientQueue {
+        get {
+            $queue = getenv('QUEUE_NAME');
+
+            return $queue !== false && $queue !== ''
+                ? $queue
+                : 'queues:default';
+        }
+    }
+
+    /**
+     * A worker's slot is its own, so two workers on one queue never reclaim
+     * each other's in-flight job.
+     *
+     * @var non-empty-string
+     */
+    public string $queueRedisClientWorkerName {
+        get {
+            $name = getenv('QUEUE_WORKER_NAME');
+
+            return $name !== false && $name !== ''
+                ? $name
+                : 'default';
+        }
+    }
+
     public function __construct()
     {
         parent::__construct(

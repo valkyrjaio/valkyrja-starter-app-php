@@ -22,8 +22,9 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 $maxJobs    = (int) (getenv('QUEUE_MAX_JOBS') ?: 1000);
 $maxSeconds = (int) (getenv('QUEUE_MAX_SECONDS') ?: 3600);
 
-// The entry opens its own connection from the config, so the host, the port
-// and the queue name are set on `App\Queue\Config` rather than passed here.
+// The entry opens its own connection from the config, so `App\Queue\Config`
+// names the server and this worker's slot, reading QUEUE_REDIS_HOST,
+// QUEUE_REDIS_PORT, QUEUE_REDIS_PREFIX, QUEUE_NAME and QUEUE_WORKER_NAME.
 App::run(
     config: new Config(),
     maxJobs: $maxJobs,
