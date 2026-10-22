@@ -121,8 +121,8 @@ adapter and hand it the service handler.
 
 **Queue:**
 
-A job reaches an application four different ways, so the queue ships four
-commands.
+The module ships three entry classes — `App`, `InternalApp` and `PushApp` — for
+the three ways a job reaches an application. The files below drive them.
 
 ```
 php app/bin/queue
