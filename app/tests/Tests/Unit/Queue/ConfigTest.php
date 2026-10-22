@@ -22,6 +22,9 @@ use function putenv;
 
 final class ConfigTest extends TestCase
 {
+    // Xdebug does not instrument a property hook body, so the coverage report
+    // reads 100% for this config whether or not a hook is tested. These cases
+    // are the only thing holding the redis settings.
     /** @var non-empty-string[] */
     private const array REDIS_VARIABLES = [
         'QUEUE_REDIS_HOST',
