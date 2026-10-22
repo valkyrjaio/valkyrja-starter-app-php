@@ -18,15 +18,7 @@ use Valkyrja\Grpc\Message\Response\Contract\ServiceResponseContract;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-/**
- * Dispatch gRPC calls through the worker lifecycle an adapter drives.
- *
- * gRPC mandates HTTP/2 with trailers, so there is no in-core server to run and this entry does not
- * open a port: it bootstraps once, then dispatches each `/package.Service/Method=message` argument
- * exactly as a transport adapter would, writing the outcome to stdout. That makes the whole gRPC
- * stack — bootstrap, service map, pipeline, generated cache — runnable and observable without a
- * transport.
- */
+// Dispatch each argument through the worker lifecycle a transport adapter drives.
 $app  = App::bootstrap(new Config());
 $data = $app->getContainer()->getData();
 
