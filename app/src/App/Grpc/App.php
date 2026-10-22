@@ -17,12 +17,6 @@ use Override;
 use Valkyrja\Application\Entry\Abstract\WorkerGrpc;
 use Valkyrja\Throwable\Handler\Contract\ThrowableHandlerContract;
 
-/**
- * The gRPC entry point.
- *
- * gRPC mandates HTTP/2 with trailers, so unlike HTTP there is no in-core server to run: a transport
- * adapter bootstraps this app once and then hands each inbound call to `WorkerGrpc::dispatch()`.
- */
 final class App extends WorkerGrpc
 {
     /**

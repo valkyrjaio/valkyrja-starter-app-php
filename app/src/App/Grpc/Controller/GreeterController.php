@@ -22,12 +22,6 @@ use Valkyrja\Grpc\Routing\Data\Contract\RouteContract;
 
 use function is_string;
 
-/**
- * A sample gRPC service.
- *
- * Messages are the port's own agnostic type, so a handler works with whatever the transport adapter
- * decoded — the framework never references a generated protobuf class.
- */
 #[Service(service: 'app.Greeter')]
 final class GreeterController
 {
