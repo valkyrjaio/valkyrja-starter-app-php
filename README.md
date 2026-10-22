@@ -121,8 +121,8 @@ adapter and hand it the service handler.
 
 **Queue:**
 
-The queue ships three entry points, because a job reaches an application three
-different ways.
+A job reaches an application four different ways, so the queue ships four
+commands.
 
 ```
 php app/bin/queue
@@ -134,6 +134,11 @@ for the connection and this worker's own slot, and `QUEUE_MAX_JOBS` and
 `QUEUE_MAX_SECONDS` for a bounded lifetime. A zero on either bound means no
 bound. The framework ships the entry and not the server, so a process manager
 keeps the worker alive.
+
+Warning: give each worker its own `QUEUE_WORKER_NAME`, such as a pod ordinal or
+a supervisor slot number. Two workers that share a name share an in-flight list,
+and then a restart of one hands the other's running job back as a second
+delivery.
 
 ```
 php app/bin/queue-internal <sync|deferred|inmemory> [ack|retry]

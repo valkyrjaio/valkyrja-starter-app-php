@@ -65,8 +65,8 @@ final class Config extends QueueConfig implements QueueRedisClientConfigContract
     }
 
     /**
-     * A worker's slot is its own, so two workers on one queue never reclaim
-     * each other's in-flight job.
+     * Every worker on one queue needs its own slot. Two that share a name share
+     * an in-flight list, so a restart of one redelivers the other's running job.
      *
      * @var non-empty-string
      */
