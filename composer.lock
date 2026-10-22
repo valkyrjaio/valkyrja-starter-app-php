@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8dc3d791c14deb02303ca38288808326",
+    "content-hash": "37cc48711521b630ae2dd4a6d66353b1",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -488,16 +488,16 @@
     "packages-dev": [
         {
             "name": "composer/semver",
-            "version": "3.5.1",
+            "version": "3.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/semver.git",
-                "reference": "528948210cc46f967a4b98e83b19e76f2b504993"
+                "reference": "9dfce66f1e97360ea5e6d3e38ab14277e4cc591e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/semver/zipball/528948210cc46f967a4b98e83b19e76f2b504993",
-                "reference": "528948210cc46f967a4b98e83b19e76f2b504993",
+                "url": "https://api.github.com/repos/composer/semver/zipball/9dfce66f1e97360ea5e6d3e38ab14277e4cc591e",
+                "reference": "9dfce66f1e97360ea5e6d3e38ab14277e4cc591e",
                 "shasum": ""
             },
             "require": {
@@ -549,7 +549,7 @@
             "support": {
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/semver/issues",
-                "source": "https://github.com/composer/semver/tree/3.5.1"
+                "source": "https://github.com/composer/semver/tree/3.5.2"
             },
             "funding": [
                 {
@@ -561,7 +561,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-05T13:12:12+00:00"
+            "time": "2026-10-22T15:37:26+00:00"
         },
         {
             "name": "filp/whoops",
@@ -2963,22 +2963,22 @@
         },
         {
             "name": "valkyrja/sindri",
-            "version": "v26.8.0",
+            "version": "v26.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/sindri-php.git",
-                "reference": "8b69d4fe4c6f8d4179d42d66c34db01f435efa99"
+                "reference": "8fe7cb8144e50b9b4e69b81daf3734c67544e9ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/8b69d4fe4c6f8d4179d42d66c34db01f435efa99",
-                "reference": "8b69d4fe4c6f8d4179d42d66c34db01f435efa99",
+                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/8fe7cb8144e50b9b4e69b81daf3734c67544e9ff",
+                "reference": "8fe7cb8144e50b9b4e69b81daf3734c67544e9ff",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^5.9.0",
                 "php": ">=8.4",
-                "valkyrja/valkyrja": "^26.22.0"
+                "valkyrja/valkyrja": "^26.22.1"
             },
             "bin": [
                 "bin/sindri"
@@ -3008,9 +3008,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/sindri-php/issues",
-                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.8.0"
+                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.8.1"
             },
-            "time": "2026-10-21T17:59:38+00:00"
+            "time": "2026-10-22T17:57:43+00:00"
         }
     ],
     "aliases": [],
