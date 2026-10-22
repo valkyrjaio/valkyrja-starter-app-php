@@ -11,11 +11,9 @@ declare(strict_types=1);
  * Released under the MIT License. See LICENSE.md for details.
  */
 
-use App\Queue\Config;
 use App\Queue\InternalApp;
 use App\Queue\Job\FlakyJob;
 use App\Queue\Job\SendWelcomeEmailJob;
-use Valkyrja\Application\Entry\Queue;
 use Valkyrja\Container\Data\ContainerData;
 use Valkyrja\Queue\Client\Manager\DeferredClient;
 use Valkyrja\Queue\Client\Manager\InMemoryClient;
@@ -47,8 +45,6 @@ require_once __DIR__ . '/../../vendor/autoload.php';
  */
 $adapter = $argv[1] ?? 'sync';
 $mode    = $argv[2] ?? 'ack';
-
-$config = new Config();
 
 $job = $mode === 'retry'
     // maxAttempts of 3 means: run, retry, retry, then dead-letter — 3 handovers

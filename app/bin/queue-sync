@@ -15,7 +15,6 @@ use App\Queue\InternalApp;
 use App\Queue\Job\SendWelcomeEmailJob;
 use Valkyrja\Queue\Client\Manager\SyncClient;
 use Valkyrja\Queue\Message\Job\Factory\JobFactory;
-use Valkyrja\Queue\Message\Job\Job;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
