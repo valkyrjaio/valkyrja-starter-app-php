@@ -16,14 +16,6 @@ use App\Queue\Data\AppGrpcRoutingData;
 use PHPUnit\Framework\TestCase;
 use Valkyrja\Grpc\Routing\Data\GrpcRoutingData;
 
-/**
- * Assert the sindri-generated Queue-component {@see AppGrpcRoutingData}.
- *
- * The queue application registers its queue component alone, so it contributes no
- * gRPC services and its generated Grpc routing data is correctly empty. The CLI
- * application differs: it reaches the HTTP component, so its own HTTP routing data
- * is populated.
- */
 final class AppGrpcRoutingDataTest extends TestCase
 {
     public function testGeneratesEmptyGrpcRoutingData(): void

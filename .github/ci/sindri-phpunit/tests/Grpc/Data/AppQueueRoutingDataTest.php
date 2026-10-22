@@ -16,13 +16,6 @@ use App\Grpc\Data\AppQueueRoutingData;
 use PHPUnit\Framework\TestCase;
 use Valkyrja\Queue\Routing\Data\QueueRoutingData;
 
-/**
- * Assert the sindri-generated Grpc-component {@see AppQueueRoutingData}.
- *
- * The gRPC application declares no jobs, so its generated queue routing data is
- * correctly empty. The generator ran for every protocol and wrote a valid, empty
- * route map rather than skipping the file.
- */
 final class AppQueueRoutingDataTest extends TestCase
 {
     public function testGeneratesEmptyQueueRoutingData(): void

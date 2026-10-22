@@ -16,14 +16,6 @@ use App\Queue\Data\AppHttpRoutingData;
 use PHPUnit\Framework\TestCase;
 use Valkyrja\Http\Routing\Data\HttpRoutingData;
 
-/**
- * Assert the sindri-generated Queue-component {@see AppHttpRoutingData}.
- *
- * The queue application registers its queue component alone, so it contributes no
- * HTTP routes and its generated Http routing data is correctly empty. The CLI
- * application differs: it reaches the HTTP component, so its own HTTP routing data
- * is populated.
- */
 final class AppHttpRoutingDataTest extends TestCase
 {
     public function testGeneratesEmptyHttpRoutingData(): void
