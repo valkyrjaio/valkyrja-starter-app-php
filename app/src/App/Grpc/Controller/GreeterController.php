@@ -16,6 +16,7 @@ use Valkyrja\Container\Manager\Contract\ContainerContract;
 use Valkyrja\Grpc\Message\Call\Contract\ServiceCallContract;
 use Valkyrja\Grpc\Message\Response\Contract\ServiceResponseContract;
 use Valkyrja\Grpc\Message\Response\ServiceResponse;
+use Valkyrja\Grpc\Message\Status\Status;
 use Valkyrja\Grpc\Routing\Attribute\Method;
 use Valkyrja\Grpc\Routing\Attribute\Service;
 use Valkyrja\Grpc\Routing\Data\Contract\RouteContract;
@@ -32,8 +33,13 @@ final class GreeterController
     public static function sayHello(ContainerContract $container, RouteContract $route): ServiceResponseContract
     {
         $call = $container->getSingleton(ServiceCallContract::class);
+        $name = self::firstMessage($call);
 
-        return ServiceResponse::ok('Hello, ' . self::firstMessage($call) . '!');
+        if ($name === null) {
+            return ServiceResponse::of(Status::invalidArgument('The message must be a string.'));
+        }
+
+        return ServiceResponse::ok("Hello, $name!");
     }
 
     /**
@@ -46,6 +52,10 @@ final class GreeterController
         $call = $container->getSingleton(ServiceCallContract::class);
         $name = self::firstMessage($call);
 
+        if ($name === null) {
+            return ServiceResponse::of(Status::invalidArgument('The message must be a string.'));
+        }
+
         $messages = (static function () use ($name): iterable {
             foreach (['one', 'two', 'three'] as $ordinal) {
                 yield "$ordinal: $name";
@@ -56,15 +66,16 @@ final class GreeterController
     }
 
     /**
-     * Get the first inbound message as a string, or an empty string when the call carried none.
+     * Get the first inbound message, an empty string when the call carried none, or null when the
+     * message is not a string.
      */
-    private static function firstMessage(ServiceCallContract $call): string
+    private static function firstMessage(ServiceCallContract $call): string|null
     {
         /** @psalm-suppress MixedAssignment Message payloads are deliberately agnostic */
         foreach ($call->getMessages() as $message) {
             return is_string($message)
                 ? $message
-                : '';
+                : null;
         }
 
         return '';

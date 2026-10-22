@@ -51,7 +51,7 @@ final class GreeterControllerTest extends TestCase
         self::assertSame(['Hello, !'], iterator_to_array($response->getMessages(), false));
     }
 
-    public function testSayHelloWithANonStringInboundMessage(): void
+    public function testSayHelloRejectsANonStringInboundMessage(): void
     {
         $call = ServiceCall::unary('/app.Greeter/SayHello', 42);
 
@@ -60,7 +60,21 @@ final class GreeterControllerTest extends TestCase
             self::createStub(RouteContract::class)
         );
 
-        self::assertSame(['Hello, !'], iterator_to_array($response->getMessages(), false));
+        self::assertSame(StatusCode::INVALID_ARGUMENT, $response->getStatus()->getCode());
+        self::assertSame([], iterator_to_array($response->getMessages(), false));
+    }
+
+    public function testFanoutRejectsANonStringInboundMessage(): void
+    {
+        $call = ServiceCall::unary('/app.Greeter/Fanout', 42);
+
+        $response = GreeterController::fanout(
+            $this->container($call),
+            self::createStub(RouteContract::class)
+        );
+
+        self::assertSame(StatusCode::INVALID_ARGUMENT, $response->getStatus()->getCode());
+        self::assertSame([], iterator_to_array($response->getMessages(), false));
     }
 
     public function testFanoutStreamsSeveralMessages(): void
