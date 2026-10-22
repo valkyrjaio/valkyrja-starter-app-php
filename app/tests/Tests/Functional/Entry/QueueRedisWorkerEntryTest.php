@@ -119,9 +119,13 @@ final class QueueRedisWorkerEntryTest extends TestCase
         $host  = is_array($parts) && isset($parts['host']) ? $parts['host'] : '127.0.0.1';
         $port  = is_array($parts) && isset($parts['port']) ? (string) $parts['port'] : '6379';
 
+        // Every variable the config reads is pinned, so the runner's own
+        // environment cannot point the worker at a different key
         $command = 'QUEUE_REDIS_HOST=' . escapeshellarg($host)
             . ' QUEUE_REDIS_PORT=' . escapeshellarg($port)
+            . ' QUEUE_REDIS_PREFIX=' . escapeshellarg('')
             . ' QUEUE_NAME=' . escapeshellarg(self::QUEUE)
+            . ' QUEUE_WORKER_NAME=' . escapeshellarg('test')
             . ' QUEUE_MAX_JOBS=' . escapeshellarg((string) $maxJobs)
             . ' QUEUE_MAX_SECONDS=' . escapeshellarg((string) $maxSeconds)
             . ' ' . escapeshellarg(PHP_BINARY) . ' ' . escapeshellarg($bin) . ' 2>&1';
