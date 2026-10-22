@@ -76,6 +76,7 @@ app/
 ├── src/
 │   └── App/           # your application code lives here
 │       ├── Cli/       # CLI commands, providers, and configuration
+│       ├── Grpc/      # gRPC services, providers, and configuration
 │       └── Http/      # HTTP controllers, providers, and configuration
 ├── bootstrap/         # application entry points (HTTP and CLI)
 ├── config/            # environment and runtime configuration
@@ -104,6 +105,19 @@ php bootstrap/cli/valkyrja
 
 Run with no arguments to see the list of available commands.
 
+**gRPC:**
+
+```
+php app/bin/grpc '/app.Greeter/SayHello=world'
+```
+
+gRPC mandates HTTP/2 with trailers, so the framework ships no in-core server and
+this entry opens no port. It bootstraps the application once, then dispatches
+each `/package.Service/Method=message` argument exactly as a transport adapter
+would, and writes the status and any response messages to stdout. Pass several
+arguments to dispatch several calls. To serve real traffic, supply a transport
+adapter and hand it the service handler.
+
 ### Writing Code
 
 **Adding a route:** see the example controller in `app/src/App/Http/Controller/`
@@ -113,6 +127,10 @@ and the route definitions it registers. For the full routing API, see the
 **Adding a command:** see the example command in `app/src/App/Cli/Command/`.
 For the full CLI API, see the
 [Valkyrja CLI documentation][cli docs url].
+
+**Adding a gRPC service:** see the example service in
+`app/src/App/Grpc/Controller/`. For the full gRPC API, see the component's
+`README.md` in the framework.
 
 **Binding services:** the dependency injection container is configured in the
 `Provider` classes under each `App/` subdirectory. See the
