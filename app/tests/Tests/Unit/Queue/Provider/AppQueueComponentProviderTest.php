@@ -87,4 +87,9 @@ final class AppQueueComponentProviderTest extends TestCase
         self::assertCount(1, $providers);
         self::assertInstanceOf(AppQueueRouteProvider::class, $providers[0]);
     }
+
+    public function testGetGrpcProviders(): void
+    {
+        self::assertSame([], new AppQueueComponentProvider()->getGrpcProviders(self::createStub(ApplicationContract::class)));
+    }
 }
