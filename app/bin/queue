@@ -19,14 +19,15 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 // A bounded lifetime lets a supervisor cycle the process for memory hygiene.
 // The framework ships the entry, not the server: keep this alive with your own
 // process manager (systemd, a Docker CMD, a k8s Deployment).
-$maxJobs    = (int) (getenv('QUEUE_MAX_JOBS') ?: 1000);
-$maxSeconds = (int) (getenv('QUEUE_MAX_SECONDS') ?: 3600);
+// A zero means no bound, so an unset variable is told apart from an empty one
+$maxJobs    = getenv('QUEUE_MAX_JOBS');
+$maxSeconds = getenv('QUEUE_MAX_SECONDS');
 
 // The entry opens its own connection from the config, so `App\Queue\Config`
 // names the server and this worker's slot, reading QUEUE_REDIS_HOST,
 // QUEUE_REDIS_PORT, QUEUE_REDIS_PREFIX, QUEUE_NAME and QUEUE_WORKER_NAME.
 App::run(
     config: new Config(),
-    maxJobs: $maxJobs,
-    maxSeconds: $maxSeconds,
+    maxJobs: $maxJobs !== false && $maxJobs !== '' ? (int) $maxJobs : 1000,
+    maxSeconds: $maxSeconds !== false && $maxSeconds !== '' ? (int) $maxSeconds : 3600,
 );
