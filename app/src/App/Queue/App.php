@@ -14,10 +14,10 @@ namespace App\Queue;
 
 use App\Throwable\Handler\ThrowableHandler;
 use Override;
-use Valkyrja\Application\Entry\PullQueue;
+use Valkyrja\Application\Entry\Redis\RedisQueue;
 use Valkyrja\Throwable\Handler\Contract\ThrowableHandlerContract;
 
-final class App extends PullQueue
+final class App extends RedisQueue
 {
     /**
      * @inheritDoc

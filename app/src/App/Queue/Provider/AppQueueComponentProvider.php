@@ -95,4 +95,13 @@ final class AppQueueComponentProvider implements ComponentProviderContract
             new AppQueueRouteProvider(),
         ];
     }
+
+    /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function getGrpcProviders(ApplicationContract $app): array
+    {
+        return [];
+    }
 }

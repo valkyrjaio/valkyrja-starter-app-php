@@ -14,14 +14,8 @@ declare(strict_types=1);
 
 use App\Queue\App;
 use App\Queue\Config;
-use Predis\Client;
-use Valkyrja\Queue\Client\Manager\RedisClient;
-use Valkyrja\Queue\Client\Puller\RedisPuller;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
-
-$dsn   = getenv('QUEUE_REDIS_DSN') ?: 'tcp://127.0.0.1:6379';
-$queue = getenv('QUEUE_NAME') ?: 'queues:default';
 
 // A bounded lifetime lets a supervisor cycle the process for memory hygiene.
 // The framework ships the entry, not the server: keep this alive with your own
@@ -29,12 +23,10 @@ $queue = getenv('QUEUE_NAME') ?: 'queues:default';
 $maxJobs    = (int) (getenv('QUEUE_MAX_JOBS') ?: 1000);
 $maxSeconds = (int) (getenv('QUEUE_MAX_SECONDS') ?: 3600);
 
-$redis = new Client($dsn);
-
+// The entry opens its own connection from the config, so the host, the port
+// and the queue name are set on `App\Queue\Config` rather than passed here.
 App::run(
     config: new Config(),
-    puller: new RedisPuller(redis: $redis, queue: $queue),
-    client: new RedisClient(redis: $redis, queue: $queue),
     maxJobs: $maxJobs,
     maxSeconds: $maxSeconds,
 );
