@@ -56,11 +56,11 @@ final class GreeterController
             return ServiceResponse::of(Status::invalidArgument('The message must be a string.'));
         }
 
-        $messages = (static function () use ($name): iterable {
-            foreach (['one', 'two', 'three'] as $ordinal) {
-                yield "$ordinal: $name";
-            }
-        })();
+        $messages = [
+            "one: $name",
+            "two: $name",
+            "three: $name",
+        ];
 
         return ServiceResponse::ok()->withMessages($call->cancellable($messages));
     }
