@@ -4,12 +4,11 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Valkyrja Framework package.
+ * This file is part of the Valkyrja Application package.
  *
- * (c) Melech Mizrachi <melechmizrachi@gmail.com>
+ * Copyright (c) 2016-present Melech Mizrachi
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * Released under the MIT License. See LICENSE.md for details.
  */
 
 use App\Queue\Config;
@@ -17,8 +16,8 @@ use App\Queue\InternalApp;
 use App\Queue\Job\FlakyJob;
 use App\Queue\Job\SendWelcomeEmailJob;
 use Valkyrja\Application\Entry\Queue;
-use Valkyrja\Queue\Client\Manager\DeferredClient;
 use Valkyrja\Container\Data\ContainerData;
+use Valkyrja\Queue\Client\Manager\DeferredClient;
 use Valkyrja\Queue\Client\Manager\InMemoryClient;
 use Valkyrja\Queue\Client\Manager\SyncClient;
 use Valkyrja\Queue\Client\Throwable\Exception\QueueClientSyncJobFailedException;
@@ -69,7 +68,7 @@ switch ($adapter) {
             // deliberate difference from an asynchronous push
         }
 
-        echo 'handled=', count($client->getPushed()), PHP_EOL;
+        echo 'handled=', count($client->getPushed()), \PHP_EOL;
 
         break;
 
@@ -79,11 +78,11 @@ switch ($adapter) {
 
         $client->push($job);
 
-        echo 'buffered=', count($client->getBuffered()), ' handled=0', PHP_EOL;
+        echo 'buffered=', count($client->getBuffered()), ' handled=0', \PHP_EOL;
 
         $client->drain();
 
-        echo 'handled=', count($client->getPushed()), PHP_EOL;
+        echo 'handled=', count($client->getPushed()), \PHP_EOL;
 
         break;
 
@@ -94,7 +93,7 @@ switch ($adapter) {
 
         $client->push($job);
 
-        echo 'buffered=', count($client->getBuffered()), ' handled=0', PHP_EOL;
+        echo 'buffered=', count($client->getBuffered()), ' handled=0', \PHP_EOL;
 
         // Settling needs the client, so the job goes through the entry the
         // same way `SyncClient` and `DeferredClient` send theirs. A retry then
@@ -106,7 +105,7 @@ switch ($adapter) {
             InternalApp::handle(app: $app, data: $data, job: $drained, client: $client);
         }
 
-        echo 'handled=', count($client->getPushed()), PHP_EOL;
+        echo 'handled=', count($client->getPushed()), \PHP_EOL;
 
         break;
 

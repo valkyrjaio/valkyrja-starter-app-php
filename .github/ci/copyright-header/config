@@ -49,4 +49,7 @@ EXCLUDED=(
     'app/bin/cli'
     'app/bin/grpc'
     'app/bin/openswoole'
+    'app/bin/queue'
+    'app/bin/queue-internal'
+    'app/bin/queue-sync'
 )
