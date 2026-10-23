@@ -1,6 +1,19 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.6.67...26.x)
+## [Unreleased](https://github.com/valkyrjaio/application/compare/v26.7.0...26.x)
+
+## [v26.7.0](https://github.com/valkyrjaio/application/compare/v26.6.67...v26.7.0) - 2026-10-23
+
+* [Dependency] build: Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/410
+* [Dependency] build: Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/411
+* [Grpc] feat: Add a gRPC entry point, greeter service, and generated data by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/196
+* [Queue] feat: Integrate the queue protocol into the starter app by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/195
+* [Dependency] build: Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/413
+* [Dependency] build: Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/414
+* [Dependency] build: Require PHP 8.4.27 or later by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/415
+* [Grpc] refactor: Name the handler on each gRPC route by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/416
+* [Workflow] ci: Update .github workflow refs to v26.26.3 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/417
+* [Dependency] build: Update composer dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/419
 
 ## [v26.6.67](https://github.com/valkyrjaio/application/compare/v26.6.66...v26.6.67) - 2026-10-19
 
