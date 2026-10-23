@@ -56,7 +56,7 @@ final class AppGrpcRoutingDataTest extends TestCase
         self::assertSame('SayHello', $sayHello->getMethodName());
     }
 
-    public function testGeneratesTheAttributedMethodAsTheHandler(): void
+    public function testGeneratesTheHandlerTheRouteAttributeNames(): void
     {
         $data = new AppGrpcRoutingData();
 

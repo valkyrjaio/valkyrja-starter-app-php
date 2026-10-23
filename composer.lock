@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0cfed131ddadc9cc9031c8c3ae131f17",
+    "content-hash": "98bfc6e0551c31ba32d37135ce38fc14",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -375,20 +375,20 @@
         },
         {
             "name": "valkyrja/valkyrja",
-            "version": "v26.22.1",
+            "version": "v26.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/valkyrja-php.git",
-                "reference": "5cd9bac7b61569884ab273f02ef0795a7929f073"
+                "reference": "841a4ebfab8a822ce11427d5f92629f9c5464307"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/valkyrja-php/zipball/5cd9bac7b61569884ab273f02ef0795a7929f073",
-                "reference": "5cd9bac7b61569884ab273f02ef0795a7929f073",
+                "url": "https://api.github.com/repos/valkyrjaio/valkyrja-php/zipball/841a4ebfab8a822ce11427d5f92629f9c5464307",
+                "reference": "841a4ebfab8a822ce11427d5f92629f9c5464307",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.4",
+                "php": ">=8.4.27",
                 "psr/container": "^2.0.2",
                 "psr/event-dispatcher": "^1.0.0",
                 "psr/http-message": "^2.0",
@@ -480,9 +480,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/valkyrja-php/issues",
-                "source": "https://github.com/valkyrjaio/valkyrja-php/tree/v26.22.1"
+                "source": "https://github.com/valkyrjaio/valkyrja-php/tree/v26.23.0"
             },
-            "time": "2026-10-22T03:51:35+00:00"
+            "time": "2026-10-23T04:19:15+00:00"
         }
     ],
     "packages-dev": [
@@ -2963,22 +2963,22 @@
         },
         {
             "name": "valkyrja/sindri",
-            "version": "v26.8.1",
+            "version": "v26.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/sindri-php.git",
-                "reference": "8fe7cb8144e50b9b4e69b81daf3734c67544e9ff"
+                "reference": "34001e4dcf1c2f02d9667db057fe1d6a5a399792"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/8fe7cb8144e50b9b4e69b81daf3734c67544e9ff",
-                "reference": "8fe7cb8144e50b9b4e69b81daf3734c67544e9ff",
+                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/34001e4dcf1c2f02d9667db057fe1d6a5a399792",
+                "reference": "34001e4dcf1c2f02d9667db057fe1d6a5a399792",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^5.9.0",
-                "php": ">=8.4",
-                "valkyrja/valkyrja": "^26.22.1"
+                "php": ">=8.4.27",
+                "valkyrja/valkyrja": "^26.23.0"
             },
             "bin": [
                 "bin/sindri"
@@ -3008,9 +3008,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/sindri-php/issues",
-                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.8.1"
+                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.9.0"
             },
-            "time": "2026-10-22T17:57:43+00:00"
+            "time": "2026-10-23T04:35:37+00:00"
         }
     ],
     "aliases": [],
