@@ -9,7 +9,7 @@
   ],
   "license"           : "MIT",
   "require"           : {
-    "php"               : ">=8.4",
+    "php"               : ">=8.4.27",
     "monolog/monolog"   : "^3.12.1",
     "valkyrja/valkyrja" : "^26.22.1"
   },
