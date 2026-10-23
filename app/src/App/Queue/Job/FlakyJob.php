@@ -15,7 +15,7 @@ namespace App\Queue\Job;
 use Valkyrja\Container\Manager\Contract\ContainerContract;
 use Valkyrja\Queue\Message\Enum\JobResult;
 use Valkyrja\Queue\Routing\Attribute\Route;
-use Valkyrja\Queue\Routing\Attribute\Route\RouteHandler;
+use Valkyrja\Queue\Routing\Attribute\Route\Handler;
 use Valkyrja\Queue\Routing\Data\Contract\RouteContract;
 
 final class FlakyJob
@@ -29,7 +29,7 @@ final class FlakyJob
     }
 
     #[Route(name: self::NAME, description: 'Always asks to be retried, to demonstrate the retry chain')]
-    #[RouteHandler([self::class, 'handle'])]
+    #[Handler([self::class, 'handle'])]
     public function flake(): JobResult
     {
         return JobResult::RETRY;

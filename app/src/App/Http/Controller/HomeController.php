@@ -23,10 +23,10 @@ use Valkyrja\Http\Message\Response\Factory\Contract\ResponseFactoryContract;
 use Valkyrja\Http\Message\Response\TextResponse;
 use Valkyrja\Http\Routing\Attribute\Parameter;
 use Valkyrja\Http\Routing\Attribute\Route;
+use Valkyrja\Http\Routing\Attribute\Route\Handler;
 use Valkyrja\Http\Routing\Attribute\Route\Middleware;
 use Valkyrja\Http\Routing\Attribute\Route\RequestMethod\Get;
 use Valkyrja\Http\Routing\Attribute\Route\RequestMethod\Head;
-use Valkyrja\Http\Routing\Attribute\Route\RouteHandler;
 use Valkyrja\Http\Routing\Constant\Regex;
 use Valkyrja\Http\Routing\Data\Contract\RouteContract;
 use Valkyrja\Http\Server\Middleware\CacheResponseMiddleware;
@@ -40,7 +40,7 @@ class HomeController extends Controller
     #[Route(path: '/version', name: 'version', requestMethods: [RequestMethod::GET])]
     #[Route(path: '/version', name: 'version.post', requestMethods: [RequestMethod::POST])]
     #[Route(path: '/version', name: 'version.put', requestMethods: [RequestMethod::PUT])]
-    #[RouteHandler([AppHttpRouteProvider::class, 'versionHandler'])]
+    #[Handler([AppHttpRouteProvider::class, 'versionHandler'])]
     public static function version(ApplicationContract $app, ResponseFactoryContract $responseFactory): TextResponseContract
     {
         return $responseFactory->createTextResponse($app->getVersion());
@@ -50,7 +50,7 @@ class HomeController extends Controller
      * Text action.
      */
     #[Route(path: '/text', name: 'text', requestMethods: [RequestMethod::GET])]
-    #[RouteHandler([AppHttpRouteProvider::class, 'textHandler'])]
+    #[Handler([AppHttpRouteProvider::class, 'textHandler'])]
     public static function text(): TextResponseContract
     {
         return new TextResponse('Hello World!');
@@ -61,7 +61,7 @@ class HomeController extends Controller
      * - Example of a view being returned.
      */
     #[Route(path: '/', name: 'welcome')]
-    #[RouteHandler([AppHttpRouteProvider::class, 'welcomeHandler'])]
+    #[Handler([AppHttpRouteProvider::class, 'welcomeHandler'])]
     public function welcome(ViewResponseFactoryContract $responseFactory): ResponseContract
     {
         return $responseFactory->createResponseFromView('index/index');
@@ -72,7 +72,7 @@ class HomeController extends Controller
      * - Example of a cacheable view being returned.
      */
     #[Route(path: '/cached', name: 'welcome.cached')]
-    #[RouteHandler([AppHttpRouteProvider::class, 'welcomeCachedHandler'])]
+    #[Handler([AppHttpRouteProvider::class, 'welcomeCachedHandler'])]
     #[Middleware(CacheResponseMiddleware::class)]
     public function welcomeCached(ViewResponseFactoryContract $responseFactory): ResponseContract
     {
@@ -84,7 +84,7 @@ class HomeController extends Controller
      * - Example of a view being returned.
      */
     #[Route(path: '/{value}', name: 'dynamicValue')]
-    #[RouteHandler([AppHttpRouteProvider::class, 'dynamicHandler'])]
+    #[Handler([AppHttpRouteProvider::class, 'dynamicHandler'])]
     public function dynamic(
         RouteContract $route,
         ViewResponseFactoryContract $responseFactory,
@@ -100,7 +100,7 @@ class HomeController extends Controller
     #[Get]
     #[Head]
     #[Route(path: '/home', name: 'home')]
-    #[RouteHandler([AppHttpRouteProvider::class, 'homeHandler'])]
+    #[Handler([AppHttpRouteProvider::class, 'homeHandler'])]
     public function home(ViewResponseFactoryContract $responseFactory): ResponseContract
     {
         return $responseFactory->createResponseFromView('home/home');
@@ -110,7 +110,7 @@ class HomeController extends Controller
      * Json action.
      */
     #[Route(path: '/json', name: 'json')]
-    #[RouteHandler([AppHttpRouteProvider::class, 'jsonHandler'])]
+    #[Handler([AppHttpRouteProvider::class, 'jsonHandler'])]
     public function json(ResponseFactoryContract $responseFactory): JsonResponseContract
     {
         return $responseFactory->createJsonResponse(['Json response example']);
