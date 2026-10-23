@@ -205,7 +205,7 @@ composer rector
 Deployment
 ----------
 
-The starter runs on any PHP 8.4+ environment. For production, Valkyrja
+The starter runs on any PHP 8.4.27+ environment. For production, Valkyrja
 supports several persistent-worker runtimes for significantly better
 performance than traditional PHP-FPM:
 
