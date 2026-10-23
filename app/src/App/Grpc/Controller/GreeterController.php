@@ -17,7 +17,7 @@ use Valkyrja\Grpc\Message\Call\Contract\ServiceCallContract;
 use Valkyrja\Grpc\Message\Response\Contract\ServiceResponseContract;
 use Valkyrja\Grpc\Message\Response\ServiceResponse;
 use Valkyrja\Grpc\Message\Status\Status;
-use Valkyrja\Grpc\Routing\Attribute\Method;
+use Valkyrja\Grpc\Routing\Attribute\Route;
 use Valkyrja\Grpc\Routing\Attribute\Service;
 use Valkyrja\Grpc\Routing\Data\Contract\RouteContract;
 
@@ -29,7 +29,7 @@ final class GreeterController
     /**
      * Unary: one message in, one message out.
      */
-    #[Method(name: 'SayHello')]
+    #[Route(name: 'SayHello', handler: [self::class, 'sayHello'])]
     public static function sayHello(ContainerContract $container, RouteContract $route): ServiceResponseContract
     {
         $call = $container->getSingleton(ServiceCallContract::class);
@@ -46,7 +46,7 @@ final class GreeterController
      * Server streaming: one message in, several out, drained lazily through the call's cancellable
      * iterable so the stream stops at the next message once the client goes away.
      */
-    #[Method(name: 'Fanout', serverStreaming: true)]
+    #[Route(name: 'Fanout', handler: [self::class, 'fanout'], serverStreaming: true)]
     public static function fanout(ContainerContract $container, RouteContract $route): ServiceResponseContract
     {
         $call = $container->getSingleton(ServiceCallContract::class);
