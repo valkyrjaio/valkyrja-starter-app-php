@@ -40,7 +40,7 @@ final class SendWelcomeEmailJobTest extends TestCase
 
     public function testTheAttributedMethodIsTheRouteCarrier(): void
     {
-        // The #[Route] method declares the job; #[RouteHandler] points the
+        // The #[Route] method declares the job; #[Handler] points the
         // router at the real handler, so this body is never the dispatch path
         self::assertSame(JobResult::ACK, new SendWelcomeEmailJob()->send());
     }
