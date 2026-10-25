@@ -11,7 +11,7 @@
   "require"           : {
     "php"               : ">=8.4.27",
     "monolog/monolog"   : "^3.12.1",
-    "valkyrja/valkyrja" : "^26.24.1"
+    "valkyrja/valkyrja" : "^26.24.2"
   },
   "require-dev"       : {
     "filp/whoops": "^2.18.7",
