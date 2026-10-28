@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e994dc25af14d5b1d5122b20418dee7f",
+    "content-hash": "4618e18c64389a817ebaf7b8a32e4d5b",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -2963,22 +2963,22 @@
         },
         {
             "name": "valkyrja/sindri",
-            "version": "v26.9.1",
+            "version": "v26.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/valkyrjaio/sindri-php.git",
-                "reference": "0bb04f3d2a6bc268b61ce803b76818dfeb49ea88"
+                "reference": "3e473f14a03478749ce2ca41e951417e561885ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/0bb04f3d2a6bc268b61ce803b76818dfeb49ea88",
-                "reference": "0bb04f3d2a6bc268b61ce803b76818dfeb49ea88",
+                "url": "https://api.github.com/repos/valkyrjaio/sindri-php/zipball/3e473f14a03478749ce2ca41e951417e561885ac",
+                "reference": "3e473f14a03478749ce2ca41e951417e561885ac",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^5.9.0",
                 "php": ">=8.4.27",
-                "valkyrja/valkyrja": "^26.23.1"
+                "valkyrja/valkyrja": "^26.24.3"
             },
             "bin": [
                 "bin/sindri"
@@ -3008,9 +3008,9 @@
             ],
             "support": {
                 "issues": "https://github.com/valkyrjaio/sindri-php/issues",
-                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.9.1"
+                "source": "https://github.com/valkyrjaio/sindri-php/tree/v26.10.0"
             },
-            "time": "2026-10-23T17:49:26+00:00"
+            "time": "2026-10-28T02:04:30+00:00"
         }
     ],
     "aliases": [],
