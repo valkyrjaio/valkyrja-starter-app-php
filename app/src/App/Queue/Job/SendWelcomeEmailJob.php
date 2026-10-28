@@ -16,7 +16,7 @@ use Valkyrja\Container\Manager\Contract\ContainerContract;
 use Valkyrja\Queue\Message\Enum\JobResult;
 use Valkyrja\Queue\Message\Job\Contract\JobContract;
 use Valkyrja\Queue\Routing\Attribute\Route;
-use Valkyrja\Queue\Routing\Attribute\Route\RouteHandler;
+use Valkyrja\Queue\Routing\Attribute\Route\Handler;
 use Valkyrja\Queue\Routing\Data\Contract\RouteContract;
 
 use function is_int;
@@ -38,7 +38,7 @@ final class SendWelcomeEmailJob
     }
 
     #[Route(name: self::NAME, description: 'Send a new user their welcome email')]
-    #[RouteHandler([self::class, 'handle'])]
+    #[Handler([self::class, 'handle'])]
     public function send(): JobResult
     {
         return JobResult::ACK;

@@ -25,7 +25,7 @@ use Valkyrja\Cli\Interaction\Message\NewLine;
 use Valkyrja\Cli\Interaction\Message\Question;
 use Valkyrja\Cli\Interaction\Output\Contract\OutputContract;
 use Valkyrja\Cli\Routing\Attribute\Route;
-use Valkyrja\Cli\Routing\Attribute\Route\RouteHandler;
+use Valkyrja\Cli\Routing\Attribute\Route\Handler;
 use Valkyrja\Cli\Routing\Data\Contract\RouteContract;
 
 class TestCommand extends Controller
@@ -46,7 +46,7 @@ class TestCommand extends Controller
         description: 'Test command',
         helpText: [self::class, 'help'],
     )]
-    #[RouteHandler([AppCliRouteProvider::class, 'testCommandHandler'])]
+    #[Handler([AppCliRouteProvider::class, 'testCommandHandler'])]
     public function run(RouteContract $route, CliConfigContract $config): OutputContract
     {
         /**
