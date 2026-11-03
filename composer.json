@@ -15,10 +15,10 @@
   },
   "require-dev"       : {
     "filp/whoops": "^2.19.1",
-    "predis/predis": "^3.7.0",
+    "predis/predis": "^3.7.1",
     "spiral/roadrunner-cli": "^2.7.2",
     "spiral/roadrunner-http": "^4.2.1",
-    "valkyrja/sindri": "^26.10.6"
+    "valkyrja/sindri": "^26.10.7"
   },
   "config"            : {
     "optimize-autoloader" : true,
