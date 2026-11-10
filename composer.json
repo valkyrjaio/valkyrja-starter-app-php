@@ -14,7 +14,7 @@
     "valkyrja/valkyrja" : "^26.24.3"
   },
   "require-dev"       : {
-    "filp/whoops": "^2.19.2",
+    "filp/whoops": "^2.19.3",
     "predis/predis": "^3.7.1",
     "spiral/roadrunner-cli": "^2.7.2",
     "spiral/roadrunner-http": "^4.2.1",
