@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d8178fb96f3c8f71840c73753219329",
+    "content-hash": "5618bfb197867d18073d651c719045ea",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -868,16 +868,16 @@
         },
         {
             "name": "roadrunner/api-dto",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roadrunner-php/roadrunner-api-dto.git",
-                "reference": "7cbe55544af8537ade89507eae406ae6fc6ade20"
+                "reference": "a0ebc756fd34af5f8574e9ce8d3df3d2f885424f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roadrunner-php/roadrunner-api-dto/zipball/7cbe55544af8537ade89507eae406ae6fc6ade20",
-                "reference": "7cbe55544af8537ade89507eae406ae6fc6ade20",
+                "url": "https://api.github.com/repos/roadrunner-php/roadrunner-api-dto/zipball/a0ebc756fd34af5f8574e9ce8d3df3d2f885424f",
+                "reference": "a0ebc756fd34af5f8574e9ce8d3df3d2f885424f",
                 "shasum": ""
             },
             "require": {
@@ -946,8 +946,8 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-11-03T16:28:57+00:00",
-            "published-time": "2026-11-03T16:29:10+00:00"
+            "time": "2026-11-14T20:44:03+00:00",
+            "published-time": "2026-11-14T20:44:13+00:00"
         },
         {
             "name": "roadrunner/goridge",
